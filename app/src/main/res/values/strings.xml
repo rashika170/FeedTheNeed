@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">LoginProject</string>
+    <string name="default_web_client_id1">665436846105-be1afgoi7fiftjttkt2ti5vgojqm0op2.apps.googleusercontent.com</string>
+
+    <string-array name="roles">
+        <item>Select Role</item>
+        <item>Donator</item>
+        <item>Volunteer</item>
+        <item>Oraganization</item>
+    </string-array>
+
+</resources>

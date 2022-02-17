@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "665436846105",
+    "firebase_url": "https://myfirstproject-961ed-default-rtdb.firebaseio.com",
+    "project_id": "myfirstproject-961ed",
+    "storage_bucket": "myfirstproject-961ed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:665436846105:android:08c40fe8798b914a645288",
+        "android_client_info": {
+          "package_name": "com.gdscandroid.loginproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "665436846105-be1afgoi7fiftjttkt2ti5vgojqm0op2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBq4Wqaq1-2vbPxxh7xms7yM65O1FAtsqk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "665436846105-be1afgoi7fiftjttkt2ti5vgojqm0op2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -3,6 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.107" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/activity_donator_home.xml" value="0.1" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/activity_home.xml" value="0.1796875" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/doantor_item.xml" value="0.1796875" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/feed_item.xml" value="0.1796875" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/fragment_donator_home.xml" value="0.1796875" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/fragment_donator_items.xml" value="0.22" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1796875" />
         <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/activity_donator_apply.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/activity_home.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
@@ -10,7 +18,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8 (2)" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8 (2)" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

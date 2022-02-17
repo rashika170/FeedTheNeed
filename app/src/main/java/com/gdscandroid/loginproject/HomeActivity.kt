@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import com.gdscandroid.loginproject.Donator.DonatorApply
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -36,7 +37,7 @@ class HomeActivity : AppCompatActivity() {
         name.text = "Hi "+Utility.getName(this)
 
         name.setOnClickListener {
-            intent = Intent(this,DonatorApply::class.java)
+            intent = Intent(this, DonatorApply::class.java)
             startActivity(intent)
         }
 

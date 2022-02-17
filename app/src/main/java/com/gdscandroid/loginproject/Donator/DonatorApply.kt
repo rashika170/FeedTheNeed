@@ -1,4 +1,4 @@
-package com.gdscandroid.loginproject
+package com.gdscandroid.loginproject.Donator
 
 import android.Manifest
 import android.app.Activity
@@ -30,7 +30,9 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import java.io.IOException
-import android.text.format.DateFormat
+import com.gdscandroid.loginproject.HomeActivity
+import com.gdscandroid.loginproject.R
+import com.gdscandroid.loginproject.Utility
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -336,7 +338,7 @@ class DonatorApply : AppCompatActivity(),DatePickerDialog.OnDateSetListener,
                         database2.child("pickedTime").setValue(pickedtimetxt.text.toString())
                         database2.child("verificationLink").setValue("NA")
                         Toast.makeText(this,"Post Uploaded Successfully", Toast.LENGTH_SHORT).show()
-                        intent = Intent(this,HomeActivity::class.java)
+                        intent = Intent(this, HomeActivity::class.java)
                         startActivity(intent)
                     }
                 })

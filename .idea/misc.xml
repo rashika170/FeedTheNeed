@@ -3,14 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/drawable/ic_baseline_fastfood_24.xml" value="0.1215" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.107" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/activity_donator_home.xml" value="0.1" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/activity_home.xml" value="0.1796875" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/activity_profile.xml" value="0.1796875" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/activity_restaurent.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/doantor_item.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/feed_item.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/fragment_donator_home.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/fragment_donator_items.xml" value="0.22" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/fragment_restaurant_meals.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1796875" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/menu/restaurant_nav_menu.xml" value="0.1796875" />
         <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/activity_donator_apply.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/activity_home.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />

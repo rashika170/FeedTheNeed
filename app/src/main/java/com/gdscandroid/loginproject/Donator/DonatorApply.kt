@@ -121,13 +121,11 @@ class DonatorApply : AppCompatActivity(),DatePickerDialog.OnDateSetListener,
                 uploadDataToFirebase()
             }
         }
-
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getCurrentTime() {
         val current = LocalDateTime.now()
-
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")
         val formatted = current.format(formatter)
         timetxt.text = formatted
@@ -338,7 +336,7 @@ class DonatorApply : AppCompatActivity(),DatePickerDialog.OnDateSetListener,
                         database2.child("pickedTime").setValue(pickedtimetxt.text.toString())
                         database2.child("verificationLink").setValue("NA")
                         Toast.makeText(this,"Post Uploaded Successfully", Toast.LENGTH_SHORT).show()
-                        intent = Intent(this, HomeActivity::class.java)
+                        intent = Intent(this, DonatorHome::class.java)
                         startActivity(intent)
                     }
                 })

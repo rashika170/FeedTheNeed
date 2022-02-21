@@ -20,6 +20,7 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.core.app.ActivityCompat
+import com.gdscandroid.loginproject.Donator.DonatorHome
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.OnFailureListener
@@ -190,7 +191,7 @@ class ProfileActivity : AppCompatActivity() {
                 Utility.setRole(this,roleStr)
                 Utility.setRewardoint(this,0)
                 Utility.setDonationPoint(this,0)
-                val intent = Intent(this, HomeActivity::class.java)
+                val intent = Intent(this, DonatorHome::class.java)
                 startActivity(intent)
                 finish()
             }

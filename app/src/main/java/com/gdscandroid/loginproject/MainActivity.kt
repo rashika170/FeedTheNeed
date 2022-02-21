@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.gdscandroid.loginproject.Donator.DonatorHome
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -121,7 +122,7 @@ class MainActivity : AppCompatActivity() {
                                 Utility.setMobile(this@MainActivity,nextSnapshot.child("Phone").value.toString())
                                 Utility.setUid(this@MainActivity,nextSnapshot.child("Uid").value.toString())
 
-                                intent = Intent(this@MainActivity, HomeActivity::class.java)
+                                intent = Intent(this@MainActivity, DonatorHome::class.java)
                                 startActivity(intent);
                                 finish()
                             }
@@ -200,13 +201,13 @@ class MainActivity : AppCompatActivity() {
                                                         Utility.setUid(this@MainActivity,nextSnapshot.child("Uid").value.toString())
                                                         Utility.setRole(this@MainActivity,nextSnapshot.child("Role").value.toString())
                                                         Utility.setRewardoint(this@MainActivity,
-                                                            nextSnapshot.child("RewardPoints").value as Int
+                                                            nextSnapshot.child("RewardPoints").value as Long
                                                         )
                                                         Utility.setDonationPoint(this@MainActivity,
-                                                            nextSnapshot.child("DonationPoints").value as Int
+                                                            nextSnapshot.child("DonationPoints").value as Long
                                                         )
 
-                                                        intent = Intent(this@MainActivity, HomeActivity::class.java)
+                                                        intent = Intent(this@MainActivity, DonatorHome::class.java)
                                                         startActivity(intent);
                                                     }
                                                 }
@@ -245,7 +246,7 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         val currentUser = auth.currentUser
         if(currentUser != null){
-            intent = Intent(this, HomeActivity::class.java)
+            intent = Intent(this, DonatorHome::class.java)
             startActivity(intent)
         }
     }

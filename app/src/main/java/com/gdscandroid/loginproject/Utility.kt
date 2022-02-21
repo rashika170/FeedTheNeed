@@ -89,31 +89,31 @@ object Utility {
         return ans
     }
 
-    public fun setRewardoint(activity:Activity,name:Int){
+    public fun setRewardoint(activity:Activity,name:Long){
         val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.apply {
-            putInt("reward",name)
+            putLong("reward",name)
         }.apply()
     }
 
-    public fun getRewardoint(activity:Activity) : Int? {
+    public fun getRewardoint(activity:Activity) : Long? {
         val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
-        val ans = sharedPreferences.getInt("reward",0)
+        val ans = sharedPreferences.getLong("reward",0)
         return ans
     }
 
-    public fun setDonationPoint(activity:Activity,name:Int){
+    public fun setDonationPoint(activity:Activity,name:Long){
         val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.apply {
-            putInt("donation",name)
+            putLong("donation",name)
         }.apply()
     }
 
-    public fun getDonationPoint(activity:Activity) : Int? {
+    public fun getDonationPoint(activity:Activity) : Long? {
         val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
-        val ans = sharedPreferences.getInt("donation",0)
+        val ans = sharedPreferences.getLong("donation",0)
         return ans
     }
 

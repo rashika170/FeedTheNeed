@@ -10,11 +10,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gdscandroid.loginproject.R
+import com.gdscandroid.loginproject.Utility
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_donator_items.*
 
 
@@ -71,7 +74,8 @@ class DonatorItemsFragment : Fragment() {
             }
 
         }
-        dbRef.child("DonatorPost").addChildEventListener(postListener)
+        activity?.let { Utility.getUid(it).toString() }
+            ?.let { dbRef.child("DonatorPost").child(it).addChildEventListener(postListener) }
 
         floatingActionButton.setOnClickListener{
            val intent = Intent (activity,DonatorApply::class.java)

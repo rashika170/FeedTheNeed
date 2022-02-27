@@ -5,7 +5,6 @@
         android:title="Home"
         android:icon="@drawable/ic_baseline_home_24"/>
 
-
     <item
         android:id="@+id/meals"
         android:title="Meals"

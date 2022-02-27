@@ -1,33 +1,31 @@
 package com.gdscandroid.loginproject.Restaurant
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.gdscandroid.loginproject.Donator.DonorData
 import com.gdscandroid.loginproject.R
+import com.gdscandroid.loginproject.Restaurant.dataClass.RestaurantData
+import com.gdscandroid.loginproject.Restaurant.dataClass.UpcomingOrderRVAdapter
+import com.gdscandroid.loginproject.Restaurant.dataClass.VolunteerMealsDetailsData
+import com.gdscandroid.loginproject.Utility
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.fragment_restaurant_meals.*
+import kotlinx.android.synthetic.main.volunteer_meals_details_item.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [RestaurantMealsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class RestaurantMealsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    val dbRef= FirebaseDatabase.getInstance().reference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
@@ -38,23 +36,86 @@ class RestaurantMealsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_restaurant_meals, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment RestaurantMealsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            RestaurantMealsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        val data=ArrayList<RestaurantData>()
+        val postListener= object : ChildEventListener {
+            override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                val post: RestaurantData?=snapshot.getValue(RestaurantData::class.java)
+                if(post!=null){
+                    totalDonatedMeals.text=post.totalDonated.toString()
+                    donationsLeftMeals.text=post.donationsLeft.toString()
                 }
             }
+
+            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+
+            }
+
+            override fun onChildRemoved(snapshot: DataSnapshot) {
+
+            }
+
+            override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+        }
+        activity?.let {  Utility.getUid(it).toString() }
+        ?.let { dbRef.child("Restaurant").child(it).addChildEventListener(postListener) }
+
+
+
+
+
+        completedMeals.setOnClickListener{
+            val intent= Intent(activity,CompletedMealsActivity::class.java)
+            startActivity(intent)
+        }
+
+        val volunteerMealsDetailsData = ArrayList<VolunteerMealsDetailsData>()
+        val upcomingOrderRVAdapter=UpcomingOrderRVAdapter(volunteerMealsDetailsData)
+        rvUpcomingMeals.layoutManager=LinearLayoutManager(activity)
+        rvUpcomingMeals.adapter=upcomingOrderRVAdapter
+
+        val postListener1= object : ChildEventListener{
+            override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                val post1:VolunteerMealsDetailsData?=snapshot.getValue(VolunteerMealsDetailsData::class.java)
+                if(post1!=null && post1.status.toString()!="done" ){
+                    volunteerMealsDetailsData.add(post1)
+                }
+                upcomingOrderRVAdapter.notifyDataSetChanged()
+
+            }
+
+            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+
+            }
+
+            override fun onChildRemoved(snapshot: DataSnapshot) {
+
+            }
+
+            override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+
+        }
+        dbRef.child("VolunteerMealsDetails").addChildEventListener(postListener1)
+
+
+   }
+
+
     }
-}
+
+

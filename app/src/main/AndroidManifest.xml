@@ -14,8 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LoginProject">
         <activity
+            android:name=".Restaurant.CompletedMealsActivity"
+            android:exported="false" />
+        <activity
             android:name=".Restaurant.RestaurantActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,9 +41,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
     </application>
 
 </manifest>

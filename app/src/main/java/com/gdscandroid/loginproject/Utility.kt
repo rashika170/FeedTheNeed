@@ -71,7 +71,7 @@ object Utility {
 
     public fun getProfile(activity:Activity) : String? {
         val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
-        val ans = sharedPreferences.getString("Profile",null)
+        val ans = sharedPreferences.getString("Profile","")
         return ans
     }
 
@@ -114,6 +114,20 @@ object Utility {
     public fun getDonationPoint(activity:Activity) : Long? {
         val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
         val ans = sharedPreferences.getLong("donation",0)
+        return ans
+    }
+
+    public fun setProfileComplete(activity:Activity,name:Boolean){
+        val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.apply {
+            putBoolean("profilecomplete",name)
+        }.apply()
+    }
+
+    public fun getProfileComplete(activity:Activity) : Boolean {
+        val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
+        val ans = sharedPreferences.getBoolean("profilecomplete",false)
         return ans
     }
 

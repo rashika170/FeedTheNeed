@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.gdscandroid.loginproject.Donator.DonatorHome
+import com.gdscandroid.loginproject.Restaurant.RestaurantActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -121,10 +122,28 @@ class MainActivity : AppCompatActivity() {
                                 Utility.setProfile(this@MainActivity,nextSnapshot.child("Profile").value.toString())
                                 Utility.setMobile(this@MainActivity,nextSnapshot.child("Phone").value.toString())
                                 Utility.setUid(this@MainActivity,nextSnapshot.child("Uid").value.toString())
+                                Utility.setRole(this@MainActivity,nextSnapshot.child("Role").value.toString())
+                                Utility.setRewardoint(this@MainActivity,
+                                    nextSnapshot.child("RewardPoints").value as Long
+                                )
+                                Utility.setDonationPoint(this@MainActivity,
+                                    nextSnapshot.child("DonationPoints").value as Long
+                                )
+                                Utility.setProfileComplete(this@MainActivity,true)
 
-                                intent = Intent(this@MainActivity, DonatorHome::class.java)
-                                startActivity(intent);
-                                finish()
+                                if(Utility.getrole(this@MainActivity).equals("Donator")){
+                                    intent = Intent(this@MainActivity, DonatorHome::class.java)
+                                    startActivity(intent);
+                                    finish()
+                                }else if(Utility.getrole(this@MainActivity).equals("Organization")){
+                                    intent = Intent(this@MainActivity, RestaurantActivity::class.java)
+                                    startActivity(intent);
+                                    finish()
+                                }else{
+                                    intent = Intent(this@MainActivity, DonatorHome::class.java)
+                                    startActivity(intent);
+                                    finish()
+                                }
                             }
                         }
                         if(k==0){
@@ -206,9 +225,23 @@ class MainActivity : AppCompatActivity() {
                                                         Utility.setDonationPoint(this@MainActivity,
                                                             nextSnapshot.child("DonationPoints").value as Long
                                                         )
+                                                        Utility.setProfileComplete(this@MainActivity,true)
 
-                                                        intent = Intent(this@MainActivity, DonatorHome::class.java)
-                                                        startActivity(intent);
+                                                        if(Utility.getrole(this@MainActivity).equals("Donator")){
+                                                            intent = Intent(this@MainActivity, DonatorHome::class.java)
+                                                            startActivity(intent);
+                                                            finish()
+                                                        }else if(Utility.getrole(this@MainActivity).equals("Organization")){
+                                                            intent = Intent(this@MainActivity, RestaurantActivity::class.java)
+                                                            startActivity(intent);
+                                                            finish()
+                                                        }else{
+                                                            intent = Intent(this@MainActivity, DonatorHome::class.java)
+                                                            startActivity(intent);
+                                                            finish()
+                                                        }
+
+
                                                     }
                                                 }
                                                 if(k==0){
@@ -246,8 +279,21 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         val currentUser = auth.currentUser
         if(currentUser != null){
-            intent = Intent(this, DonatorHome::class.java)
-            startActivity(intent)
+            if(Utility.getProfileComplete(this)){
+                if(Utility.getrole(this@MainActivity).equals("Donator")){
+                    intent = Intent(this@MainActivity, DonatorHome::class.java)
+                    startActivity(intent);
+                    finish()
+                }else if(Utility.getrole(this@MainActivity).equals("Organization")){
+                    intent = Intent(this@MainActivity, RestaurantActivity::class.java)
+                    startActivity(intent);
+                    finish()
+                }else{
+                    intent = Intent(this@MainActivity, DonatorHome::class.java)
+                    startActivity(intent);
+                    finish()
+                }
+            }
         }
     }
 }

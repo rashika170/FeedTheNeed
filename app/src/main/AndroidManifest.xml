@@ -14,16 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LoginProject">
         <activity
-            android:name=".Restaurant.CompletedMealsActivity"
-            android:exported="false" />
-        <activity
             android:name=".Restaurant.RestaurantActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="true" >
         </activity>
         <activity
             android:name=".Donator.DonatorHome"
@@ -41,7 +33,15 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>

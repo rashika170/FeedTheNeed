@@ -6,7 +6,7 @@
         <item>Select Role</item>
         <item>Donator</item>
         <item>Volunteer</item>
-        <item>Oraganization</item>
+        <item>Organization</item>
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -10,6 +10,7 @@ import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.gdscandroid.loginproject.MainActivity
 import com.gdscandroid.loginproject.R
+import com.gdscandroid.loginproject.Utility
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -21,6 +22,8 @@ class DonatorHome : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_donator_home)
+
+        Firebase.auth.currentUser?.let { Log.d("kahokaho", it.uid) }
 
         val homeFragment= DonatorHomeFragment()
         val profileFragment= DonatorProfileFragment()
@@ -65,6 +68,15 @@ class DonatorHome : AppCompatActivity() {
                     Firebase.auth.signOut()
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
+                    Utility.setName(this,"")
+                    Utility.setLocation(this,"")
+                    Utility.setProfile(this,"")
+                    Utility.setMobile(this,"")
+                    Utility.setUid(this,"")
+                    Utility.setRole(this,"")
+                    Utility.setRewardoint(this,0)
+                    Utility.setDonationPoint(this,0)
+                    Utility.setProfileComplete(this,false)
                     finish()
                 }
                 return true

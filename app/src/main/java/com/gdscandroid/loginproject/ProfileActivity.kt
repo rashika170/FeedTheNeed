@@ -21,6 +21,9 @@ import android.view.View
 import android.widget.*
 import androidx.core.app.ActivityCompat
 import com.gdscandroid.loginproject.Donator.DonatorHome
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.OnFailureListener
@@ -191,6 +194,7 @@ class ProfileActivity : AppCompatActivity() {
                 Utility.setRole(this,roleStr)
                 Utility.setRewardoint(this,0)
                 Utility.setDonationPoint(this,0)
+                Utility.setProfileComplete(this,true)
                 val intent = Intent(this, DonatorHome::class.java)
                 startActivity(intent)
                 finish()
@@ -370,7 +374,7 @@ class ProfileActivity : AppCompatActivity() {
                         isLocation = true
                     }
                 } catch (e: IOException) {
-                    Toast.makeText(applicationContext,"Unable connect to Geocoder",Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext,"Unable connect to Geocoder"+e.message,Toast.LENGTH_LONG).show()
                 }
             }
             else {
@@ -503,6 +507,28 @@ class ProfileActivity : AppCompatActivity() {
             ?.addOnFailureListener(OnFailureListener { e ->
                 print(e.message)
             })
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("kahokaho","Pause is here")
+    }
+
+    override fun onDestroy() {
+        lateinit var mGoogleSignInClient: GoogleSignInClient
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id1))
+            .requestEmail()
+            .build()
+
+        mGoogleSignInClient= GoogleSignIn.getClient(this,gso)
+        Log.d("kahokaho","destroy is here")
+        mGoogleSignInClient.signOut().addOnCompleteListener {
+            Log.d("kahokaho","logout");
+            Firebase.auth.signOut()
+            finish()
+        }
+        super.onDestroy()
     }
 
 }

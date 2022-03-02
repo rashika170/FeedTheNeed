@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.gdscandroid.loginproject.Donator.DonatorHome
 import com.gdscandroid.loginproject.Restaurant.RestaurantActivity
+import com.gdscandroid.loginproject.Volunteer.VolunteerHomeActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -140,7 +141,7 @@ class MainActivity : AppCompatActivity() {
                                     startActivity(intent);
                                     finish()
                                 }else{
-                                    intent = Intent(this@MainActivity, DonatorHome::class.java)
+                                    intent = Intent(this@MainActivity, VolunteerHomeActivity::class.java)
                                     startActivity(intent);
                                     finish()
                                 }
@@ -236,7 +237,7 @@ class MainActivity : AppCompatActivity() {
                                                             startActivity(intent);
                                                             finish()
                                                         }else{
-                                                            intent = Intent(this@MainActivity, DonatorHome::class.java)
+                                                            intent = Intent(this@MainActivity, VolunteerHomeActivity::class.java)
                                                             startActivity(intent);
                                                             finish()
                                                         }
@@ -289,7 +290,7 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent);
                     finish()
                 }else{
-                    intent = Intent(this@MainActivity, DonatorHome::class.java)
+                    intent = Intent(this@MainActivity, VolunteerHomeActivity::class.java)
                     startActivity(intent);
                     finish()
                 }

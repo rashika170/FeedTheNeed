@@ -21,6 +21,8 @@ import android.view.View
 import android.widget.*
 import androidx.core.app.ActivityCompat
 import com.gdscandroid.loginproject.Donator.DonatorHome
+import com.gdscandroid.loginproject.Restaurant.RestaurantActivity
+import com.gdscandroid.loginproject.Volunteer.VolunteerHomeActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -195,8 +197,19 @@ class ProfileActivity : AppCompatActivity() {
                 Utility.setRewardoint(this,0)
                 Utility.setDonationPoint(this,0)
                 Utility.setProfileComplete(this,true)
-                val intent = Intent(this, DonatorHome::class.java)
-                startActivity(intent)
+                if(Utility.getrole(this).equals("Donator")){
+                    intent = Intent(this, DonatorHome::class.java)
+                    startActivity(intent);
+                    finish()
+                }else if(Utility.getrole(this).equals("Organization")){
+                    intent = Intent(this, RestaurantActivity::class.java)
+                    startActivity(intent);
+                    finish()
+                }else{
+                    intent = Intent(this, VolunteerHomeActivity::class.java)
+                    startActivity(intent);
+                    finish()
+                }
                 finish()
             }
         }

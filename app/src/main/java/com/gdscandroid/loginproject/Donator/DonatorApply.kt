@@ -3,6 +3,7 @@ package com.gdscandroid.loginproject.Donator
 import android.Manifest
 import android.app.Activity
 import android.app.DatePickerDialog
+import android.app.ProgressDialog
 import android.app.TimePickerDialog
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -40,6 +41,8 @@ import java.util.*
 class DonatorApply : AppCompatActivity(),DatePickerDialog.OnDateSetListener,
     TimePickerDialog.OnTimeSetListener {
 
+    private var lati:String =""
+    private var longi:String =""
     private lateinit var image:ImageView
     private lateinit var descedit: EditText
     private lateinit var locatext: TextView
@@ -164,6 +167,8 @@ class DonatorApply : AppCompatActivity(),DatePickerDialog.OnDateSetListener,
 
                 // Reverse-Geocoding starts
                 try {
+                    lati=lastLocation?.latitude.toString()
+                    longi=lastLocation?.longitude.toString()
                     val addressList: List<Address> = mGeocoder.getFromLocation(lastLocation!!.latitude, lastLocation!!.longitude, 1)
 
                     // use your lat, long value here
@@ -176,14 +181,9 @@ class DonatorApply : AppCompatActivity(),DatePickerDialog.OnDateSetListener,
 
                         // Various Parameters of an Address are appended
                         // to generate a complete Address
-                        if (address.premises != null)
-                            sb.append(address.premises).append(", ")
-
-                        sb.append(address.subAdminArea).append("\n")
-                        sb.append(address.locality).append(", ")
-                        sb.append(address.adminArea).append(", ")
-                        sb.append(address.countryName).append(", ")
-                        sb.append(address.postalCode)
+                        Log.d("raatmekaam",address.toString())
+                        Log.d("raatmekaam",address.adminArea.toString())
+                        sb.append(address.getAddressLine(0))
 
                         // StringBuilder sb is converted into a string
                         // and this value is assigned to the
@@ -313,6 +313,10 @@ class DonatorApply : AppCompatActivity(),DatePickerDialog.OnDateSetListener,
     }
 
     private fun uploadDataToFirebase() {
+        val pd:ProgressDialog = ProgressDialog(this)
+        pd.setMessage("Please Wait...Your data is uploading !!")
+        pd.setCancelable(false)
+        pd.show()
         val fileName = "image.jpg"
         val uid:String = Utility.getUid(this).toString()
         val database = FirebaseDatabase.getInstance().reference.child("DonatorPost").child(uid).push()
@@ -325,16 +329,19 @@ class DonatorApply : AppCompatActivity(),DatePickerDialog.OnDateSetListener,
                 OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
                     taskSnapshot.storage.downloadUrl.addOnSuccessListener {
                         imageUrl = it.toString()
-                        val database2 = FirebaseDatabase.getInstance().reference.child("DonatorPost").child(uid).child(ranid)
+                        val database2 = FirebaseDatabase.getInstance().reference.child("DonatorPost").child(ranid)
                         database2.child("image").setValue(imageUrl)
                         database2.child("desc").setValue(descedit.text.toString())
                         database2.child("location").setValue(locatnans)
                         database2.child("uid").setValue(uid)
                         database2.child("time").setValue(timenans)
                         database2.child("status").setValue("Posted")
-                        database2.child("PickedBy").setValue("NoOne")
+                        database2.child("pickedBy").setValue("NoOne")
                         database2.child("pickedTime").setValue(pickedtimetxt.text.toString())
                         database2.child("verificationLink").setValue("NA")
+                        database2.child("latitude").setValue(lati)
+                        database2.child("longitude").setValue(longi)
+                        pd.dismiss()
                         Toast.makeText(this,"Post Uploaded Successfully", Toast.LENGTH_SHORT).show()
                         intent = Intent(this, DonatorHome::class.java)
                         startActivity(intent)

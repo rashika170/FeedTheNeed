@@ -44,6 +44,9 @@ import java.util.concurrent.TimeUnit
 
 class ProfileActivity : AppCompatActivity() {
 
+    var lati:String=""
+    var longi:String=""
+
     //Phone verification
     var number : String =""
 
@@ -188,6 +191,8 @@ class ProfileActivity : AppCompatActivity() {
                 ref.child("Role").setValue(roleStr)
                 ref.child("RewardPoints").setValue(0)
                 ref.child("DonationPoints").setValue(0)
+                ref.child("Latitude").setValue(lati)
+                ref.child("Longitude").setValue(longi)
                 Utility.setName(this,nametxt.text.toString())
                 Utility.setLocation(this,ans)
                 Utility.setProfile(this,profile)
@@ -197,6 +202,8 @@ class ProfileActivity : AppCompatActivity() {
                 Utility.setRewardoint(this,0)
                 Utility.setDonationPoint(this,0)
                 Utility.setProfileComplete(this,true)
+                Utility.setLongitude(this,longi)
+                Utility.setLatitude(this,lati)
                 if(Utility.getrole(this).equals("Donator")){
                     intent = Intent(this, DonatorHome::class.java)
                     startActivity(intent);
@@ -210,7 +217,7 @@ class ProfileActivity : AppCompatActivity() {
                     startActivity(intent);
                     finish()
                 }
-                finish()
+
             }
         }
 
@@ -356,6 +363,8 @@ class ProfileActivity : AppCompatActivity() {
 
                 // Reverse-Geocoding starts
                 try {
+                    lati = lastLocation?.latitude.toString()
+                    longi=lastLocation?.longitude.toString()
                     val addressList: List<Address> = mGeocoder.getFromLocation(lastLocation!!.latitude, lastLocation!!.longitude, 1)
 
                     // use your lat, long value here
@@ -368,14 +377,7 @@ class ProfileActivity : AppCompatActivity() {
 
                         // Various Parameters of an Address are appended
                         // to generate a complete Address
-                        if (address.premises != null)
-                            sb.append(address.premises).append(", ")
-
-                        sb.append(address.subAdminArea).append("\n")
-                        sb.append(address.locality).append(", ")
-                        sb.append(address.adminArea).append(", ")
-                        sb.append(address.countryName).append(", ")
-                        sb.append(address.postalCode)
+                        sb.append(address.getAddressLine(0))
 
                         // StringBuilder sb is converted into a string
                         // and this value is assigned to the

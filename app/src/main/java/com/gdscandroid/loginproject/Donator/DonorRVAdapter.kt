@@ -21,7 +21,7 @@ class DonorRVAdapter(val donorData:ArrayList<DonorData>): RecyclerView.Adapter<D
     }
 
     override fun onBindViewHolder(holder: RVViewHolder, position: Int) {
-        holder.itemView.itemTitle.text=donorData[position].itemTitle
+        holder.itemView.itemTitle.text=donorData[position].desc
         holder.itemView.itemLocation.text=donorData[position].location
         val imageUri=donorData[position].image.toString()
         if (imageUri !== null) Glide.with(holder.itemView)
@@ -29,7 +29,7 @@ class DonorRVAdapter(val donorData:ArrayList<DonorData>): RecyclerView.Adapter<D
             .into(holder.itemView.feedImage)
         else holder.itemView.feedImage.setImageResource(R.drawable.ic_launcher_background)
         holder.itemView.itemPickedBy.text=donorData[position].pickedBy
-        holder.itemView.itemPickedTime.text=donorData[position].PickedTime
+        holder.itemView.itemPickedTime.text=donorData[position].pickedTime
         holder.itemView.itemStatus.text=donorData[position].status
         holder.itemView.itemVerification.text=donorData[position].verificationLink
     }

@@ -46,13 +46,14 @@ class DonatorItemsFragment : Fragment() {
         val donorData=ArrayList<DonorData>()
         val donorRVAdapter=DonorRVAdapter(donorData)
         rvDonor.layoutManager= LinearLayoutManager(activity)
+
         rvDonor.adapter=donorRVAdapter
 
         val postListener= object : ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 val post: DonorData?=snapshot.getValue(DonorData::class.java)
                 if(post!=null){
-                    donorData.add(post)
+                    donorData.add(0,post)
                 }
                 donorRVAdapter.notifyDataSetChanged()
             }
@@ -74,9 +75,9 @@ class DonatorItemsFragment : Fragment() {
             }
 
         }
-        activity?.let { Utility.getUid(it).toString() }
-            ?.let { dbRef.child("DonatorPost").child(it).addChildEventListener(postListener) }
 
+        dbRef.child("DonatorPost").addChildEventListener(postListener)
+        Log.d("raatmekaam",donorData.size.toString())
         floatingActionButton.setOnClickListener{
            val intent = Intent (activity,DonatorApply::class.java)
             startActivity(intent)

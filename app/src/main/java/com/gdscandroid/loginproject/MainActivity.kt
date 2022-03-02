@@ -131,6 +131,8 @@ class MainActivity : AppCompatActivity() {
                                     nextSnapshot.child("DonationPoints").value as Long
                                 )
                                 Utility.setProfileComplete(this@MainActivity,true)
+                                Utility.setLatitude(this@MainActivity,nextSnapshot.child("Latitude").value.toString())
+                                Utility.setLongitude(this@MainActivity,nextSnapshot.child("Longitude").value.toString())
 
                                 if(Utility.getrole(this@MainActivity).equals("Donator")){
                                     intent = Intent(this@MainActivity, DonatorHome::class.java)
@@ -227,6 +229,8 @@ class MainActivity : AppCompatActivity() {
                                                             nextSnapshot.child("DonationPoints").value as Long
                                                         )
                                                         Utility.setProfileComplete(this@MainActivity,true)
+                                                        Utility.setLatitude(this@MainActivity,nextSnapshot.child("Latitude").value.toString())
+                                                        Utility.setLongitude(this@MainActivity,nextSnapshot.child("Longitude").value.toString())
 
                                                         if(Utility.getrole(this@MainActivity).equals("Donator")){
                                                             intent = Intent(this@MainActivity, DonatorHome::class.java)

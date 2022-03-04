@@ -20,7 +20,10 @@ import com.gdscandroid.loginproject.Utility
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
@@ -33,11 +36,11 @@ class RestaurantPOSFragment : Fragment() {
 
     private lateinit var image: ImageView
     private lateinit var descedit: EditText
-    private lateinit var phonetext: TextView
+    private lateinit var phonetext: EditText
     private lateinit var timetxt: TextView
     private lateinit var numberEdit: EditText
     private lateinit var post: Button
-
+    private lateinit var name:EditText
     private var isImage: Boolean = false
     private var imageUrl : String=""
     private lateinit var fileUri1: Uri
@@ -50,6 +53,7 @@ class RestaurantPOSFragment : Fragment() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -62,28 +66,19 @@ class RestaurantPOSFragment : Fragment() {
         timetxt = v.findViewById(R.id.date_txt)
         numberEdit = v.findViewById(R.id.no_edit)
         post = v.findViewById(R.id.post)
+        name=v.findViewById(R.id.name_edit)
 
         getCurrentTime()
 
-        image.setOnClickListener {
-            val intent = Intent()
-            intent.type = "image/*"
-            intent.action = Intent.ACTION_GET_CONTENT
-            startActivityForResult(
-                Intent.createChooser(
-                    intent,
-                    "Please select..."
-                ),
-                GALLERY_REQUEST_CODE
-            )
-        }
         post.setOnClickListener {
             if(descedit.text.toString().trim().isBlank()){
                 Toast.makeText(context,"Upload Description", Toast.LENGTH_SHORT).show()
-            }else if(!isImage){
-                Toast.makeText(context,"Upload Image", Toast.LENGTH_SHORT).show()
-            }else if(!numberEdit.text.toString().trim().isEmpty()){
+            }else if(numberEdit.text.toString().trim().isEmpty()){
                 Toast.makeText(context,"Upload No of Meals", Toast.LENGTH_SHORT).show()
+            }else if(name.text.toString().trim().isEmpty()){
+                Toast.makeText(context,"Please enter name of the donator", Toast.LENGTH_SHORT).show()
+            }else if(phonetext.text.toString().trim().isEmpty()){
+                Toast.makeText(context,"Please enter Phone number of the donator", Toast.LENGTH_SHORT).show()
             }else{
                 uploadDataToFirebase()
             }
@@ -91,63 +86,42 @@ class RestaurantPOSFragment : Fragment() {
         return v
     }
 
-    override fun onActivityResult(
-        requestCode: Int,
-        resultCode: Int,
-        data: Intent?
-    ) {
-
-        super.onActivityResult(
-            requestCode,
-            resultCode,
-            data
-        )
-
-        if (requestCode == GALLERY_REQUEST_CODE
-            && resultCode == Activity.RESULT_OK
-            && data != null
-            && data.data != null
-        ) {
-
-            // Get the Uri of data
-            val file_uri = data.data
-            if (file_uri != null) {
-                image.setImageURI(file_uri)
-                fileUri1 = file_uri
-                isImage = true
-            }
-        }
-    }
 
     private fun uploadDataToFirebase() {
-        val fileName = "image.jpg"
         val uid:String = activity?.let { Utility.getUid(it).toString() }.toString()
         val database = FirebaseDatabase.getInstance().reference.child("RestaurentPost").child(uid).push()
         var ranid = database.key.toString()
         ranid = ranid.substring(1,ranid.length-1)
         Log.d("bhibhi",ranid)
-        val refStorage = FirebaseStorage.getInstance().reference.child("DonatorPost/${Firebase.auth.currentUser?.uid}/${ranid}/$fileName")
-        refStorage.putFile(fileUri1)
-            .addOnSuccessListener(
-                OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
-                    taskSnapshot.storage.downloadUrl.addOnSuccessListener {
-                        imageUrl = it.toString()
-                        val database2 = FirebaseDatabase.getInstance().reference.child("DonatorPost").child(uid).child(ranid)
-                        database2.child("image").setValue(imageUrl)
-                        database2.child("desc").setValue(descedit.text.toString())
-                        database2.child("uid").setValue(uid)
-                        database2.child("time").setValue(timenans)
-                        database2.child("status").setValue("Posted")
-                        database2.child("PickedBy").setValue("NoOne")
+        val database2 = FirebaseDatabase.getInstance().reference.child("RestaurantData").child(uid).child(ranid)
+        database2.child("desc").setValue(descedit.text.toString())
+        database2.child("uid").setValue(uid)
+        database2.child("date").setValue(timenans)
+        database2.child("NumMeals").setValue(numberEdit.text.toString().trim())
+        database2.child("name").setValue(name.text.toString())
+        database2.child("phone").setValue(phonetext.text.toString().trim())
 
-                        database2.child("verificationLink").setValue("NA")
-                        Toast.makeText(context,"Post Uploaded Successfully", Toast.LENGTH_SHORT).show()
-                    }
-                })
+        val database3=FirebaseDatabase.getInstance().reference.child("RestaurantMealsData").child(uid)
+        database3.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var tDonation:Int=snapshot.child("TotalDonation").value.toString().toInt()
+                var lDonation:Int= snapshot.child("LeftDonation").value.toString().toInt()
+                var cDonation:Int=snapshot.child("CompletedDonation").value.toString().toInt()
+                var donation:Int = numberEdit.text.toString().toInt()
+                tDonation += donation
+                lDonation += donation
 
-            .addOnFailureListener(OnFailureListener { e ->
-                Toast.makeText(context,"Something Went Wrong", Toast.LENGTH_SHORT).show()
-            })
+                database3.child("TotalDonation").setValue(tDonation.toString())
+                database3.child("LeftDonation").setValue(lDonation.toString())
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+        })
+        Toast.makeText(context,"Post Uploaded Successfully", Toast.LENGTH_SHORT).show()
     }
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getCurrentTime() {

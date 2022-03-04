@@ -12,16 +12,34 @@
         android:id="@+id/volunteerName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="@string/app_name"/>
+        tools:text="Abhi"/>
 
     <TextView
-        android:layout_marginStart="16dp"
-        android:textSize="16sp"
         android:id="@+id/volunteerMealStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="@string/app_name"/>
+        android:layout_marginStart="16dp"
+        android:textSize="16sp"
+        tools:text="Booked" />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Volunteer Number:  "
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/volNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="1232323234"
+            android:textSize="16sp"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -62,27 +80,19 @@
             android:id="@+id/volunteerMealsPickAtTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="@string/app_name"
+            tools:text="11:00 P.M."
             android:layout_weight="1"
             />
 
-        <TextView
-            android:textSize="16sp"
-            android:id="@+id/volunteerMealsPickDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:text="@string/app_name"
-            android:layout_weight="1"
-            />
 
     </LinearLayout>
 
-    <TextView
+    <Button
         android:textSize="24sp"
-        android:id="@+id/volunteerMealsVerification"
+        android:id="@+id/volunteerMealsCancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="NA"
+        android:text="Cancel Meals"
         android:gravity="center"
         />
 

@@ -1,9 +1,11 @@
 package com.gdscandroid.loginproject.Volunteer
 
+import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.util.Util
 import com.gdscandroid.loginproject.Donator.DonorData
 import com.gdscandroid.loginproject.R
 import com.gdscandroid.loginproject.Utility
@@ -23,29 +25,51 @@ class VolunteerApply : AppCompatActivity() {
         rvVolun1.layoutManager= LinearLayoutManager(this)
         rvVolun1.adapter=volunteerRVAdapter
 
-        val ref = Firebase.database.getReference("RestaurantData")
+        val ref = Firebase.database.getReference("RestaurantMealsData")
         ref.addChildEventListener(object : ChildEventListener{
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 Log.d("kahokaho",snapshot.key.toString())
-                val post:AvailableRestauData = AvailableRestauData(snapshot.child("name").value.toString(),snapshot.child("mealsLeft").value.toString())
-                volunteerData.add(post)
+                val post: AvailableRestauData? = snapshot.getValue(AvailableRestauData::class.java)
+                post!!.uid=snapshot.key
+                post.volUid=Utility.getUid(this@VolunteerApply)
+                post.volunteerphone = Utility.getMobile(this@VolunteerApply)
+                post.VolName = Utility.getName(this@VolunteerApply)
+                val lati=post.latitude
+                val longi=post.longitude
+
+                val startPoint = Location("locationA")
+                if (lati != null) {
+                    startPoint.setLatitude(lati.toDouble())
+                }
+                startPoint.setLongitude(longi!!.toDouble())
+
+                val endPoint = Location("locationA")
+                endPoint.setLatitude(Utility.getLatitude(this@VolunteerApply)!!.toDouble())
+                endPoint.setLongitude(Utility.getLongitude(this@VolunteerApply)!!.toDouble())
+
+                val distance: Double = startPoint.distanceTo(endPoint)/1000.0
+                if (post != null && distance<=20) {
+                    volunteerData.add(post)
+                }
                 volunteerRVAdapter.notifyDataSetChanged()
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-                TODO("Not yet implemented")
+                //TODO("Not yet implemented")
+                Log.d("sammekam","bhaitriggerhuahe")
+                volunteerRVAdapter.notifyDataSetChanged()
             }
 
             override fun onChildRemoved(snapshot: DataSnapshot) {
-                TODO("Not yet implemented")
+                //TODO("Not yet implemented")
             }
 
             override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
-                TODO("Not yet implemented")
+                //TODO("Not yet implemented")
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                //TODO("Not yet implemented")
             }
 
         })

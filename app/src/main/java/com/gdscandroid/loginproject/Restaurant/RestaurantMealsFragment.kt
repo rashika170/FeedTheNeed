@@ -38,45 +38,12 @@ class RestaurantMealsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val data=ArrayList<RestaurantData>()
-        val postListener= object : ChildEventListener {
-            override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                val post: RestaurantData?=snapshot.getValue(RestaurantData::class.java)
-                if(post!=null){
-                    totalDonatedMeals.text=post.totalDonated.toString()
-                    donationsLeftMeals.text=post.donationsLeft.toString()
-                }
-            }
 
-            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
 
-            }
-
-            override fun onChildRemoved(snapshot: DataSnapshot) {
-
-            }
-
-            override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
-
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-
+        val dbRef= activity?.let {
+            Utility.getUid(it)
+                ?.let { FirebaseDatabase.getInstance().reference.child("RestaurantMealPost").child(it) }
         }
-        activity?.let {  Utility.getUid(it).toString() }
-        ?.let { dbRef.child("Restaurant").child(it).addChildEventListener(postListener) }
-
-
-
-
-
-        completedMeals.setOnClickListener{
-            val intent= Intent(activity,CompletedMealsActivity::class.java)
-            startActivity(intent)
-        }
-
         val volunteerMealsDetailsData = ArrayList<VolunteerMealsDetailsData>()
         val upcomingOrderRVAdapter=UpcomingOrderRVAdapter(volunteerMealsDetailsData)
         rvUpcomingMeals.layoutManager=LinearLayoutManager(activity)
@@ -85,8 +52,8 @@ class RestaurantMealsFragment : Fragment() {
         val postListener1= object : ChildEventListener{
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 val post1:VolunteerMealsDetailsData?=snapshot.getValue(VolunteerMealsDetailsData::class.java)
-                if(post1!=null && post1.status.toString()!="done" ){
-                    volunteerMealsDetailsData.add(post1)
+                if(post1!=null && post1.Status.toString()=="Booked" ){
+                    volunteerMealsDetailsData.add(0,post1)
                 }
                 upcomingOrderRVAdapter.notifyDataSetChanged()
 
@@ -110,8 +77,7 @@ class RestaurantMealsFragment : Fragment() {
 
 
         }
-        dbRef.child("VolunteerMealsDetails").addChildEventListener(postListener1)
-
+        dbRef?.addChildEventListener(postListener1)
 
    }
 

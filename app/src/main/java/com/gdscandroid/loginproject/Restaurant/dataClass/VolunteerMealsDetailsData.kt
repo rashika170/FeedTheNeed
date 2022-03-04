@@ -1,5 +1,7 @@
 package com.gdscandroid.loginproject.Restaurant.dataClass
 
-data class VolunteerMealsDetailsData(val name:String?=null,val noOfMeals:String?=null,
-                                        val pickedAtTime:String?=null, val status:String?=null
-                                            ,val date:String?=null, val verification:String?=null)
+data class VolunteerMealsDetailsData(val Status:String?=null,
+                                        val VolunteerName:String?=null, val VolunteerNumber:String?=null
+                                            ,val expectedPickTime:String?=null, val numOfMeals:String?=null,
+                                     val BookingId:String?=null,val VolunteerUid:String?=null,
+                                     val RestaurantUid:String?=null,)

@@ -32,6 +32,7 @@ class VolunteerAPllyAdapter(val restaurData:ArrayList<AvailableRestauData>): Rec
     override fun onBindViewHolder(holder: RVViewHolder, position: Int) {
         holder.itemView.restau_name_vri.text=restaurData[position].name
         holder.itemView.nomeals_vri.text=restaurData[position].LeftDonation
+        Glide.with(holder.itemView.context).load(restaurData[position].RestaurPhoto).into(holder.itemView.restaurantPhoto)
         holder.itemView.apply_vri.setOnClickListener {
             val dialog = Dialog(holder.itemView.context)
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -62,6 +63,7 @@ class VolunteerAPllyAdapter(val restaurData:ArrayList<AvailableRestauData>): Rec
                     dbRef1.child("RestaurantPhone").setValue(restaurData[position].Restaurphone)
                     dbRef1.child("Verification").setValue("NA")
                     dbRef1.child("VolunteerUid").setValue(restaurData[position].volUid)
+                    dbRef1.child("RestaurPhoto").setValue(restaurData[position].RestaurPhoto)
 
                     val dbRef2=FirebaseDatabase.getInstance().reference.child("RestaurantMealPost").child(restaurData[position].uid.toString()).child(ranid)
                     dbRef2.child("numOfMeals").setValue(noMeals.toString())
@@ -73,6 +75,7 @@ class VolunteerAPllyAdapter(val restaurData:ArrayList<AvailableRestauData>): Rec
                     dbRef2.child("VolunteerNumber").setValue(restaurData[position].volunteerphone)
                     dbRef2.child("Verification").setValue("NA")
                     dbRef2.child("RestaurantUid").setValue(restaurData[position].uid)
+                    dbRef2.child("VolunteerPhoto").setValue(Utility.getProfileContext(holder.itemView.context).toString())
 
                     dialog.dismiss()
                 }

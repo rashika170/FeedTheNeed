@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Restaurant.CompletedMealsActivity">
+    tools:context=".Volunteer.VolDetailsActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCompletedMeals"
+        android:id="@+id/rvVolDetails"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:layout_editor_absoluteX="16dp"
-        tools:listitem="@layout/volunteer_meals_details_item" />
-
+        tools:listitem="@layout/vol_details_data" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

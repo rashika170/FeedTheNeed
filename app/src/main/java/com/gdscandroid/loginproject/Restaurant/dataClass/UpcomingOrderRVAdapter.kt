@@ -1,18 +1,21 @@
 package com.gdscandroid.loginproject.Restaurant.dataClass
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.gdscandroid.loginproject.R
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.volunteer_meals_details_item.view.*
+import java.util.*
 
-class UpcomingOrderRVAdapter(private val volunteerMealsDetailsData: ArrayList< VolunteerMealsDetailsData>) :RecyclerView.Adapter<UpcomingOrderRVAdapter.RVViewHolder>(){
+class UpcomingOrderRVAdapter(private val volunteerMealsDetailsData: ArrayList<VolunteerMealsDetailsData>) :RecyclerView.Adapter<UpcomingOrderRVAdapter.RVViewHolder>(){
     class RVViewHolder(itemView: View):RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RVViewHolder {
@@ -27,21 +30,24 @@ class UpcomingOrderRVAdapter(private val volunteerMealsDetailsData: ArrayList< V
         holder.itemView.volunteerMealStatus.text=volunteerMealsDetailsData[position].Status
         holder.itemView.volNumber.text=volunteerMealsDetailsData[position].VolunteerNumber
         holder.itemView.noOfMeals.text=volunteerMealsDetailsData[position].numOfMeals
+        Glide.with(holder.itemView.context).load(volunteerMealsDetailsData[position].VolunteerPhoto).into(holder.itemView.volPhoto)
         holder.itemView.volunteerMealsPickAtTime.text=volunteerMealsDetailsData[position].expectedPickTime
         holder.itemView.volunteerMealsCancel.setOnClickListener {
             val ref = FirebaseDatabase.getInstance().reference
-            ref.child("VolunteerMealPost").child(volunteerMealsDetailsData[holder.adapterPosition].VolunteerUid!!)
-                .child(volunteerMealsDetailsData[holder.adapterPosition].BookingId!!).child("Status").setValue("Cancelled")
-            ref.child("RestaurantMealPost").child(volunteerMealsDetailsData[holder.adapterPosition].RestaurantUid!!)
-                .child(volunteerMealsDetailsData[holder.adapterPosition].BookingId!!).child("Status").setValue("Cancelled")
-            ref.child("RestaurantMealsData").child(volunteerMealsDetailsData[holder.adapterPosition].RestaurantUid.toString())
+
+            ref.child("RestaurantMealsData").child(volunteerMealsDetailsData[position].RestaurantUid.toString())
                 .addListenerForSingleValueEvent(object :ValueEventListener{
                     override fun onDataChange(snapshot: DataSnapshot) {
+                        Log.d("dekhte he",position.toString())
                         var leftm:Int = snapshot.child("LeftDonation").value.toString().toInt()
-                        leftm += volunteerMealsDetailsData[holder.adapterPosition].numOfMeals.toString().toInt()
-                        ref.child("RestaurantMealsData").child(volunteerMealsDetailsData[holder.adapterPosition].RestaurantUid.toString())
+                        leftm += volunteerMealsDetailsData[position].numOfMeals.toString().toInt()
+                        ref.child("RestaurantMealsData").child(volunteerMealsDetailsData[position].RestaurantUid.toString())
                             .child("LeftDonation").setValue(leftm.toString())
                         Toast.makeText(holder.itemView.context,"Meals Cancelled",Toast.LENGTH_SHORT).show()
+                        ref.child("VolunteerMealPost").child(volunteerMealsDetailsData[position].VolunteerUid!!)
+                            .child(volunteerMealsDetailsData[position].BookingId!!).child("Status").setValue("Cancelled")
+                        ref.child("RestaurantMealPost").child(volunteerMealsDetailsData[position].RestaurantUid!!)
+                            .child(volunteerMealsDetailsData[position].BookingId!!).child("Status").setValue("Cancelled")
                     }
 
                     override fun onCancelled(error: DatabaseError) {

@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -15,20 +15,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LoginProject">
         <activity
+            android:name=".Volunteer.VolDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Volunteer.VolQuestApplyActivity"
+            android:exported="false" />
+        <activity
             android:name=".Volunteer.VolVerificationActivity"
             android:exported="false" />
         <activity
             android:name=".Volunteer.VolunteerHomeActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".Restaurant.RestaurantActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".Donator.DonatorHome"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".Volunteer.VolunteerApply"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".Donator.DonatorApply"
             android:exported="false" />

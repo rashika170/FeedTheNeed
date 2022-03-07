@@ -12,7 +12,8 @@
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:layout_editor_absoluteX="16dp"
-        tools:listitem="@layout/vol_things_item" />
+        tools:listitem="@layout/vol_things_item"
+        android:layout_marginBottom="75dp"/>
 
 
 </FrameLayout>

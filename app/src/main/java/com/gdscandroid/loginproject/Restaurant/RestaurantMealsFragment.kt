@@ -60,6 +60,17 @@ class RestaurantMealsFragment : Fragment() {
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+                val post1:VolunteerMealsDetailsData?=snapshot.getValue(VolunteerMealsDetailsData::class.java)
+                var ind=-1
+                for(i in 0..volunteerMealsDetailsData.size-1){
+                    if(volunteerMealsDetailsData[i].BookingId.toString().equals(post1!!.BookingId.toString())){
+                        ind=i
+                    }
+                }
+                if(ind!=-1){
+                    volunteerMealsDetailsData.removeAt(ind)
+                }
+                upcomingOrderRVAdapter.notifyDataSetChanged()
 
             }
 

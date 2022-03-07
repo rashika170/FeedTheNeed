@@ -2,6 +2,7 @@ package com.gdscandroid.loginproject.Volunteer
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -47,8 +48,9 @@ class VolMealsFragment : Fragment() {
 
         val postListener= object : ChildEventListener{
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                Log.d("bhakk","onChildAdded")
                 val post:VolunteerMealPostData?=snapshot.getValue(VolunteerMealPostData::class.java)
-                if(post!=null && post.Status!="Verified"){
+                if(post!=null ){
                     volMealPostData.add(0,post)
                 }
                 volMealPostRVAdapter.notifyDataSetChanged()
@@ -56,6 +58,18 @@ class VolMealsFragment : Fragment() {
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
                 //TODO("Not yet implemented")
+                Log.d("bhakk","onChildChanged")
+                val post:VolunteerMealPostData?=snapshot.getValue(VolunteerMealPostData::class.java)
+                var ind=-1;
+                for(i in 0..volMealPostData.size-1){
+                    if(volMealPostData[i].BookingId.toString().equals(post!!.BookingId.toString())){
+                        ind = i
+                    }
+                }
+                if(ind!=-1){
+                    volMealPostData.removeAt(ind)
+                }
+
                 volMealPostRVAdapter.notifyDataSetChanged()
             }
 

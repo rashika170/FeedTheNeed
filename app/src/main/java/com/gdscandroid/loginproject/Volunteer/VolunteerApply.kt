@@ -57,6 +57,14 @@ class VolunteerApply : AppCompatActivity() {
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
                 //TODO("Not yet implemented")
                 Log.d("sammekam","bhaitriggerhuahe")
+                val post: AvailableRestauData? = snapshot.getValue(AvailableRestauData::class.java)
+                post!!.uid=snapshot.key
+                for(i in 0..volunteerData.size-1){
+                    if(volunteerData[i].uid.toString().equals(post.uid.toString())){
+                        volunteerData.set(i,post)
+                    }
+                }
+
                 volunteerRVAdapter.notifyDataSetChanged()
             }
 

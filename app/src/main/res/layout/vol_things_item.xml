@@ -66,24 +66,27 @@
         android:textSize="24sp"/>
 
     <Button
-        android:id="@+id/itemVerificationVol"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Verification"
-        android:visibility="gone"
-        android:layout_gravity="center"
-        android:textSize="16sp"/>
-
-    <Button
         android:id="@+id/itemBookingVol"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Book this"
+        android:text="Book this"
         android:layout_gravity="center"
         android:textSize="16sp"/>
 
 
+    <TextView
+        android:layout_gravity="center"
+        android:id="@+id/donatorPhn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Phone"
+        android:textSize="24sp"/>
 
+    <ImageView
+        android:id="@+id/doantorImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
 
 
 </LinearLayout>

@@ -24,6 +24,13 @@ class VolunteerMealPostRVAdapter (val volMealPostData:ArrayList<VolunteerMealPos
         holder.itemView.itemPickedTimeVol.text=volMealPostData[position].expectedPickTime
         holder.itemView.restaurantNumber.text=volMealPostData[position].RestaurantPhone
         holder.itemView.StatusVolMeal.text=volMealPostData[position].Status
+        if(volMealPostData[position].Status.toString().equals("Cancelled")||
+            volMealPostData[position].Status.toString().equals("Verified")){
+            holder.itemView.itemVerificationVol.visibility=View.GONE
+        }else{
+            holder.itemView.itemVerificationVol.visibility=View.VISIBLE
+        }
+
         holder.itemView.itemVerificationVol.setOnClickListener {
             var intent = Intent(holder.itemView.context,VolVerificationActivity::class.java)
             intent.putExtra("meals", volMealPostData[position].numOfMeals!!.toInt())

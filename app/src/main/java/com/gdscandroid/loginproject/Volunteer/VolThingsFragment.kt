@@ -70,7 +70,15 @@ class VolThingsFragment : Fragment() {
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-
+                var post3: DonorData?=snapshot.getValue(DonorData::class.java)
+                for(i in 0..volThingsData.size-1){
+                    if(volThingsData[i].bookId.toString().equals(snapshot.key)){
+                        post3!!.bookId=snapshot.key.toString()
+                        post3!!.name=Utility.getName(activity!!).toString()
+                        volThingsData.set(i,post3!!)
+                    }
+                }
+                volThingsRVAdapter.notifyDataSetChanged()
             }
 
             override fun onChildRemoved(snapshot: DataSnapshot) {

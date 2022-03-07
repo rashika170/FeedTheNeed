@@ -33,6 +33,20 @@ object Utility {
         return ans
     }
 
+    public fun setUidContext(activity:Context,name:String){
+        val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.apply {
+            putString("Uid",name)
+        }.apply()
+    }
+
+    public fun getUidContext(activity:Context) : String? {
+        val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
+        val ans = sharedPreferences.getString("Uid",null)
+        return ans
+    }
+
     public fun setMobile(activity:Activity,name:String){
         val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
@@ -42,6 +56,20 @@ object Utility {
     }
 
     public fun getMobile(activity:Activity) : String? {
+        val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
+        val ans = sharedPreferences.getString("Mobile",null)
+        return ans
+    }
+
+    public fun setMobileContext(activity:Context,name:String){
+        val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.apply {
+            putString("Mobile",name)
+        }.apply()
+    }
+
+    public fun getMobileContext(activity:Context) : String? {
         val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
         val ans = sharedPreferences.getString("Mobile",null)
         return ans
@@ -70,6 +98,20 @@ object Utility {
     }
 
     public fun getProfile(activity:Activity) : String? {
+        val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
+        val ans = sharedPreferences.getString("Profile","")
+        return ans
+    }
+
+    public fun setProfileContext(activity:Context,name:String){
+        val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.apply {
+            putString("Profile",name)
+        }.apply()
+    }
+
+    public fun getProfileContext(activity:Context) : String? {
         val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
         val ans = sharedPreferences.getString("Profile","")
         return ans
@@ -156,6 +198,20 @@ object Utility {
     public fun getProfileComplete(activity:Activity) : Boolean {
         val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
         val ans = sharedPreferences.getBoolean("profilecomplete",false)
+        return ans
+    }
+
+    public fun setNameContext(activity:Context,name:String){
+        val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.apply {
+            putString("Name",name)
+        }.apply()
+    }
+
+    public fun getNameContext(activity:Context) : String? {
+        val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
+        val ans = sharedPreferences.getString("Name",null)
         return ans
     }
 

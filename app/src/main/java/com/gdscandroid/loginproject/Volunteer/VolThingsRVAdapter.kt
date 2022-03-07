@@ -33,11 +33,20 @@ class VolThingsRVAdapter(val volThingsData:ArrayList<DonorData>): RecyclerView.A
         else holder.itemView.feedImageVol.setImageResource(R.drawable.ic_launcher_background)
         holder.itemView.itemPickedTimeVol.text=volThingsData[position].pickedTime
         holder.itemView.itemStatusVol.text=volThingsData[position].status
+        holder.itemView.donatorPhn.text=volThingsData[position].donatorPhone
+        Glide.with(holder.itemView.context).load(volThingsData[position].donatorPic).into(holder.itemView.doantorImage)
+        if(volThingsData[position].status.toString().equals("Booked")){
+            holder.itemView.itemBookingVol.visibility=View.GONE
+        }else{
+            holder.itemView.itemBookingVol.visibility=View.VISIBLE
+        }
        holder.itemView.itemBookingVol.setOnClickListener {
            val db=Firebase.database.reference
            val bookRef=db.child("DonatorPost").child(volThingsData[position].bookId.toString())
            bookRef.child("pickedBy").setValue(volThingsData[position].name.toString())
            bookRef.child("status").setValue("Booked")
+           bookRef.child("volPic").setValue(Utility.getProfileContext(holder.itemView.context))
+           bookRef.child("volPhoneNumber").setValue(Utility.getMobileContext(holder.itemView.context))
        }
 
 

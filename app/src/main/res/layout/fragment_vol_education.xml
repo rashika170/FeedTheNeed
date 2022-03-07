@@ -3,12 +3,108 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Volunteer.VolEducationFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvQuest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="24dp"
+            app:cardCornerRadius="16dp"
+            android:layout_gravity="start">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/name_education_p"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SHreyansh"
+                    android:textColor="@color/black"
+                    android:layout_margin="4dp"
+                    android:textSize="24dp"/>
+
+                <TextView
+                    android:id="@+id/date_education_p"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date"
+                    android:textColor="@color/black"
+                    android:layout_margin="4dp"
+                    android:textSize="24dp"/>
+
+                <TextView
+                    android:id="@+id/location_education_p"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Location"
+                    android:textColor="@color/black"
+                    android:layout_margin="4dp"
+                    android:textSize="24dp"/>
+
+                <TextView
+                    android:id="@+id/nov_education_p"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No of Volunteer"
+                    android:textColor="@color/black"
+                    android:layout_margin="4dp"
+                    android:textSize="24dp"/>
+
+                <Button
+                    android:id="@+id/volDetails_education_p"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Volunteers details"
+                    android:textColor="@color/black"
+                    android:layout_margin="4dp"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/info_education_p"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Info"
+                    android:lines="3"
+                    android:textColor="@color/black"
+                    android:layout_margin="4dp"
+                    android:textSize="24dp"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvEduAdvertise"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:layout_editor_absoluteX="16dp"
+            tools:listitem="@layout/edu_advertisment" />
+
+
+    </LinearLayout>
+
+
+
+
+    <!-- TODO: Update blank fragment layout -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButtonVolQuest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:src="@drawable/ic_baseline_add_circle_24"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_gravity="bottom|end"/>
 
 </FrameLayout>

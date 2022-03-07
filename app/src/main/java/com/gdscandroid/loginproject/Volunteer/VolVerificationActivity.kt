@@ -8,7 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.gdscandroid.loginproject.R
+import com.gdscandroid.loginproject.Utility
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_donator_apply.*
 import kotlinx.android.synthetic.main.activity_vol_verification.*
 
@@ -42,6 +46,22 @@ class VolVerificationActivity : AppCompatActivity() {
                     .child(voluid).child(bookid).child("Status").setValue("Verified")
                 FirebaseDatabase.getInstance().reference.child("RestaurantMealPost")
                     .child(resid).child(bookid).child("Status").setValue("Verified")
+                FirebaseDatabase.getInstance().reference.child("Users")
+                    .child(voluid).addListenerForSingleValueEvent(object :ValueEventListener{
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            var dP=snapshot.child("RewardPoints").value.toString().toInt()
+                            dP+=count*50
+                            FirebaseDatabase.getInstance().reference.child("Users")
+                                .child(voluid).child("RewardPoints").setValue(dP)
+                            Utility.setRewardoint(this@VolVerificationActivity,dP.toLong())
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {
+                           // TODO("Not yet implemented")
+                        }
+
+                    })
+
                 Toast.makeText(this,"Verified",Toast.LENGTH_SHORT).show()
             }else{
                 Toast.makeText(this,"Please Select as no of images as meals",Toast.LENGTH_SHORT).show()

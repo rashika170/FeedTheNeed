@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.gdscandroid.loginproject.R
 import kotlinx.android.synthetic.main.vol_booked_meals_data.view.*
 
@@ -24,6 +25,7 @@ class VolunteerMealPostRVAdapter (val volMealPostData:ArrayList<VolunteerMealPos
         holder.itemView.itemPickedTimeVol.text=volMealPostData[position].expectedPickTime
         holder.itemView.restaurantNumber.text=volMealPostData[position].RestaurantPhone
         holder.itemView.StatusVolMeal.text=volMealPostData[position].Status
+        Glide.with(holder.itemView.context).load(volMealPostData[position].RestaurPhoto).into(holder.itemView.restauPic)
         if(volMealPostData[position].Status.toString().equals("Cancelled")||
             volMealPostData[position].Status.toString().equals("Verified")){
             holder.itemView.itemVerificationVol.visibility=View.GONE

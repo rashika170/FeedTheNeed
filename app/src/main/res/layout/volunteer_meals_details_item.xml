@@ -96,11 +96,22 @@
         android:gravity="center"
         />
 
+    <Button
+        android:textSize="24sp"
+        android:id="@+id/volunteerMealsPicked"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Picked?"
+        android:gravity="center"
+        />
+
     <ImageView
         android:id="@+id/volPhoto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:srcCompat="@tools:sample/avatars" />
+
+
 
 
 

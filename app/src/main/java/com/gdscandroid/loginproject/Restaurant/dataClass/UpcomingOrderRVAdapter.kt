@@ -32,9 +32,21 @@ class UpcomingOrderRVAdapter(private val volunteerMealsDetailsData: ArrayList<Vo
         holder.itemView.noOfMeals.text=volunteerMealsDetailsData[position].numOfMeals
         Glide.with(holder.itemView.context).load(volunteerMealsDetailsData[position].VolunteerPhoto).into(holder.itemView.volPhoto)
         holder.itemView.volunteerMealsPickAtTime.text=volunteerMealsDetailsData[position].expectedPickTime
+
+        if(volunteerMealsDetailsData[position].Status=="Picked"){
+            holder.itemView.volunteerMealsPicked.visibility=View.GONE
+            holder.itemView.volunteerMealsCancel.visibility=View.GONE
+        }
+
+        holder.itemView.volunteerMealsPicked.setOnClickListener {
+            FirebaseDatabase.getInstance().reference.child("VolunteerMealPost").child(volunteerMealsDetailsData[position].VolunteerUid!!)
+                .child(volunteerMealsDetailsData[position].BookingId!!).child("Status").setValue("Picked")
+            FirebaseDatabase.getInstance().reference.child("RestaurantMealPost").child(volunteerMealsDetailsData[position].RestaurantUid!!)
+                .child(volunteerMealsDetailsData[position].BookingId!!).child("Status").setValue("Picked")
+        }
+
         holder.itemView.volunteerMealsCancel.setOnClickListener {
             val ref = FirebaseDatabase.getInstance().reference
-
             ref.child("RestaurantMealsData").child(volunteerMealsDetailsData[position].RestaurantUid.toString())
                 .addListenerForSingleValueEvent(object :ValueEventListener{
                     override fun onDataChange(snapshot: DataSnapshot) {
@@ -56,6 +68,7 @@ class UpcomingOrderRVAdapter(private val volunteerMealsDetailsData: ArrayList<Vo
 
                 })
         }
+
     }
 
     override fun getItemCount(): Int =volunteerMealsDetailsData.size

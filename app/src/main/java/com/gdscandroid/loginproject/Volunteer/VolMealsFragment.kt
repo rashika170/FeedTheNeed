@@ -67,7 +67,9 @@ class VolMealsFragment : Fragment() {
                     }
                 }
                 if(ind!=-1){
-                    volMealPostData.removeAt(ind)
+                    if (post != null) {
+                        volMealPostData.set(ind,post)
+                    }
                 }
 
                 volMealPostRVAdapter.notifyDataSetChanged()

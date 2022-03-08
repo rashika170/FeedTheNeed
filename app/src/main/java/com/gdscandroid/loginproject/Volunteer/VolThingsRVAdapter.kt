@@ -35,7 +35,7 @@ class VolThingsRVAdapter(val volThingsData:ArrayList<DonorData>): RecyclerView.A
         holder.itemView.itemStatusVol.text=volThingsData[position].status
         holder.itemView.donatorPhn.text=volThingsData[position].donatorPhone
         Glide.with(holder.itemView.context).load(volThingsData[position].donatorPic).into(holder.itemView.doantorImage)
-        if(volThingsData[position].status.toString().equals("Booked")){
+        if(volThingsData[position].status.toString().equals("Booked")||volThingsData[position].status.toString().equals("Picked")){
             holder.itemView.itemBookingVol.visibility=View.GONE
         }else{
             holder.itemView.itemBookingVol.visibility=View.VISIBLE
@@ -47,6 +47,7 @@ class VolThingsRVAdapter(val volThingsData:ArrayList<DonorData>): RecyclerView.A
            bookRef.child("status").setValue("Booked")
            bookRef.child("volPic").setValue(Utility.getProfileContext(holder.itemView.context))
            bookRef.child("volPhoneNumber").setValue(Utility.getMobileContext(holder.itemView.context))
+           bookRef.child("volUid").setValue(Utility.getUidContext(holder.itemView.context))
        }
 
 

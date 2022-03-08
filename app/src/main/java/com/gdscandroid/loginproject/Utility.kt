@@ -187,6 +187,20 @@ object Utility {
         return ans
     }
 
+    public fun setDonationPointContext(activity:Context,name:Long){
+        val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.apply {
+            putLong("donation",name)
+        }.apply()
+    }
+
+    public fun getDonationPointContext(activity:Context) : Long? {
+        val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
+        val ans = sharedPreferences.getLong("donation",0)
+        return ans
+    }
+
     public fun setProfileComplete(activity:Activity,name:Boolean){
         val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()

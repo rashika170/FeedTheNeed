@@ -52,7 +52,9 @@ class VolThingsFragment : Fragment() {
                 if (lati != null) {
                     startPoint.setLatitude(lati.toDouble())
                 }
-                startPoint.setLongitude(longi!!.toDouble())
+                if(longi!=null){
+                    startPoint.setLongitude(longi.toDouble())
+                }
 
                 val endPoint = Location("locationA")
                 endPoint.setLatitude(activity?.let { Utility.getLatitude(it) }!!.toDouble())

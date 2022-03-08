@@ -27,11 +27,13 @@ class VolunteerMealPostRVAdapter (val volMealPostData:ArrayList<VolunteerMealPos
         holder.itemView.StatusVolMeal.text=volMealPostData[position].Status
         Glide.with(holder.itemView.context).load(volMealPostData[position].RestaurPhoto).into(holder.itemView.restauPic)
         if(volMealPostData[position].Status.toString().equals("Cancelled")||
-            volMealPostData[position].Status.toString().equals("Verified")){
+            volMealPostData[position].Status.toString().equals("Verified") ||
+            volMealPostData[position].Status.toString().equals("Booked")){
             holder.itemView.itemVerificationVol.visibility=View.GONE
         }else{
             holder.itemView.itemVerificationVol.visibility=View.VISIBLE
         }
+
 
         holder.itemView.itemVerificationVol.setOnClickListener {
             var intent = Intent(holder.itemView.context,VolVerificationActivity::class.java)

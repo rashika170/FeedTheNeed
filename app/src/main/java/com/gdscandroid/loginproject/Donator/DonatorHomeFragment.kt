@@ -95,7 +95,7 @@ class DonatorHomeFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        if (Utility.getMealDetail(requireContext()).toString().equals("")){
+        if (Utility.getMealDetail(requireContext()).toString().equals("") && Utility.getrole(requireActivity()).toString().equals("Organization")){
             dialog = Dialog(requireContext())
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.setContentView(R.layout.meal_info_dialog)
@@ -141,13 +141,16 @@ class DonatorHomeFragment : Fragment() {
 
                                 Utility.setMealPhotoContext(requireActivity(),meal_imguri)
                                 Utility.setMealDetail(requireActivity(),info.toString())
+                                dialog.dismiss()
                             }
                         })
 
                     ?.addOnFailureListener(OnFailureListener { e ->
                         print(e.message)
+                        dialog.dismiss()
                     })
             }
+            dialog.show()
         }
     }
 

@@ -1,20 +1,36 @@
 package com.gdscandroid.loginproject.Volunteer
 
 import android.app.Activity
+import android.app.DatePickerDialog
+import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.Window
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import com.gdscandroid.loginproject.R
 import com.gdscandroid.loginproject.Utility
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.UploadTask
 import kotlinx.android.synthetic.main.activity_donator_apply.*
 import kotlinx.android.synthetic.main.activity_vol_verification.*
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class VolVerificationActivity : AppCompatActivity() {
 
@@ -25,6 +41,7 @@ class VolVerificationActivity : AppCompatActivity() {
     var voluid:String = ""
     var bookid:String = ""
     var resid:String = ""
+    var img_uri: Uri? = null;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,8 +57,64 @@ class VolVerificationActivity : AppCompatActivity() {
             openGalleryForImages()
         }
 
+        share_tv.setOnClickListener {
+            val dialog = Dialog(this)
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.setContentView(R.layout.share_dialog)
+            val info = dialog.findViewById(R.id.et_info) as EditText
+            val share_img = dialog.findViewById(R.id.share_img) as ImageView
+            val pickBtn = dialog.findViewById(R.id.btnShare) as Button
+
+            share_img.setImageURI(img_uri)
+
+            pickBtn.setOnClickListener {
+
+                val uid:String = Utility.getUid(this).toString()
+                val database = FirebaseDatabase.getInstance().reference.child("DonaPost").child(uid).push()
+                var ranid = database.key.toString()
+                ranid = ranid.substring(1,ranid.length-1)
+                val fileName = "image.jpg"
+
+                val refStorage = FirebaseStorage.getInstance().reference.child("Feeds/${ranid}/$fileName")
+
+                img_uri?.let { it1 ->
+                    refStorage.putFile(it1)
+                        .addOnSuccessListener(
+                            OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
+                                taskSnapshot.storage.downloadUrl.addOnSuccessListener {
+                                    val sdf = SimpleDateFormat("dd/M/yyyy hh:mm")
+                                    val currentTime = sdf.format(Date())
+                                    val profile = it.toString()
+                                    val db=FirebaseDatabase.getInstance().reference.child("Feeds").child(ranid)
+                                    db.child("name").setValue(Utility.getName(this).toString())
+                                    db.child("role").setValue(Utility.getrole(this).toString())
+                                    db.child("photo").setValue(Utility.getProfile(this).toString())
+                                    db.child("Points").setValue((Utility.getDonationPoint(this)
+                                        ?.plus(Utility.getRewardoint(this)!!)).toString())
+                                    db.child("Location").setValue(Utility.getLocation(this).toString())
+                                    db.child("Latitude").setValue(Utility.getLatitude(this).toString())
+                                    db.child("Longitude").setValue(Utility.getLongitude(this).toString())
+                                    db.child("feedImage").setValue(profile)
+                                    db.child("description").setValue(info.text.toString())
+                                    db.child("uid").setValue(voluid)
+                                    db.child("feedId").setValue(ranid)
+                                    db.child("currentTime").setValue(currentTime.toString())
+                                    dialog.dismiss()
+                                }
+                            })
+
+                        ?.addOnFailureListener(OnFailureListener { e ->
+                            print(e.message)
+                            dialog.dismiss()
+                        })
+                }
+                dialog.show()
+            }
+        }
+
         verification_tv.setOnClickListener {
             if (ptsl){
+                share_tv.visibility = View.VISIBLE
                 FirebaseDatabase.getInstance().reference.child("VolunteerMealPost")
                     .child(voluid).child(bookid).child("Status").setValue("Verified")
                 FirebaseDatabase.getInstance().reference.child("RestaurantMealPost")
@@ -84,7 +157,7 @@ class VolVerificationActivity : AppCompatActivity() {
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE){
 
             var img_count=0;
-            var img_uri: Uri? = null;
+
             // if multiple images are selected
             if (data?.getClipData() != null) {
                 var count = data.clipData!!.itemCount

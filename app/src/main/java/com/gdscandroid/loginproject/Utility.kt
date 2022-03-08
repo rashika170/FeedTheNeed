@@ -145,6 +145,34 @@ object Utility {
         return ans
     }
 
+    public fun setLongitudeContext(activity:Context,name:String){
+        val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.apply {
+            putString("Longitude",name)
+        }.apply()
+    }
+
+    public fun getLongitudeContext(activity:Context) : String? {
+        val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
+        val ans = sharedPreferences.getString("Longitude","")
+        return ans
+    }
+
+    public fun setLatitudeContext(activity:Context,name:String){
+        val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.apply {
+            putString("Latitude",name)
+        }.apply()
+    }
+
+    public fun getLatitudeContext(activity:Context) : String? {
+        val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
+        val ans = sharedPreferences.getString("Latitude","")
+        return ans
+    }
+
     public fun setRole(activity:Activity,name:String){
         val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()

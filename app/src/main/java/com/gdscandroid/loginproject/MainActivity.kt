@@ -133,6 +133,8 @@ class MainActivity : AppCompatActivity() {
                                 Utility.setProfileComplete(this@MainActivity,true)
                                 Utility.setLatitude(this@MainActivity,nextSnapshot.child("Latitude").value.toString())
                                 Utility.setLongitude(this@MainActivity,nextSnapshot.child("Longitude").value.toString())
+                                Utility.setMealDetail(this@MainActivity,nextSnapshot.child("MealsInfo").value.toString())
+                                Utility.setMealPhotoContext(this@MainActivity,nextSnapshot.child("MealsImage").value.toString())
 
                                 if(Utility.getrole(this@MainActivity).equals("Donator")){
                                     intent = Intent(this@MainActivity, DonatorHome::class.java)
@@ -231,6 +233,8 @@ class MainActivity : AppCompatActivity() {
                                                         Utility.setProfileComplete(this@MainActivity,true)
                                                         Utility.setLatitude(this@MainActivity,nextSnapshot.child("Latitude").value.toString())
                                                         Utility.setLongitude(this@MainActivity,nextSnapshot.child("Longitude").value.toString())
+                                                        Utility.setMealDetail(this@MainActivity,nextSnapshot.child("MealsInfo").value.toString())
+                                                        Utility.setMealPhotoContext(this@MainActivity,nextSnapshot.child("MealsImage").value.toString())
 
                                                         if(Utility.getrole(this@MainActivity).equals("Donator")){
                                                             intent = Intent(this@MainActivity, DonatorHome::class.java)

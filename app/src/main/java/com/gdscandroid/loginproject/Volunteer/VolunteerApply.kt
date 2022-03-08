@@ -1,5 +1,6 @@
 package com.gdscandroid.loginproject.Volunteer
 
+import android.content.Intent
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -82,5 +83,10 @@ class VolunteerApply : AppCompatActivity() {
 
         })
 
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(Intent(this,VolunteerHomeActivity::class.java))
     }
 }

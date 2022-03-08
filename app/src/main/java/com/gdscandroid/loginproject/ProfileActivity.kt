@@ -193,6 +193,23 @@ class ProfileActivity : AppCompatActivity() {
                 ref.child("DonationPoints").setValue(0)
                 ref.child("Latitude").setValue(lati)
                 ref.child("Longitude").setValue(longi)
+                ref.child("MealsImage").setValue("")
+                ref.child("MealsInfo").setValue("")
+
+                if(roleStr=="Organization"){
+                    val ref2 = databse.getReference("RestaurantMealsData").child(uid)
+                    ref2.child("CompletedDonation").setValue("0")
+                    ref2.child("TotalDonation").setValue("0")
+                    ref2.child("LeftDonation").setValue("0")
+                    ref2.child("RestaurPhoto").setValue(profile)
+                    ref2.child("latitude").setValue(lati)
+                    ref2.child("longitude").setValue(longi)
+                    ref2.child("name").setValue(nametxt.text.toString())
+                    ref2.child("RestaurPhone").setValue(number_otp.text.toString())
+                    ref2.child("MealsImage").setValue("")
+                    ref2.child("MealsInfo").setValue("")
+                }
+
                 Utility.setName(this,nametxt.text.toString())
                 Utility.setLocation(this,ans)
                 Utility.setProfile(this,profile)
@@ -204,6 +221,8 @@ class ProfileActivity : AppCompatActivity() {
                 Utility.setProfileComplete(this,true)
                 Utility.setLongitude(this,longi)
                 Utility.setLatitude(this,lati)
+                Utility.setMealDetail(this,"")
+                Utility.setMealPhotoContext(this,"")
                 if(Utility.getrole(this).equals("Donator")){
                     intent = Intent(this, DonatorHome::class.java)
                     startActivity(intent);

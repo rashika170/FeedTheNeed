@@ -229,4 +229,32 @@ object Utility {
         return ans
     }
 
+    public fun setMealPhotoContext(activity:Context,name:String){
+        val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.apply {
+            putString("MealPhoto",name)
+        }.apply()
+    }
+
+    public fun getMealPhotoContext(activity:Context) : String? {
+        val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
+        val ans = sharedPreferences.getString("MealPhoto",null)
+        return ans
+    }
+
+    public fun setMealDetail(activity:Context,name:String){
+        val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.apply {
+            putString("MealDetail",name)
+        }.apply()
+    }
+
+    public fun getMealDetail(activity:Context) : String? {
+        val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
+        val ans = sharedPreferences.getString("MealDetail",null)
+        return ans
+    }
+
 }

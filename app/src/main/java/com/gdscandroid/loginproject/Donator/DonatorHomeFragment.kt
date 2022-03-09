@@ -3,6 +3,7 @@ package com.gdscandroid.loginproject.Donator
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.Dialog
+import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -58,6 +59,71 @@ class DonatorHomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        if (Utility.getMealDetail(requireActivity()).toString().equals("") && Utility.getrole(requireActivity()).toString().equals("Organization")){
+            dialog = Dialog(requireContext())
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.setContentView(R.layout.meal_info_dialog)
+            dialog.setCancelable(false)
+
+            val mealInfo = dialog.findViewById(R.id.et_mealinfo) as EditText
+            val mealImage = dialog.findViewById(R.id.mealImage) as ImageView
+            val pickBtn = dialog.findViewById(R.id.btnSet) as Button
+
+            mealImage.setOnClickListener {
+                val intent = Intent()
+                intent.type = "image/*"
+                intent.action = Intent.ACTION_GET_CONTENT
+                startActivityForResult(
+                    Intent.createChooser(
+                        intent,
+                        "Please select..."
+                    ),
+                    GALLERY_REQUEST_CODE
+                )
+            }
+
+            pickBtn.setOnClickListener {
+                val pd: ProgressDialog = ProgressDialog(context)
+                pd.setMessage("Please Wait...Your data is uploading !!")
+                pd.setCancelable(false)
+                pd.show()
+                val info = mealInfo.text
+                val fileName = "mealPhoto.jpg"
+
+                val database = FirebaseDatabase.getInstance().reference
+                val refStorage = FirebaseStorage.getInstance().reference.child("UserProfile/${Firebase.auth.currentUser?.uid}/$fileName")
+
+                refStorage.putFile(uri)
+                    .addOnSuccessListener(
+                        OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
+                            taskSnapshot.storage.downloadUrl.addOnSuccessListener {
+                                val meal_imguri  = it.toString()
+                                database.child("Users").child(Utility.getUid(requireActivity()).toString())
+                                    .child("MealsImage").setValue(meal_imguri)
+                                database.child("Users").child(Utility.getUid(requireActivity()).toString())
+                                    .child("MealsInfo").setValue(info.toString())
+
+                                database.child("RestaurantMealsData").child(Utility.getUid(requireActivity()).toString())
+                                    .child("MealsImage").setValue(meal_imguri)
+                                database.child("RestaurantMealsData").child(Utility.getUid(requireActivity()).toString())
+                                    .child("MealsInfo").setValue(info.toString())
+
+                                Utility.setMealPhotoContext(requireActivity(),meal_imguri)
+                                Utility.setMealDetail(requireActivity(),info.toString())
+                                pd.dismiss()
+                                dialog.cancel()
+                            }
+                        })
+
+                    ?.addOnFailureListener(OnFailureListener { e ->
+                        print(e.message)
+                        dialog.dismiss()
+                    })
+            }
+            dialog.show()
+        }
+
         val feedData=ArrayList<FeedData>()
         val feedRVAdapter= FeedRVAdapter(feedData)
         rvFeed.layoutManager= LinearLayoutManager(activity)
@@ -89,70 +155,11 @@ class DonatorHomeFragment : Fragment() {
             }
 
         }
-        dbRef.child("feeds").addChildEventListener(postListener)
+        dbRef.child("Feeds").addChildEventListener(postListener)
 
     }
 
-    override fun onStart() {
-        super.onStart()
-        if (Utility.getMealDetail(requireContext()).toString().equals("") && Utility.getrole(requireActivity()).toString().equals("Organization")){
-            dialog = Dialog(requireContext())
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            dialog.setContentView(R.layout.meal_info_dialog)
-            dialog.setCancelable(false)
-            val mealInfo = dialog.findViewById(R.id.et_mealinfo) as EditText
-            val mealImage = dialog.findViewById(R.id.mealImage) as ImageView
-            val pickBtn = dialog.findViewById(R.id.btnSet) as Button
 
-            mealImage.setOnClickListener {
-                val intent = Intent()
-                intent.type = "image/*"
-                intent.action = Intent.ACTION_GET_CONTENT
-                startActivityForResult(
-                    Intent.createChooser(
-                        intent,
-                        "Please select..."
-                    ),
-                    GALLERY_REQUEST_CODE
-                )
-            }
-
-            pickBtn.setOnClickListener {
-                val info = mealInfo.text
-                val fileName = "mealPhoto.jpg"
-
-                val database = FirebaseDatabase.getInstance().reference
-                val refStorage = FirebaseStorage.getInstance().reference.child("UserProfile/${Firebase.auth.currentUser?.uid}/$fileName")
-
-                refStorage.putFile(uri)
-                    .addOnSuccessListener(
-                        OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
-                            taskSnapshot.storage.downloadUrl.addOnSuccessListener {
-                                val meal_imguri  = it.toString()
-                                database.child("Users").child(Utility.getUid(requireActivity()).toString())
-                                    .child("MealsImage").setValue(meal_imguri)
-                                database.child("Users").child(Utility.getUid(requireActivity()).toString())
-                                    .child("MealsInfo").setValue(info.toString())
-
-                                database.child("RestaurantMealsData").child(Utility.getUid(requireActivity()).toString())
-                                    .child("MealsImage").setValue(meal_imguri)
-                                database.child("RestaurantMealsData").child(Utility.getUid(requireActivity()).toString())
-                                    .child("MealsInfo").setValue(info.toString())
-
-                                Utility.setMealPhotoContext(requireActivity(),meal_imguri)
-                                Utility.setMealDetail(requireActivity(),info.toString())
-                                dialog.dismiss()
-                            }
-                        })
-
-                    ?.addOnFailureListener(OnFailureListener { e ->
-                        print(e.message)
-                        dialog.dismiss()
-                    })
-            }
-            dialog.show()
-        }
-    }
 
     override fun onActivityResult(
         requestCode: Int,

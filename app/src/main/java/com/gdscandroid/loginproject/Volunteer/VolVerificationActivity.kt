@@ -3,6 +3,7 @@ package com.gdscandroid.loginproject.Volunteer
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.Dialog
+import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -64,10 +65,15 @@ class VolVerificationActivity : AppCompatActivity() {
             val info = dialog.findViewById(R.id.et_info) as EditText
             val share_img = dialog.findViewById(R.id.share_img) as ImageView
             val pickBtn = dialog.findViewById(R.id.btnShare) as Button
+            dialog.show()
 
             share_img.setImageURI(img_uri)
 
             pickBtn.setOnClickListener {
+                val pd: ProgressDialog = ProgressDialog(this)
+                pd.setMessage("Please Wait...Your data is uploading !!")
+                pd.setCancelable(false)
+                pd.show()
 
                 val uid:String = Utility.getUid(this).toString()
                 val database = FirebaseDatabase.getInstance().reference.child("DonaPost").child(uid).push()
@@ -99,7 +105,8 @@ class VolVerificationActivity : AppCompatActivity() {
                                     db.child("uid").setValue(voluid)
                                     db.child("feedId").setValue(ranid)
                                     db.child("currentTime").setValue(currentTime.toString())
-                                    dialog.dismiss()
+                                    pd.dismiss()
+                                   dialog.dismiss()
                                 }
                             })
 
@@ -108,7 +115,6 @@ class VolVerificationActivity : AppCompatActivity() {
                             dialog.dismiss()
                         })
                 }
-                dialog.show()
             }
         }
 

@@ -81,6 +81,8 @@ class VolunteerHomeActivity : AppCompatActivity() {
                     Utility.setRewardoint(this,0)
                     Utility.setDonationPoint(this,0)
                     Utility.setProfileComplete(this,false)
+                    Utility.setMealDetail(this,"")
+                    Utility.setMealPhotoContext(this,"")
                     finish()
                 }
                 return true

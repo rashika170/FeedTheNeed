@@ -7,6 +7,8 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.Button
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.gdscandroid.loginproject.MainActivity
 import com.gdscandroid.loginproject.R
@@ -31,15 +33,30 @@ class DonatorHome : AppCompatActivity() {
 
         setCurrentFragment(homeFragment)
 
-        bottomNavigationView.setOnNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.home->setCurrentFragment(homeFragment)
-                R.id.profile->setCurrentFragment(profileFragment)
-                R.id.things->setCurrentFragment(thingsFragment)
 
-            }
-            true
+        val feed_frag = findViewById<ImageView>(R.id.feed_frag)
+        val item_frag = findViewById<ImageView>(R.id.items_frag)
+        val apply_frag = findViewById<Button>(R.id.apply_frag)
+
+        feed_frag.setOnClickListener {
+            feed_frag.setImageDrawable(getDrawable(R.drawable.feed_selected))
+            item_frag.setImageDrawable(getDrawable(R.drawable.verify))
+            setCurrentFragment(homeFragment)
         }
+
+        item_frag.setOnClickListener {
+            item_frag.setImageDrawable(getDrawable(R.drawable.verify_selected))
+            feed_frag.setImageDrawable(getDrawable(R.drawable.feed))
+            setCurrentFragment(thingsFragment)
+        }
+
+        apply_frag.setOnClickListener {
+            item_frag.setImageDrawable(getDrawable(R.drawable.verify))
+            feed_frag.setImageDrawable(getDrawable(R.drawable.feed))
+            intent = Intent(this,DonatorApply::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private fun setCurrentFragment(fragment: Fragment) =

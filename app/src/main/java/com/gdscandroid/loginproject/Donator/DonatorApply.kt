@@ -21,6 +21,8 @@ import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
+import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.OnFailureListener
@@ -34,6 +36,8 @@ import java.io.IOException
 import com.gdscandroid.loginproject.HomeActivity
 import com.gdscandroid.loginproject.R
 import com.gdscandroid.loginproject.Utility
+import kotlinx.android.synthetic.main.activity_donator_apply.*
+import kotlinx.android.synthetic.main.fragment_donator_home.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -45,8 +49,8 @@ class DonatorApply : AppCompatActivity(),DatePickerDialog.OnDateSetListener,
     private var longi:String =""
     private lateinit var image:ImageView
     private lateinit var descedit: EditText
-    private lateinit var locatext: TextView
-    private lateinit var timetxt: TextView
+//    private lateinit var locatext: TextView
+//    private lateinit var timetxt: TextView
     private lateinit var pickedtimetxt: TextView
     private lateinit var post: Button
     private lateinit var pick: Button
@@ -79,16 +83,19 @@ class DonatorApply : AppCompatActivity(),DatePickerDialog.OnDateSetListener,
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_donator_apply)
 
+
+
+        Glide.with(this).load(Utility.getProfile(this)).into(profile_nav2)
+
         image = findViewById(R.id.imageView)
         descedit = findViewById(R.id.desc_edit)
-        locatext = findViewById(R.id.locatn_txt)
-        timetxt = findViewById(R.id.time_txt)
+        //locatext = findViewById(R.id.locatn_txt)
         pickedtimetxt = findViewById(R.id.pickedtime_txt)
         post = findViewById(R.id.post)
         pick = findViewById(R.id.pick)
 
         locationGet()
-        getCurrentTime()
+        //getCurrentTime()
 
         pick.setOnClickListener {
             val calendar: Calendar = Calendar.getInstance()
@@ -100,7 +107,7 @@ class DonatorApply : AppCompatActivity(),DatePickerDialog.OnDateSetListener,
             datePickerDialog.show()
         }
 
-        image.setOnClickListener {
+        addImage.setOnClickListener {
             val intent = Intent()
             intent.type = "image/*"
             intent.action = Intent.ACTION_GET_CONTENT
@@ -126,14 +133,14 @@ class DonatorApply : AppCompatActivity(),DatePickerDialog.OnDateSetListener,
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun getCurrentTime() {
-        val current = LocalDateTime.now()
-        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")
-        val formatted = current.format(formatter)
-        timetxt.text = formatted
-        timenans = formatted
-    }
+//    @RequiresApi(Build.VERSION_CODES.O)
+//    private fun getCurrentTime() {
+//        val current = LocalDateTime.now()
+//        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")
+//        val formatted = current.format(formatter)
+////        timetxt.text = formatted
+// //       timenans = formatted
+//    }
 
     private fun locationGet() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
@@ -190,7 +197,7 @@ class DonatorApply : AppCompatActivity(),DatePickerDialog.OnDateSetListener,
                         // initially declared addressString string.
                         addressString = sb.toString()
                         Log.d("bhibhi",addressString)
-                        locatext.text = addressString
+//                        locatext.text = addressString
                         locatnans = addressString
                         isLocation = true
                     }
@@ -370,8 +377,14 @@ class DonatorApply : AppCompatActivity(),DatePickerDialog.OnDateSetListener,
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
         myHour = hourOfDay
         myMinute = minute
-        pickedtimetxt.text = ""+myYear+"/"+myMonth+"/"+myDay+" , "+myHour+":"+myMinute
+        pickedtimetxt.text = ""+myYear+"/"+myMonth+"/"+myDay+","+myHour+":"+myMinute
         //pickedtimetxt.text = "Year: " + myYear + "\n" + "Month: " + myMonth + "\n" + "Day: " + myDay + "\n" + "Hour: " + myHour + "\n" + "Minute: " + myMinute
         isPickedTime = true
     }
+
+    private fun setCurrentFragment(fragment: Fragment) =
+        supportFragmentManager?.beginTransaction()?.apply {
+            replace(R.id.flFragment,fragment)
+            commit()
+        }
 }

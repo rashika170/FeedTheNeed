@@ -7,6 +7,7 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.TextUtils.replace
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,6 +18,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.bumptech.glide.util.Util
 import com.gdscandroid.loginproject.R
 import com.gdscandroid.loginproject.Utility
@@ -57,8 +59,19 @@ class DonatorHomeFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_donator_home, container, false)
     }
 
+    private fun setCurrentFragment(fragment: Fragment) =
+        activity?.supportFragmentManager?.beginTransaction()?.apply {
+            replace(R.id.flFragment,fragment)
+            commit()
+        }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        profile_nav.setOnClickListener {
+            setCurrentFragment(DonatorProfileFragment())
+        }
+
+        Glide.with(requireContext()).load(activity?.let { Utility.getProfile(it).toString() }).into(profile_nav)
 
         if (Utility.getMealDetail(requireActivity()).toString().equals("") && Utility.getrole(requireActivity()).toString().equals("Organization")){
             dialog = Dialog(requireContext())

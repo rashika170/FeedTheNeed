@@ -11,6 +11,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.gdscandroid.loginproject.R
 import com.gdscandroid.loginproject.Utility
+import kotlinx.android.synthetic.main.fragment_donator_profile.*
 
 
 class DonatorProfileFragment : Fragment() {
@@ -33,10 +34,23 @@ class DonatorProfileFragment : Fragment() {
         val phone : TextView = view.findViewById(R.id.home_prof_phone)
         val loctn : TextView = view.findViewById(R.id.home_prof_lctn)
         Glide.with(view).load(activity?.let { Utility.getProfile(it).toString() }).into(image)
+        val navImg:ImageView=view.findViewById(R.id.navImg)
+        Glide.with(view).load(activity?.let { Utility.getProfile(it).toString() }).into(navImg)
         name.text = activity?.let { Utility.getName(it).toString() }
         role.text = "."+activity?.let { Utility.getrole(it).toString() }
         phone.text = activity?.let { Utility.getMobile(it).toString() }
-        loctn.text = activity?.let { Utility.getLocation(it).toString() }
+        val loc= Utility.getLocation(requireActivity()).toString().split(",")
+
+        loctn.text = loc[loc.size-4]+","+loc[loc.size-3]
+        val total = Utility.getDonationPoint(requireActivity())?.let {
+            Utility.getRewardoint(requireActivity())
+                ?.plus(it)
+        }
+        view.findViewById<TextView>(R.id.rewardsPoints).text=total.toString()+" Points"
+
         return view
     }
+
+
+
 }

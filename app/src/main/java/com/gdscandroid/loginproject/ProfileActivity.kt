@@ -3,6 +3,7 @@ package com.gdscandroid.loginproject
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -20,6 +21,7 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.core.app.ActivityCompat
+import com.bumptech.glide.Glide
 import com.gdscandroid.loginproject.Donator.DonatorHome
 import com.gdscandroid.loginproject.Restaurant.RestaurantActivity
 import com.gdscandroid.loginproject.Volunteer.VolunteerHomeActivity
@@ -38,6 +40,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
+import kotlinx.android.synthetic.main.activity_profile.*
 import java.io.IOException
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -69,11 +72,14 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var locationtv: TextView
     private var isVerifired: Boolean = false
     private var isLocation: Boolean = false
+    private var Profile_bool: Boolean = false
     private lateinit var credentialss : GoogleAuthCredential
     var email:String="";
     var pass:String="";
     var source:String="";
     var profile:String="";
+
+    lateinit var img_uri:Uri
 
     //location
     private var fusedLocationClient: FusedLocationProviderClient? = null
@@ -112,7 +118,8 @@ class ProfileActivity : AppCompatActivity() {
 
         nametxt.setText(name)
         if(!profile.equals("")){
-            DownloadImageFromInternet(image).execute(profile)
+            Glide.with(this).load(profile).into(image)
+            Profile_bool=true
         }
 
         //role spinner
@@ -138,7 +145,7 @@ class ProfileActivity : AppCompatActivity() {
             }
         }
 
-        image.setOnClickListener {
+        addFromDevice.setOnClickListener {
             val intent = Intent()
             intent.type = "image/*"
             intent.action = Intent.ACTION_GET_CONTENT
@@ -173,7 +180,7 @@ class ProfileActivity : AppCompatActivity() {
                 Toast.makeText(this,"Verify Phone Number", Toast.LENGTH_SHORT).show()
             }else if(!isLocation){
                 Toast.makeText(this,"Detect Location", Toast.LENGTH_SHORT).show()
-            }else if(profile.equals("")){
+            }else if(!Profile_bool){
                 Toast.makeText(this,"Upload Profile", Toast.LENGTH_SHORT).show()
             }else if(nametxt.text.toString().trim().isBlank()){
                 Toast.makeText(this,"Enter Name", Toast.LENGTH_SHORT).show()
@@ -181,61 +188,87 @@ class ProfileActivity : AppCompatActivity() {
                 Toast.makeText(this,"Select a role", Toast.LENGTH_SHORT).show()
             }
             else{
-                val databse = Firebase.database
-                val ref = databse.getReference("Users").child(uid)
-                ref.child("Name").setValue(nametxt.text.toString())
-                ref.child("Location").setValue(ans)
-                ref.child("Profile").setValue(profile)
-                ref.child("Phone").setValue(number_otp.text.toString())
-                ref.child("Uid").setValue(uid)
-                ref.child("Role").setValue(roleStr)
-                ref.child("RewardPoints").setValue(0)
-                ref.child("DonationPoints").setValue(0)
-                ref.child("Latitude").setValue(lati)
-                ref.child("Longitude").setValue(longi)
-                ref.child("MealsImage").setValue("")
-                ref.child("MealsInfo").setValue("")
+                val pd=ProgressDialog(this)
+                pd.setMessage("Please wait!!..")
+                pd.setCancelable(false)
+                pd.show()
 
-                if(roleStr=="Organization"){
-                    val ref2 = databse.getReference("RestaurantMealsData").child(uid)
-                    ref2.child("CompletedDonation").setValue("0")
-                    ref2.child("TotalDonation").setValue("0")
-                    ref2.child("LeftDonation").setValue("0")
-                    ref2.child("RestaurPhoto").setValue(profile)
-                    ref2.child("latitude").setValue(lati)
-                    ref2.child("longitude").setValue(longi)
-                    ref2.child("name").setValue(nametxt.text.toString())
-                    ref2.child("RestaurPhone").setValue(number_otp.text.toString())
-                    ref2.child("MealsImage").setValue("")
-                    ref2.child("MealsInfo").setValue("")
-                }
+                val fileName = "profile.jpg"
 
-                Utility.setName(this,nametxt.text.toString())
-                Utility.setLocation(this,ans)
-                Utility.setProfile(this,profile)
-                Utility.setMobile(this,number_otp.text.toString())
-                Utility.setUid(this,uid)
-                Utility.setRole(this,roleStr)
-                Utility.setRewardoint(this,0)
-                Utility.setDonationPoint(this,0)
-                Utility.setProfileComplete(this,true)
-                Utility.setLongitude(this,longi)
-                Utility.setLatitude(this,lati)
-                Utility.setMealDetail(this,"")
-                Utility.setMealPhotoContext(this,"")
-                if(Utility.getrole(this).equals("Donator")){
-                    intent = Intent(this, DonatorHome::class.java)
-                    startActivity(intent);
-                    finish()
-                }else if(Utility.getrole(this).equals("Organization")){
-                    intent = Intent(this, RestaurantActivity::class.java)
-                    startActivity(intent);
-                    finish()
-                }else{
-                    intent = Intent(this, VolunteerHomeActivity::class.java)
-                    startActivity(intent);
-                    finish()
-                }
+                val database = FirebaseDatabase.getInstance()
+                val refStorage = FirebaseStorage.getInstance().reference.child("UserProfile/${Firebase.auth.currentUser?.uid}/$fileName")
+
+                refStorage.putFile(img_uri)
+                    .addOnSuccessListener(
+                        OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
+                            taskSnapshot.storage.downloadUrl.addOnSuccessListener {
+                                profile = it.toString()
+
+                                val databse = Firebase.database
+                                val ref = databse.getReference("Users").child(uid)
+                                ref.child("Name").setValue(nametxt.text.toString())
+                                ref.child("Location").setValue(ans)
+                                ref.child("Profile").setValue(profile)
+                                ref.child("Phone").setValue(number_otp.text.toString())
+                                ref.child("Uid").setValue(uid)
+                                ref.child("Role").setValue(roleStr)
+                                ref.child("RewardPoints").setValue(0)
+                                ref.child("DonationPoints").setValue(0)
+                                ref.child("Latitude").setValue(lati)
+                                ref.child("Longitude").setValue(longi)
+                                ref.child("MealsImage").setValue("")
+                                ref.child("MealsInfo").setValue("")
+
+                                if(roleStr=="Organization"){
+                                    val ref2 = databse.getReference("RestaurantMealsData").child(uid)
+                                    ref2.child("CompletedDonation").setValue("0")
+                                    ref2.child("TotalDonation").setValue("0")
+                                    ref2.child("LeftDonation").setValue("0")
+                                    ref2.child("RestaurPhoto").setValue(profile)
+                                    ref2.child("latitude").setValue(lati)
+                                    ref2.child("longitude").setValue(longi)
+                                    ref2.child("name").setValue(nametxt.text.toString())
+                                    ref2.child("RestaurPhone").setValue(number_otp.text.toString())
+                                    ref2.child("MealsImage").setValue("")
+                                    ref2.child("MealsInfo").setValue("")
+                                }
+
+                                Utility.setName(this,nametxt.text.toString())
+                                Utility.setLocation(this,ans)
+                                Utility.setProfile(this,profile)
+                                Utility.setMobile(this,number_otp.text.toString())
+                                Utility.setUid(this,uid)
+                                Utility.setRole(this,roleStr)
+                                Utility.setRewardoint(this,0)
+                                Utility.setDonationPoint(this,0)
+                                Utility.setProfileComplete(this,true)
+                                Utility.setLongitude(this,longi)
+                                Utility.setLatitude(this,lati)
+                                Utility.setMealDetail(this,"")
+                                Utility.setMealPhotoContext(this,"")
+                                if(Utility.getrole(this).equals("Donator")){
+                                    intent = Intent(this, DonatorHome::class.java)
+                                    startActivity(intent);
+                                    finish()
+                                }else if(Utility.getrole(this).equals("Organization")){
+                                    intent = Intent(this, RestaurantActivity::class.java)
+                                    startActivity(intent);
+                                    finish()
+                                }else{
+                                    intent = Intent(this, VolunteerHomeActivity::class.java)
+                                    startActivity(intent);
+                                    finish()
+                                }
+                                pd.dismiss()
+
+                                //DownloadImageFromInternet(image).execute(profile)
+                            }
+                        })
+
+                    ?.addOnFailureListener(OnFailureListener { e ->
+                        pd.dismiss()
+                        print(e.message)
+                    })
 
             }
         }
@@ -336,30 +369,6 @@ class ProfileActivity : AppCompatActivity() {
                     }
                 }
             }
-    }
-
-    @SuppressLint("StaticFieldLeak")
-    @Suppress("DEPRECATION")
-    private inner class DownloadImageFromInternet(var imageView: ImageView) : AsyncTask<String, Void, Bitmap?>() {
-        init {
-            Toast.makeText(applicationContext, "Please wait, it may take a few minute...",     Toast.LENGTH_SHORT).show()
-        }
-        override fun doInBackground(vararg urls: String): Bitmap? {
-            val imageURL = urls[0]
-            var image: Bitmap? = null
-            try {
-                val `in` = java.net.URL(imageURL).openStream()
-                image = BitmapFactory.decodeStream(`in`)
-            }
-            catch (e: Exception) {
-                Log.e("Error Message", e.message.toString())
-                e.printStackTrace()
-            }
-            return image
-        }
-        override fun onPostExecute(result: Bitmap?) {
-            imageView.setImageBitmap(result)
-        }
     }
 
     private fun getLastLocation() {
@@ -518,29 +527,16 @@ class ProfileActivity : AppCompatActivity() {
             // Get the Uri of data
             val file_uri = data.data
             if (file_uri != null) {
-                uploadImageToFirebase(file_uri)
+                //uploadImageToFirebase(file_uri)
+                image.setImageURI(file_uri)
+                img_uri = file_uri
+                Profile_bool=true
             }
         }
     }
 
     private fun uploadImageToFirebase(fileUri: Uri) {
-        val fileName = "profile.jpg"
 
-        val database = FirebaseDatabase.getInstance()
-        val refStorage = FirebaseStorage.getInstance().reference.child("UserProfile/${Firebase.auth.currentUser?.uid}/$fileName")
-
-        refStorage.putFile(fileUri)
-            .addOnSuccessListener(
-                OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
-                    taskSnapshot.storage.downloadUrl.addOnSuccessListener {
-                        profile = it.toString()
-                        DownloadImageFromInternet(image).execute(profile)
-                    }
-                })
-
-            ?.addOnFailureListener(OnFailureListener { e ->
-                print(e.message)
-            })
     }
 
     override fun onPause() {

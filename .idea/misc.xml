@@ -3,12 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/drawable/card_element_small_back2.xml" value="0.188" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/drawable/clock.xml" value="0.1585" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/drawable/ic_baseline_escalator_warning_24.xml" value="0.1215" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/drawable/ic_baseline_fastfood_24.xml" value="0.1215" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.107" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/drawable/ic_call_black_24dp.xml" value="0.1585" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/drawable/phone_icon_black.xml" value="0.1585" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/drawable/round_corner_button.xml" value="0.1585" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/activity_completed_meals.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/activity_donator_apply.xml" value="0.1796875" />
-        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/activity_donator_home.xml" value="0.1" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/activity_donator_home.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/activity_home.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/activity_profile.xml" value="0.1796875" />
@@ -19,7 +24,7 @@
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/activity_volunteer_apply.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/activity_volunteer_home.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/book_meal_dialog.xml" value="0.1796875" />
-        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/doantor_item.xml" value="0.1796875" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/doantor_item.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/edu_advertisment.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/edu_comment_dialog.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/edu_request.xml" value="0.1796875" />
@@ -31,6 +36,7 @@
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/fragment_restaurant_p_o_s.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/fragment_vol_education.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/fragment_vol_meals.xml" value="0.1796875" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/fragment_vol_profile.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/fragment_vol_things.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/meal_info_dialog.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/share_dialog.xml" value="0.1796875" />

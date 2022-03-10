@@ -1,90 +1,268 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_margin="16dp"
-    android:orientation="vertical">
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="20dp">
 
     <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="4dp"
+        android:layout_height="16dp"
+        android:src="@drawable/slit"
+        android:layout_marginTop="27dp"
+        android:layout_marginRight="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/image"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        />
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="18dp"
+        android:src="@drawable/face"
+        app:civ_border_color="#C4C4C4"
+        app:civ_border_width="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:textSize="24sp"
         android:id="@+id/name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="@string/app_name"/>
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="27dp"
+        android:text="Prateek Singh"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        android:textColor="#000"
+        android:textSize="14dp"
+        android:typeface="normal"
+        app:layout_constraintStart_toEndOf="@+id/image"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:layout_marginStart="16dp"
-        android:textSize="16sp"
-        android:id="@+id/location"
+        android:id="@+id/rewardsPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="12dp"
+        android:layout_marginTop="4dp"
+        android:text="1200 pts"
+        android:layout_marginLeft="13dp"
+        android:textSize="10dp"
+        android:textColor="#4FAF41"
+        android:fontFamily="@font/helveticaneue"
+        app:layout_constraintStart_toEndOf="@+id/image"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
+    <TextView
+        android:id="@+id/role"
+        android:layout_width="wrap_content"
+        android:layout_height="12dp"
+        android:layout_marginTop="4dp"
+        android:text="• Donator "
+        android:layout_marginLeft="4dp"
+        android:textSize="10dp"
+        android:textColor="#838383"
+        android:fontFamily="@font/helveticaneue"
+        app:layout_constraintStart_toEndOf="@+id/rewardsPoints"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="136dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="80dp"
+        app:cardBackgroundColor="#F4F4F4"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/feedTime"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:layout_marginLeft="17dp"
+                android:layout_marginTop="15dp"
+                android:text="Saturday, Jan 15, 2022"
+                android:textColor="#414141"
+                android:textSize="12dp"
+                android:typeface="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="2dp"
+                android:layout_height="2dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="22dp"
+                android:background="#909090"
+                app:layout_constraintStart_toEndOf="@+id/feedTime"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/helveticaneue"
+                android:text="9:00 am"
+                android:textColor="#909090"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="10dp"
+                android:layout_height="12.5dp"
+                android:layout_marginLeft="19.5dp"
+                android:layout_marginTop="11.25dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/feedTime"
+                app:srcCompat="@drawable/location" />
+
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="7.5dp"
+                android:layout_marginTop="10dp"
+                android:text="Modeltown, Bareilly"
+                android:textColor="#414141"
+                android:textSize="12dp"
+                android:typeface="normal"
+                app:layout_constraintStart_toEndOf="@+id/imageView5"
+                app:layout_constraintTop_toBottomOf="@+id/feedTime" />
+
+            <TextView
+                android:id="@+id/distance"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:text="1.2 KM away"
+                android:textColor="#B4B4B4"
+                android:textSize="11dp"
+                android:typeface="normal"
+                app:layout_constraintStart_toEndOf="@+id/location"
+                app:layout_constraintTop_toBottomOf="@+id/feedTime" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="9dp"
+                android:text="Volunteer"
+                android:textColor="#909090"
+                android:textSize="10dp"
+                android:typeface="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/location" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="33dp"
+                android:layout_marginLeft="17dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/card_element_small_back"
+                android:orientation="horizontal"
+                android:paddingHorizontal="3dp"
+                android:paddingVertical="3dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView10">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:src="@drawable/face"
+                    app:civ_border_color="#616161"
+                    app:civ_border_width="0.5dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="3dp"
+                    android:text="Ram Singh"
+                    android:textColor="#414141"
+                    android:textSize="12dp" />
+
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="@string/app_name"/>
+        android:layout_marginTop="17dp"
+        android:textColor="#000"
+        android:typeface="normal"
+        android:layout_marginHorizontal="20dp"
+        android:text="Hi this is Sample text for the purpose of laying the descri[tion of the item here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <ImageView
         android:id="@+id/feedImage"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        />
+        android:layout_height="340dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/back1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.747"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/info" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/feedImage"
+        app:srcCompat="@drawable/praise"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="22dp"/>
 
     <TextView
-        android:layout_marginTop="8dp"
-        android:textSize="16sp"
-        android:id="@+id/feedTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="@string/app_name"
-        />
-    <TextView
-        android:layout_marginTop="8dp"
-        android:textSize="16sp"
-        android:id="@+id/rewardsPoints"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="RewardsPoints"
-        />
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:text="15 Praises"
+        android:fontFamily="@font/helveticaneue"
+        android:layout_marginTop="27dp"
+        android:layout_marginLeft="6dp"
+        android:textSize="12dp"
+        android:textColor="#909090"
+        app:layout_constraintStart_toEndOf="@+id/imageView6"
+        app:layout_constraintTop_toBottomOf="@+id/feedImage" />
 
-    <TextView
-        android:layout_marginTop="8dp"
-        android:textSize="16sp"
-        android:id="@+id/role"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="role"
-        />
-
-    <TextView
-        android:layout_marginTop="8dp"
-        android:textSize="16sp"
-        android:id="@+id/distance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="Distance"
-        />
-
-    <TextView
-        android:layout_marginTop="8dp"
-        android:textSize="16sp"
-        android:id="@+id/info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="Info"
-        />
-
-    <Button
+    <ImageView
         android:id="@+id/share"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Share"/>
-
-
-
-
-</LinearLayout>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/feedImage"
+        app:srcCompat="@drawable/share"
+        android:layout_marginTop="23dp"
+        android:layout_marginRight="16dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

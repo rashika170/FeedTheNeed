@@ -13,13 +13,16 @@ import androidx.core.view.get
 import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.gdscandroid.loginproject.R
+import com.gdscandroid.loginproject.Utility
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.snapshot.Index
 import kotlinx.android.synthetic.main.activity_donator_apply.*
+import kotlinx.android.synthetic.main.fragment_donator_home.*
 import kotlinx.android.synthetic.main.fragment_donator_items.*
 import java.nio.file.Files.delete
 
@@ -41,9 +44,21 @@ class DonatorItemsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_donator_items, container, false)
     }
 
+    private fun setCurrentFragment(fragment: Fragment) =
+        activity?.supportFragmentManager?.beginTransaction()?.apply {
+            replace(R.id.flFragment,fragment)
+            commit()
+        }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+
+        profile_nav1.setOnClickListener {
+            setCurrentFragment(DonatorProfileFragment())
+        }
+
+        Glide.with(requireContext()).load(activity?.let { Utility.getProfile(it).toString() }).into(profile_nav1)
 
         val dbRef= FirebaseDatabase.getInstance().reference
         val donorData=ArrayList<DonorData>()
@@ -91,10 +106,12 @@ class DonatorItemsFragment : Fragment() {
 
         dbRef.child("DonatorPost").addChildEventListener(postListener)
         Log.d("raatmekaam",donorData.size.toString())
-        floatingActionButton.setOnClickListener{
-           val intent = Intent (activity,DonatorApply::class.java)
-            startActivity(intent)
-        }
+
+
+//        floatingActionButton.setOnClickListener{
+//           val intent = Intent (activity,DonatorApply::class.java)
+//            startActivity(intent)
+//        }
     }
 
     private fun performOptionMenu(position: Int) {

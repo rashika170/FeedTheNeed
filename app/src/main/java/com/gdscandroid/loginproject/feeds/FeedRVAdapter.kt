@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.gdscandroid.loginproject.R
 import com.gdscandroid.loginproject.Utility
 import kotlinx.android.synthetic.main.feed_item.view.*
+import kotlin.math.roundToInt
 
 
 class FeedRVAdapter(val feeds:ArrayList<FeedData>) : RecyclerView.Adapter<FeedRVAdapter.RVViewHolder>() {
@@ -29,9 +30,12 @@ class FeedRVAdapter(val feeds:ArrayList<FeedData>) : RecyclerView.Adapter<FeedRV
     override fun onBindViewHolder(holder: RVViewHolder, position: Int) {
         val hi=holder.itemView
         hi.name.text=feeds[position].name
-        hi.location.text=feeds[position].Location
-        hi.rewardsPoints.text=feeds[position].Points
-        hi.feedTime.text=feeds[position].currentTime
+        val loca=feeds[position].Location.toString().split(",")
+        hi.location.text=loca[loca.size-4]+", "+loca[loca.size-3]
+        hi.rewardsPoints.text=feeds[position].Points+" Points"
+        val time=feeds[position].currentTime.toString().split(" ")
+        hi.feedTime.text=time[0]
+        hi.time.text=time[1]
         hi.role.text=feeds[position].role
         hi.info.text=feeds[position].description
 
@@ -78,8 +82,9 @@ class FeedRVAdapter(val feeds:ArrayList<FeedData>) : RecyclerView.Adapter<FeedRV
         endPoint.setLatitude(Utility.getLatitudeContext(hi.context)!!.toDouble())
         endPoint.setLongitude(Utility.getLongitudeContext(hi.context)!!.toDouble())
 
-        val distance: Double = startPoint.distanceTo(endPoint)/1000.0
-        hi.distance.text=distance.toString()
+        var distance: Double = startPoint.distanceTo(endPoint)/1000.0
+        distance=(distance * 100.0).roundToInt() / 100.0
+        hi.distance.text=distance.toString()+" KM away"
 
 //        holder.itemView.volunteerName.text=feeds[position].name
 //        val imageUri=feeds[position].image.toString()

@@ -140,7 +140,7 @@ class VolunteerAPllyAdapter(val restaurData:ArrayList<AvailableRestauData>): Rec
         myHour = hourOfDay
         myMinute = minute
         time = ""+myYear+"/"+myMonth+"/"+myDay+" , "+myHour+":"+myMinute
-        dialog.findViewById<TextView>(R.id.pick_time_tv).text = "Year: " + myYear + "\n" + "Month: " + myMonth + "\n" + "Day: " + myDay + "\n" + "Hour: " + myHour + "\n" + "Minute: " + myMinute
+        dialog.findViewById<TextView>(R.id.pick_time_tv).text = myDay.toString() +":"+ myMonth.toString() + ":"+ myYear.toString() + " " + myHour.toString() + ":"  + myMinute.toString()
         isPickedTime = true
         Toast.makeText(view!!.context,"time picked"+time,Toast.LENGTH_SHORT).show()
     }

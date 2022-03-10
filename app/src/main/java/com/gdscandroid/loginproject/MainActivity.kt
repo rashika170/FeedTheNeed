@@ -1,5 +1,6 @@
 package com.gdscandroid.loginproject
 
+import android.app.ProgressDialog
 import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -110,6 +111,10 @@ class MainActivity : AppCompatActivity() {
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener { task ->
 
             if (task.isSuccessful) {
+                val pd= ProgressDialog(this)
+                pd.setMessage("Please wait!!..")
+//                pd.setCancelable(false)
+                pd.show()
                 val ref = Firebase.database.getReference("Users")
                 var k=0
                 ref.addListenerForSingleValueEvent(object :ValueEventListener{
@@ -135,6 +140,7 @@ class MainActivity : AppCompatActivity() {
                                 Utility.setLongitude(this@MainActivity,nextSnapshot.child("Longitude").value.toString())
                                 Utility.setMealDetail(this@MainActivity,nextSnapshot.child("MealsInfo").value.toString())
                                 Utility.setMealPhotoContext(this@MainActivity,nextSnapshot.child("MealsImage").value.toString())
+                                pd.dismiss()
 
                                 if(Utility.getrole(this@MainActivity).equals("Donator")){
                                     intent = Intent(this@MainActivity, DonatorHome::class.java)
@@ -163,6 +169,7 @@ class MainActivity : AppCompatActivity() {
                             intent.putExtra("source", "Google")
                             intent.putExtra("credential", credential)
                             startActivity(intent)
+                            pd.dismiss()
                             finish()
                         }
                     }
@@ -183,6 +190,10 @@ class MainActivity : AppCompatActivity() {
         if(email.isBlank() || pass.isBlank()){
             Toast.makeText(baseContext,"Please Fill all Details",Toast.LENGTH_SHORT).show()
         }else{
+            val pd= ProgressDialog(this)
+            pd.setMessage("Please wait!!..")
+            //pd.setCancelable(false)
+            pd.show()
             auth.createUserWithEmailAndPassword(email, pass)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
@@ -197,9 +208,11 @@ class MainActivity : AppCompatActivity() {
                                     intent.putExtra("source", "Custom")
                                     intent.putExtra("email", email)
                                     intent.putExtra("pass", pass)
+                                    pd.dismiss()
                                     startActivity(intent);
                                     finish()
                                 }else{
+                                    pd.dismiss()
                                     Toast.makeText(baseContext,task.exception.toString(),Toast.LENGTH_SHORT).show()
                                 }
                             }
@@ -239,14 +252,17 @@ class MainActivity : AppCompatActivity() {
                                                         if(Utility.getrole(this@MainActivity).equals("Donator")){
                                                             intent = Intent(this@MainActivity, DonatorHome::class.java)
                                                             startActivity(intent);
+                                                            pd.dismiss()
                                                             finish()
                                                         }else if(Utility.getrole(this@MainActivity).equals("Organization")){
                                                             intent = Intent(this@MainActivity, RestaurantActivity::class.java)
                                                             startActivity(intent);
+                                                            pd.dismiss()
                                                             finish()
                                                         }else{
                                                             intent = Intent(this@MainActivity, VolunteerHomeActivity::class.java)
                                                             startActivity(intent);
+                                                            pd.dismiss()
                                                             finish()
                                                         }
 
@@ -262,6 +278,7 @@ class MainActivity : AppCompatActivity() {
                                                     intent.putExtra("email", email)
                                                     intent.putExtra("pass", pass)
                                                     startActivity(intent);
+                                                    pd.dismiss()
                                                     finish()
                                                     startActivity(intent);
                                                 }

@@ -1,12 +1,18 @@
 package com.gdscandroid.loginproject.Donator
 
+import android.Manifest
+import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.widget.PopupMenu
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.gdscandroid.loginproject.R
@@ -16,7 +22,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.doantor_item.view.*
-import kotlinx.android.synthetic.main.vol_booked_meals_data.view.*
 
 
 class DonorRVAdapter(val donorData:ArrayList<DonorData>): RecyclerView.Adapter<DonorRVAdapter.RVViewHolder>() {
@@ -35,24 +40,53 @@ class DonorRVAdapter(val donorData:ArrayList<DonorData>): RecyclerView.Adapter<D
         Log.d("jabardastikakaam","thak gya hooon vmro")
 
         holder.itemView.itemTitle.text=donorData[position].desc
-        holder.itemView.itemLocation.text=donorData[position].location
+//        holder.itemView.itemLocation.text=donorData[position].location
         val imageUri=donorData[position].image.toString()
         if (imageUri !== null) Glide.with(holder.itemView)
             .load(imageUri)
             .into(holder.itemView.feedImage)
         else holder.itemView.feedImage.setImageResource(R.drawable.ic_launcher_background)
         holder.itemView.itemPickedBy.text=donorData[position].pickedBy
-        holder.itemView.itemPickedTime.text=donorData[position].pickedTime
+        val time=donorData[position].pickedTime.toString().split(",")
+        holder.itemView.itemPickedTime.text=time[0]
+        holder.itemView.time.text=time[1]
         holder.itemView.itemStatus.text=donorData[position].status
+
+        val bookId=donorData[position].bookId.toString()
+        var total=0
+        for(i in 0..bookId.length-1){
+            total+=bookId[i].toInt()
+        }
+        holder.itemView.donationId.text="#"+total.toString()
+
+        holder.itemView.itemvolphone.setOnClickListener{
+            if(donorData[position].status.toString().equals("Booked")){
+                val permissionCheck =
+                    ContextCompat.checkSelfPermission(holder.itemView.context as Activity, Manifest.permission.CALL_PHONE)
+                if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(
+                        holder.itemView.context as Activity, arrayOf(Manifest.permission.CALL_PHONE),
+                        123
+                    )
+                } else {
+                    val intent=Intent(Intent.ACTION_CALL)
+                    intent.data = Uri.parse("tel:${donorData[position].volPhoneNumber}")
+                    holder.itemView.context.startActivity(intent)
+                }
+            }else{
+                Toast.makeText(holder.itemView.context,"Item is not booked",Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
         if(donorData[position].status.toString().equals("Booked")){
-            holder.itemView.itemvolphone.text=donorData[position].volPhoneNumber
             Glide.with(holder.itemView.context).load(donorData[position].volPic).into(holder.itemView.vol_image)
             holder.itemView.donatorReleaseButton.visibility = View.VISIBLE
             holder.itemView.donatorConfirmation.visibility=View.VISIBLE
         }else{
             holder.itemView.donatorReleaseButton.visibility = View.GONE
-            holder.itemView.itemvolphone.visibility = View.GONE
-            holder.itemView.vol_image.visibility = View.GONE
+            holder.itemView.itemvolphone.visibility = View.VISIBLE
+            holder.itemView.vol_image.visibility = View.VISIBLE
             holder.itemView.donatorConfirmation.visibility=View.GONE
         }
         holder.itemView.donatorConfirmation.setOnClickListener {
@@ -91,4 +125,6 @@ class DonorRVAdapter(val donorData:ArrayList<DonorData>): RecyclerView.Adapter<D
     }
 
     override fun getItemCount(): Int = donorData.size
+
+
 }

@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.gdscandroid.loginproject.Donator.DonatorProfileFragment
 import com.gdscandroid.loginproject.Donator.DonorData
 import com.gdscandroid.loginproject.R
 import com.gdscandroid.loginproject.Restaurant.dataClass.RestaurantData
@@ -17,7 +19,9 @@ import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.fragment_donator_items.*
 import kotlinx.android.synthetic.main.fragment_restaurant_meals.*
+import kotlinx.android.synthetic.main.fragment_restaurant_meals.profile_nav1
 import kotlinx.android.synthetic.main.volunteer_meals_details_item.*
 
 
@@ -36,9 +40,21 @@ class RestaurantMealsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_restaurant_meals, container, false)
     }
 
+    private fun setCurrentFragment(fragment: Fragment) =
+        activity?.supportFragmentManager?.beginTransaction()?.apply {
+            replace(R.id.flFragment,fragment)
+            commit()
+        }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+
+//        profile_nav1.setOnClickListener {
+//            setCurrentFragment(DonatorProfileFragment())
+//        }
+
+        Glide.with(requireContext()).load(activity?.let { Utility.getProfile(it).toString() }).into(profile_nav1)
 
         val dbRef= activity?.let {
             Utility.getUid(it)

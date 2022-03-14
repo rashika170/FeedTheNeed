@@ -4,28 +4,96 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
+    tools:context=".Restaurant.RestaurantActivity">
 
     <FrameLayout
         android:id="@+id/flFragmentRestaurant"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationViewRestaurant"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/constrained"
+        android:layout_marginBottom="62dp"
+        />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationViewRestaurant"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="62dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/restaurant_nav_menu"/>
+        android:id="@+id/constrained"
+        android:background="#FAFAFA"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="3"
+            >
 
+            <!--1st option to be implemented here -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                >
+                <ImageView
+                    android:id="@+id/feed_restaur"
+                    android:layout_width="22.5dp"
+                    android:layout_height="22.5dp"
+                    android:src="@drawable/feed"
+                    />
+            </LinearLayout>
+
+            <!--2nd Point to be implemeted -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                >
+                <ImageView
+                    android:id="@+id/meal_restaur"
+                    android:layout_width="24.5dp"
+                    android:layout_height="24.5dp"
+                    android:src="@drawable/restaurant_icon"
+                    />
+            </LinearLayout>
+
+            <!--Third option to be implementation -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                >
+
+                <ImageView
+                    android:id="@+id/pos_restaur"
+                    android:layout_width="24.5dp"
+                    android:layout_height="24.5dp"
+                    android:src="@drawable/bookings"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:textSize="38dp"
+        android:fontFamily="@font/ubuntu_reg"
+        android:text="+"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@id/constrained"
+        android:layout_marginBottom="72dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@drawable/circle_button"
+        android:textColor="#fff"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

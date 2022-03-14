@@ -14,7 +14,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.RequiresApi
+import com.bumptech.glide.Glide
 import com.gdscandroid.loginproject.Donator.DonatorHome
+import com.gdscandroid.loginproject.Donator.DonatorProfileFragment
 import com.gdscandroid.loginproject.R
 import com.gdscandroid.loginproject.Utility
 import com.google.android.gms.tasks.OnFailureListener
@@ -27,6 +29,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
+import kotlinx.android.synthetic.main.fragment_donator_items.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -34,10 +37,9 @@ import java.util.*
 
 class RestaurantPOSFragment : Fragment() {
 
-    private lateinit var image: ImageView
-    private lateinit var descedit: EditText
+//    private lateinit var image: ImageView
+//    private lateinit var descedit: EditText
     private lateinit var phonetext: EditText
-    private lateinit var timetxt: TextView
     private lateinit var numberEdit: EditText
     private lateinit var post: Button
     private lateinit var name:EditText
@@ -53,6 +55,12 @@ class RestaurantPOSFragment : Fragment() {
 
     }
 
+    private fun setCurrentFragment(fragment: Fragment) =
+        activity?.supportFragmentManager?.beginTransaction()?.apply {
+            replace(R.id.flFragment,fragment)
+            commit()
+        }
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,20 +68,38 @@ class RestaurantPOSFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val v =  inflater.inflate(R.layout.fragment_restaurant_p_o_s, container, false)
-        image = v.findViewById(R.id.imageView)
-        descedit = v.findViewById(R.id.desc_edit)
+//        image = v.findViewById(R.id.imageView)
+//        descedit = v.findViewById(R.id.desc_edit)
         phonetext = v.findViewById(R.id.phn_txt)
-        timetxt = v.findViewById(R.id.date_txt)
         numberEdit = v.findViewById(R.id.no_edit)
         post = v.findViewById(R.id.post)
         name=v.findViewById(R.id.name_edit)
 
+//        profile_nav1.setOnClickListener {
+//            setCurrentFragment(DonatorProfileFragment())
+//        }
+
+        activity?.findViewById<ImageView>(R.id.profile_nav11)?.let {
+            Glide.with(requireActivity()).load(Utility.getMealPhotoContext(requireContext())).into(
+                it
+            )
+        }
         getCurrentTime()
 
+        activity?.findViewById<TextView>(R.id.restaur_name)?.setText(Utility.getName(requireActivity()))
+        activity?.findViewById<TextView>(R.id.meal_detail)?.setText(Utility.getMealDetail(requireActivity()))
+        activity?.findViewById<ImageView>(R.id.meal_img)?.let {
+            Glide.with(requireActivity()).load(Utility.getMealPhotoContext(requireContext())).into(
+                it
+            )
+        }
+
+
         post.setOnClickListener {
-            if(descedit.text.toString().trim().isBlank()){
-                Toast.makeText(context,"Upload Description", Toast.LENGTH_SHORT).show()
-            }else if(numberEdit.text.toString().trim().isEmpty()){
+//            if(descedit.text.toString().trim().isBlank()){
+//                Toast.makeText(context,"Upload Description", Toast.LENGTH_SHORT).show()
+//            }else
+            if(numberEdit.text.toString().trim().isEmpty()){
                 Toast.makeText(context,"Upload No of Meals", Toast.LENGTH_SHORT).show()
             }else if(name.text.toString().trim().isEmpty()){
                 Toast.makeText(context,"Please enter name of the donator", Toast.LENGTH_SHORT).show()
@@ -94,7 +120,7 @@ class RestaurantPOSFragment : Fragment() {
         ranid = ranid.substring(1,ranid.length-1)
         Log.d("bhibhi",ranid)
         val database2 = FirebaseDatabase.getInstance().reference.child("RestaurantData").child(uid).child(ranid)
-        database2.child("desc").setValue(descedit.text.toString())
+        database2.child("desc").setValue("")
         database2.child("uid").setValue(uid)
         database2.child("date").setValue(timenans)
         database2.child("NumMeals").setValue(numberEdit.text.toString().trim())
@@ -128,7 +154,6 @@ class RestaurantPOSFragment : Fragment() {
         val current = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         val formatted = current.format(formatter)
-        timetxt.text = formatted
         timenans = formatted
     }
 }

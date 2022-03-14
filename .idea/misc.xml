@@ -51,11 +51,20 @@
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/menu/options_menu.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/menu/restaurant_nav_menu.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/menu/volunteer_nav_menu.xml" value="0.1796875" />
+        <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/drawable/bookings_selcted.xml" value="0.2275" />
+        <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/drawable/circle_button.xml" value="0.2275" />
+        <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/drawable/restaurant_selected.xml" value="0.2275" />
         <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/activity_donator_apply.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/activity_donator_home.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/activity_home.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/activity_profile.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/activity_restaurent.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/fragment_donator_items.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/fragment_restaurant_meals.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/fragment_restaurant_p_o_s.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/fragment_vol_meals.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/volunteer_meals_details_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/menu/home_menu.xml" value="0.25416666666666665" />
       </map>

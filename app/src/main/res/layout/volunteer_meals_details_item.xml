@@ -1,118 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_margin="16dp"
-    android:orientation="vertical">
+    android:background="#EFEFEF"
+    android:layout_marginHorizontal="7dp"
+    android:layout_marginVertical="5dp">
 
-    <TextView
-        android:textSize="24sp"
-        android:id="@+id/volunteerName"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="Abhi"/>
-
-    <TextView
-        android:id="@+id/volunteerMealStatus"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:textSize="16sp"
-        tools:text="Booked" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_weight="1">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Volunteer Number:  "
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/volNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="1232323234"
-            android:textSize="16sp"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:textSize="24sp"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="8dp"
+        android:background="#fff"
+        app:cardElevation="3dp"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="No. of Meals"
-            android:layout_weight="1"/>
+            android:layout_height="match_parent"
+            android:paddingBottom="20dp"
+            >
 
-        <TextView
-            android:textSize="24sp"
-            android:id="@+id/noOfMeals"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:text="10"
-            android:layout_weight="1"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:textSize="16sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Picked Time and Date"
-            android:layout_weight="0.8"/>
-
-        <TextView
-            android:textSize="16sp"
-            android:id="@+id/volunteerMealsPickAtTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:text="11:00 P.M."
-            android:layout_weight="1"
-            />
-
-
-    </LinearLayout>
-
-    <Button
-        android:textSize="24sp"
-        android:id="@+id/volunteerMealsCancel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Cancel Meals"
-        android:gravity="center"
-        />
-
-    <Button
-        android:textSize="24sp"
-        android:id="@+id/volunteerMealsPicked"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Picked?"
-        android:gravity="center"
-        />
-
-    <ImageView
-        android:id="@+id/volPhoto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:srcCompat="@tools:sample/avatars" />
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="17dp"
+                android:text="Donation Id"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="12dp"
+                android:typeface="normal"
+                android:textColor="#9E9E9E"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/volNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="17dp"
+                android:text="#1234"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="#000"
+                app:layout_constraintStart_toEndOf="@id/textView6"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
 
+            <!--  There are three backgrounds processing, distributed
+                Text Colors to be used with them are #EBAF00, #4285F4-->
+            <TextView
+                android:id="@+id/volunteerMealStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="19dp"
+                android:text="Processing"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="15dp"
+                android:gravity="center_vertical"
+                android:textColor="#EBAF00"
+                android:paddingHorizontal="7dp"
+                android:background="@drawable/processing_background"
+                app:layout_constraintStart_toEndOf="@id/volNumber"
+                app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:layout_marginLeft="17dp"
+                android:layout_marginTop="9dp"
+                android:text="Pickup Time "
+                android:textColor="#414141"
+                android:textSize="12dp"
+                android:typeface="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView6" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="2dp"
+                android:layout_height="2dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="18dp"
+                android:background="#909090"
+                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintTop_toBottomOf="@id/textView6" />
+
+            <TextView
+                android:id="@+id/volunteerMealsPickAtTime"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="9dp"
+                android:fontFamily="@font/helveticaneue"
+                android:text="9:00 am, 7 March"
+                android:textColor="#909090"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                app:layout_constraintTop_toBottomOf="@id/textView6" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/imageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="22dp"
+                app:cardCornerRadius="7dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <ImageView
+                    android:id="@+id/volPhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/face" /></androidx.cardview.widget.CardView>
+
+
+            <TextView
+                android:id="@+id/noOfMeals"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Numberof meals : 5"
+                android:textColor="#909090"
+                android:textSize="10dp"
+                android:typeface="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="33dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="9dp"
+                android:background="@drawable/card_element_small_back2"
+                android:orientation="horizontal"
+                android:paddingHorizontal="3dp"
+                android:paddingVertical="3dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/noOfMeals">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:src="@drawable/face"
+                    app:civ_border_color="#616161"
+                    app:civ_border_width="0.5dp" />
+
+                <TextView
+                    android:id="@+id/volunteerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="3dp"
+                    android:text="Ram Singh"
+                    android:textColor="#414141"
+                    android:textSize="12dp" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="21dp"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="16dp"
+                android:drawableLeft="@drawable/ic_call_black_24dp"
+                android:text="Call Volunteer"
+                android:textSize="14dp"
+                android:textColor="#3EC734"
+                android:fontFamily="@font/ubuntu_reg"
+                app:layout_constraintStart_toEndOf="@+id/linearLayout2"
+                app:layout_constraintTop_toBottomOf="@+id/noOfMeals" />
+
+            <Button
+                android:id="@+id/volunteerMealsCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:textSize="12dp"
+                android:text="Cancel"
+                android:fontFamily="@font/ubuntu_med"
+                android:paddingHorizontal="10dp"
+                android:background="@drawable/button_background"
+                android:textColor="#f1f1f1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView13"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="19dp"
+                />
+
+            <Button
+                android:id="@+id/volunteerMealsPicked"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:textSize="12dp"
+                android:text="Picked ?"
+                android:fontFamily="@font/ubuntu_med"
+                android:paddingHorizontal="10dp"
+                android:background="@drawable/button_background"
+                android:textColor="#f1f1f1"
+                app:layout_constraintTop_toBottomOf="@id/textView13"
+                app:layout_constraintLeft_toRightOf="@id/volunteerMealsCancel"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="19dp"
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>

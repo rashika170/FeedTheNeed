@@ -1,37 +1,33 @@
 package com.gdscandroid.loginproject.Volunteer
 
 import android.app.Activity
-import android.app.DatePickerDialog
 import android.app.Dialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.view.Window
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.gdscandroid.loginproject.R
 import com.gdscandroid.loginproject.Utility
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import kotlinx.android.synthetic.main.activity_donator_apply.*
 import kotlinx.android.synthetic.main.activity_vol_verification.*
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 class VolVerificationActivity : AppCompatActivity() {
 
@@ -54,9 +50,11 @@ class VolVerificationActivity : AppCompatActivity() {
         resid = intent.getStringExtra("RestauUid")!!
         arrayList = ArrayList(count)
 
-        verification_imv.setOnClickListener {
+        select_imv.setOnClickListener {
             openGalleryForImages()
         }
+
+        count1.text = "Total Images to be uploaded : "+count
 
         share_tv.setOnClickListener {
             val dialog = Dialog(this)
@@ -119,7 +117,7 @@ class VolVerificationActivity : AppCompatActivity() {
         }
 
         verification_tv.setOnClickListener {
-            if (ptsl){
+            Handler().postDelayed({
                 share_tv.visibility = View.VISIBLE
                 FirebaseDatabase.getInstance().reference.child("VolunteerMealPost")
                     .child(voluid).child(bookid).child("Status").setValue("Verified")
@@ -136,15 +134,13 @@ class VolVerificationActivity : AppCompatActivity() {
                         }
 
                         override fun onCancelled(error: DatabaseError) {
-                           // TODO("Not yet implemented")
+                            // TODO("Not yet implemented")
                         }
 
                     })
 
                 Toast.makeText(this,"Verified",Toast.LENGTH_SHORT).show()
-            }else{
-                Toast.makeText(this,"Please Select as no of images as meals",Toast.LENGTH_SHORT).show()
-            }
+            }, 5000)
         }
     }
 

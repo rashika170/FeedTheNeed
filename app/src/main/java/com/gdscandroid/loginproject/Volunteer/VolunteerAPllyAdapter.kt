@@ -94,7 +94,7 @@ class VolunteerAPllyAdapter(val restaurData:ArrayList<AvailableRestauData>): Rec
                         dbRef1.child("Status").setValue("Booked")
                         dbRef1.child("RestaurantUid").setValue(restaurData[position].uid)
                         dbRef1.child("BookingId").setValue(ranid)
-                        dbRef1.child("RestaurantPhone").setValue(restaurData[position].Restaurphone)
+                        dbRef1.child("RestaurantPhone").setValue(restaurData[position].RestaurPhone)
                         dbRef1.child("Verification").setValue("NA")
                         dbRef1.child("VolunteerUid").setValue(restaurData[position].volUid)
                         dbRef1.child("RestaurPhoto").setValue(restaurData[position].RestaurPhoto)
@@ -139,7 +139,7 @@ class VolunteerAPllyAdapter(val restaurData:ArrayList<AvailableRestauData>): Rec
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
         myHour = hourOfDay
         myMinute = minute
-        time = ""+myYear+"/"+myMonth+"/"+myDay+" , "+myHour+":"+myMinute
+        time = ""+myYear+"/"+myMonth+"/"+myDay+","+myHour+":"+myMinute
         dialog.findViewById<TextView>(R.id.pick_time_tv).text = myDay.toString() +":"+ myMonth.toString() + ":"+ myYear.toString() + " " + myHour.toString() + ":"  + myMinute.toString()
         isPickedTime = true
         Toast.makeText(view!!.context,"time picked"+time,Toast.LENGTH_SHORT).show()

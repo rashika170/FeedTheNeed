@@ -31,17 +31,50 @@ class VolunteerHomeActivity : AppCompatActivity() {
         val volProfileFragment=VolProfileFragment()
 
         setCurrentFragment(volHomeFragment)
-        bottomNavigationViewVol.setOnNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.home->setCurrentFragment(volHomeFragment)
-                R.id.meals->setCurrentFragment(volMealsFragment)
-                R.id.things->setCurrentFragment(volThingsFragment)
-                R.id.education->setCurrentFragment(volEducationFragment)
-                R.id.profile->setCurrentFragment(volProfileFragment)
 
-            }
-            true
+        feedVol.setOnClickListener {
+            feedVol.setImageDrawable(getDrawable(R.drawable.feed_selected))
+            volMeals.setImageDrawable(getDrawable(R.drawable.food_donations))
+            volEducation.setImageDrawable(getDrawable(R.drawable.quest))
+            volDonation.setImageDrawable(getDrawable(R.drawable.donations))
+            setCurrentFragment(volHomeFragment)
         }
+
+        volMeals.setOnClickListener {
+            feedVol.setImageDrawable(getDrawable(R.drawable.feed))
+            volMeals.setImageDrawable(getDrawable(R.drawable.food_doations_selected))
+            volEducation.setImageDrawable(getDrawable(R.drawable.quest))
+            volDonation.setImageDrawable(getDrawable(R.drawable.donations))
+            setCurrentFragment(volMealsFragment)
+        }
+
+        volEducation.setOnClickListener {
+            feedVol.setImageDrawable(getDrawable(R.drawable.feed))
+            volMeals.setImageDrawable(getDrawable(R.drawable.food_donations))
+            volEducation.setImageDrawable(getDrawable(R.drawable.quest_selcted))
+            volDonation.setImageDrawable(getDrawable(R.drawable.donations))
+            setCurrentFragment(volEducationFragment)
+        }
+
+        volDonation.setOnClickListener {
+            feedVol.setImageDrawable(getDrawable(R.drawable.feed))
+            volMeals.setImageDrawable(getDrawable(R.drawable.food_donations))
+            volEducation.setImageDrawable(getDrawable(R.drawable.quest))
+            volDonation.setImageDrawable(getDrawable(R.drawable.donations_selcted))
+            setCurrentFragment(volThingsFragment)
+        }
+
+//        bottomNavigationViewVol.setOnNavigationItemSelectedListener {
+//            when(it.itemId){
+//                R.id.home->setCurrentFragment(volHomeFragment)
+//                R.id.meals->setCurrentFragment(volMealsFragment)
+//                R.id.things->setCurrentFragment(volThingsFragment)
+//                R.id.education->setCurrentFragment(volEducationFragment)
+//                R.id.profile->setCurrentFragment(volProfileFragment)
+//
+//            }
+//            true
+//        }
 
 
     }

@@ -1,92 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_margin="16dp"
-    android:orientation="vertical">
+    android:background="#EFEFEF"
+    android:layout_marginHorizontal="7dp"
+    android:layout_marginVertical="5dp">
 
-    <TextView
-        android:id="@+id/itemTitleVol"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Jacket"
-        android:textSize="24sp"/>
-    <TextView
-        android:layout_marginStart="16dp"
-        android:textSize="16sp"
-        android:id="@+id/itemLocationVol"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="Jaipur"/>
-
-    <ImageView
-        android:id="@+id/feedImageVol"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="1">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pick UP time:  "
-                android:textSize="16sp"/>
+        android:layout_height="match_parent"
+        app:cardCornerRadius="8dp"
+        android:background="#fff"
+        app:cardElevation="3dp"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="20dp"
+            >
 
             <TextView
-                android:id="@+id/itemPickedTimeVol"
+                android:id="@+id/textView6"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="11:00 A.M."
-                android:textSize="16sp"/>
-        </LinearLayout>
+                android:layout_height="17dp"
+                android:text="Donation Id"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="12dp"
+                android:typeface="normal"
+                android:textColor="#9E9E9E"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="17dp"
+                android:text="#1234"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="#000"
+                app:layout_constraintStart_toEndOf="@id/textView6"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/itemStatusVol"
+                android:layout_width="wrap_content"
+                android:layout_height="19dp"
+                android:text="Booked"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="15dp"
+                android:gravity="center_vertical"
+                android:textColor="#EBAF00"
+                android:paddingHorizontal="7dp"
+                android:background="@drawable/processing_background"
+                app:layout_constraintStart_toEndOf="@id/textView8"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:id="@+id/doantorImage"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="22dp"
+                android:src="@drawable/face"
+                app:civ_border_color="#4D4D4D"
+                app:civ_border_width="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <ImageView
+                android:id="@+id/imageView11"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="75dp"
+                android:src="@drawable/ic_call_black_24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/doantorImage"/>
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="35dp"
+                android:src="@drawable/location_black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/doantorImage"/>
+
+            <TextView
+                android:id="@+id/textView166"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:layout_marginLeft="17dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Abhi Pratap Singh"
+                android:textColor="#000000"
+                android:textSize="18dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
 
 
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:layout_marginLeft="17dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Donator Points :"
+                android:textColor="#000"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView166" />
 
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:layout_marginLeft="3dp"
+                android:text="600"
+                android:textColor="#414141"
+                android:textSize="12dp"
+                android:typeface="normal"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toEndOf="@id/textView14"
+                app:layout_constraintTop_toBottomOf="@id/textView166" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_marginLeft="17dp"
+                android:id="@+id/button"
+                android:background="@drawable/button_line_background"
+                android:fontFamily="@font/ubuntu_med"
+                android:paddingHorizontal="10dp"
+                android:text="Check Items"
+                android:textColor="#A01F62"
+                android:textSize="12dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView14"
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:id="@+id/itemBookingVol"
+                android:layout_marginLeft="17dp"
+                android:background="@drawable/button_background"
+                android:fontFamily="@font/ubuntu_med"
+                android:paddingHorizontal="10dp"
+                android:text="Book Donation"
+                android:textColor="#f1f1f1"
+                android:textSize="12dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/button"
+                />
 
 
-    <TextView
-        android:layout_gravity="center"
-        android:id="@+id/itemStatusVol"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Pending"
-        android:textSize="24sp"/>
-
-    <Button
-        android:id="@+id/itemBookingVol"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Book this"
-        android:layout_gravity="center"
-        android:textSize="16sp"/>
-
-
-    <TextView
-        android:layout_gravity="center"
-        android:id="@+id/donatorPhn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Phone"
-        android:textSize="24sp"/>
-
-    <ImageView
-        android:id="@+id/doantorImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
-
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>

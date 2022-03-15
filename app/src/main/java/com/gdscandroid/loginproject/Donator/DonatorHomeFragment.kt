@@ -67,7 +67,8 @@ class DonatorHomeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        profile_nav.setOnClickListener {
+        activity?.findViewById<ImageView>(R.id.profile_nav)?.setOnClickListener {
+
             setCurrentFragment(DonatorProfileFragment())
         }
 

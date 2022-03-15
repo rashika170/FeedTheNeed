@@ -1,30 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Volunteer.VolMealsFragment"
-    android:layout_marginBottom="75dp">
+    tools:context=".Volunteer.VolMealsFragment">
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvVolMeals"
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:layout_editor_absoluteX="16dp"
-        tools:listitem="@layout/vol_booked_meals_data" />
+        android:background="#A01F62"
+        >
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:src="@drawable/ic_baseline_add_circle_24"
-        android:layout_marginBottom="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_gravity="bottom|end"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#F7F7F7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/helveticaneue"
+            android:text="Feed The Need."
+            android:textColor="#A01F62"
+            android:textSize="25dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="19dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:src="@drawable/face"
+            app:civ_border_color="#A01F62"
+            app:civ_border_width="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="12dp"
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="75dp"
+            android:gravity="center"
+            android:layout_marginBottom="20dp"
+            >
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/rvVolMeals"
+                tools:listitem="@layout/vol_booked_meals_data"
+                />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/floatingActionButton2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:textSize="38dp"
+            android:fontFamily="@font/ubuntu_reg"
+            android:text="+"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="42dp"
+            android:layout_marginRight="25dp"
+            android:paddingBottom="7dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:background="@drawable/circle_button_circle"
+            android:textColor="#A10F62"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

@@ -9,22 +9,85 @@
     <FrameLayout
         android:id="@+id/flVolFragment"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/constrained"
+        android:layout_marginBottom="62dp"
+        />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationViewVol"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="62dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/volunteer_nav_menu"/>
+        android:id="@+id/constrained"
+        android:background="#FAFAFA"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="4"
+            >
+            <!--1st option to be implemented here -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                >
+                <ImageView
+                    android:id="@+id/feedVol"
+                    android:layout_width="22.5dp"
+                    android:layout_height="22.5dp"
+                    android:src="@drawable/feed"
+                    />
+            </LinearLayout>
 
+            <!--2nd Point to be implemeted -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                >
+                <ImageView
+                    android:id="@+id/volMeals"
+                    android:layout_width="24.5dp"
+                    android:layout_height="24.5dp"
+                    android:src="@drawable/food_donations"
+                    />
+            </LinearLayout>
+
+            <!--Third option to be implementation -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                >
+                <ImageView
+                    android:id="@+id/volEducation"
+                    android:layout_width="24.5dp"
+                    android:layout_height="24.5dp"
+                    android:src="@drawable/quest"
+                    />
+            </LinearLayout>
+
+            <!--Fourth Option to be implemented -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                >
+                <ImageView
+                    android:id="@+id/volDonation"
+                    android:layout_width="24.5dp"
+                    android:layout_height="24.5dp"
+                    android:src="@drawable/donations"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -351,6 +351,7 @@ class DonatorApply : AppCompatActivity(),DatePickerDialog.OnDateSetListener,
                         database2.child("bookId").setValue(ranid)
                         database2.child("donatorPic").setValue(Utility.getProfile(this).toString())
                         database2.child("donatorPhone").setValue(Utility.getMobile(this).toString())
+                        database2.child("donatorName").setValue(Utility.getName(this).toString())
                         pd.dismiss()
                         Toast.makeText(this,"Post Uploaded Successfully", Toast.LENGTH_SHORT).show()
                         intent = Intent(this, DonatorHome::class.java)

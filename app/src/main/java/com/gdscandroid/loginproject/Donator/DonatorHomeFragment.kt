@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.util.Util
 import com.gdscandroid.loginproject.R
+import com.gdscandroid.loginproject.Restaurant.RestaurantProfileFragment
 import com.gdscandroid.loginproject.Utility
 import com.gdscandroid.loginproject.feeds.FeedData
 import com.gdscandroid.loginproject.feeds.FeedRVAdapter
@@ -64,12 +65,29 @@ class DonatorHomeFragment : Fragment() {
             replace(R.id.flFragment,fragment)
             commit()
         }
+
+    private fun setCurrentFragment2(fragment: Fragment) =
+        activity?.supportFragmentManager?.beginTransaction()?.apply {
+            replace(R.id.flFragmentRestaurant,fragment)
+            commit()
+        }
+
+    private fun setCurrentFragment3(fragment: Fragment) =
+        activity?.supportFragmentManager?.beginTransaction()?.apply {
+            replace(R.id.flFragment,fragment)
+            commit()
+        }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         activity?.findViewById<ImageView>(R.id.profile_nav)?.setOnClickListener {
+            if(Utility.getrole(requireActivity()).toString().equals("Donator")){
+                setCurrentFragment(DonatorProfileFragment())
+            }else if(Utility.getrole(requireActivity()).toString().equals("Organization")){
+                setCurrentFragment2(RestaurantProfileFragment())
+            }
 
-            setCurrentFragment(DonatorProfileFragment())
         }
 
         Glide.with(requireContext()).load(activity?.let { Utility.getProfile(it).toString() }).into(profile_nav)

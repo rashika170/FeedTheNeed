@@ -227,6 +227,7 @@ class MainActivity : AppCompatActivity() {
                                         val ref = Firebase.database.getReference("Users");
                                         ref.addListenerForSingleValueEvent(object : ValueEventListener{
                                             override fun onDataChange(snapshot: DataSnapshot) {
+                                                Log.d("Status33",snapshot.key.toString())
                                                 for(nextSnapshot:DataSnapshot in snapshot.children){
                                                     Log.d("Status33",snapshot.key.toString())
                                                     if(nextSnapshot.key.toString().equals(auth.currentUser?.uid)){

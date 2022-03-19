@@ -28,7 +28,7 @@ class RestaurantActivity : AppCompatActivity() {
 
         val homeFragment = DonatorHomeFragment()
         val mealsFragment = RestaurantMealsFragment()
-        val profileFragment = DonatorProfileFragment()
+        val profileFragment = RestaurantProfileFragment()
         val posFragment = RestaurantPOSFragment()
 
         setCurrentFragment(homeFragment)

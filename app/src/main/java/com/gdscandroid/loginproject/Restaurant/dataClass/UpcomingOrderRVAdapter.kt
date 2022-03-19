@@ -26,7 +26,8 @@ class UpcomingOrderRVAdapter(private val volunteerMealsDetailsData: ArrayList<Vo
     }
 
     override fun onBindViewHolder(holder: RVViewHolder, position: Int) {
-        holder.itemView.volunteerName.text=volunteerMealsDetailsData[position].VolunteerName
+        val name=volunteerMealsDetailsData[position].VolunteerName!!.split(" ")
+        holder.itemView.volunteerName.text=name[0].toString()
         holder.itemView.volunteerMealStatus.text=volunteerMealsDetailsData[position].Status
         holder.itemView.volNumber.text=volunteerMealsDetailsData[position].VolunteerNumber
         holder.itemView.noOfMeals.text=volunteerMealsDetailsData[position].numOfMeals

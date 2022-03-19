@@ -24,6 +24,9 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_donator_items.*
+import kotlinx.android.synthetic.main.fragment_donator_items.profile_nav1
+import kotlinx.android.synthetic.main.fragment_restaurant_meals.*
+import kotlinx.android.synthetic.main.fragment_restaurant_p_o_s.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -69,20 +72,21 @@ class RestaurantPOSFragment : Fragment() {
         post = v.findViewById(R.id.post)
         name=v.findViewById(R.id.name_edit)
 
-//        profile_nav1.setOnClickListener {
-//            setCurrentFragment(DonatorProfileFragment())
-//        }
 
-        activity?.findViewById<ImageView>(R.id.profile_nav11)?.let {
+
+        //Glide.with(requireContext()).load(activity?.let { Utility.getProfile(it).toString() }).into(profile_nav1)
+
+        v.findViewById<ImageView>(R.id.profile_nav1)?.let {
             Glide.with(requireActivity()).load(Utility.getMealPhotoContext(requireContext())).into(
                 it
             )
         }
+
         getCurrentTime()
 
-        activity?.findViewById<TextView>(R.id.restaur_name)?.setText(Utility.getName(requireActivity()))
-        activity?.findViewById<TextView>(R.id.meal_detail)?.setText(Utility.getMealDetail(requireActivity()))
-        activity?.findViewById<ImageView>(R.id.meal_img)?.let {
+        v.findViewById<TextView>(R.id.restaur_name)?.setText(Utility.getName(requireActivity()))
+        v.findViewById<TextView>(R.id.meal_detail)?.setText(Utility.getMealDetail(requireActivity()))
+        v.findViewById<ImageView>(R.id.meal_img)?.let {
             Glide.with(requireActivity()).load(Utility.getMealPhotoContext(requireContext())).into(
                 it
             )

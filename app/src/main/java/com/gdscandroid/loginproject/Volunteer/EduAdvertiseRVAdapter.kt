@@ -1,6 +1,8 @@
 package com.gdscandroid.loginproject.Volunteer
 
+import android.animation.ValueAnimator
 import android.app.Dialog
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,13 +11,16 @@ import android.view.Window
 import android.widget.Button
 import android.widget.EditText
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
+import com.gdscandroid.loginproject.Donator.DonatorHome
 import com.gdscandroid.loginproject.R
 import com.gdscandroid.loginproject.Utility
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.doantor_item.view.*
 import kotlinx.android.synthetic.main.edu_advertisment.view.*
 
 class EduAdvertiseRVAdapter (val eduAdvertiseData:ArrayList<EduAdvertiseData>): RecyclerView.Adapter<EduAdvertiseRVAdapter.RVViewHolder>(){
@@ -30,12 +35,20 @@ class EduAdvertiseRVAdapter (val eduAdvertiseData:ArrayList<EduAdvertiseData>): 
 
     override fun onBindViewHolder(holder: RVViewHolder, position: Int) {
         val hi=holder.itemView
+        val bookId = eduAdvertiseData[position].QuestId.toString()
+        var total=0
+        for(i in 0..bookId.length-1){
+            total+=bookId[i].toInt()
+        }
+        holder.itemView.textView7.text="#"+total.toString()
         hi.name_education_p1.text=eduAdvertiseData[position].Leadname.toString()
-        hi.date_education_p1.text=eduAdvertiseData[position].time.toString()
-        hi.location_education_p1.text=eduAdvertiseData[position].Location.toString()
+        val time=eduAdvertiseData[position].time.toString().split(",")
+        holder.itemView.textView10.text=time[1]
+        hi.date_education_p1.text=time[0]
+        //hi.location_education_p1.text=eduAdvertiseData[position].Location.toString()
         hi.leftVol_education_p1.text=eduAdvertiseData[position].LeftVolunteers.toString()
-        hi.phone_education_p1.text=eduAdvertiseData[position].Phone.toString()
-        hi.info_education_p1.text=eduAdvertiseData[position].Info.toString()
+        //hi.phone_education_p1.text=eduAdvertiseData[position].Phone.toString()
+        //hi.info_education_p1.text=eduAdvertiseData[position].Info.toString()
         Glide.with(hi.context).load(eduAdvertiseData[position].LeadPic).into(hi.LeadPic)
         var left=0
         var cmt22=0
@@ -99,7 +112,28 @@ class EduAdvertiseRVAdapter (val eduAdvertiseData:ArrayList<EduAdvertiseData>): 
                 ref1.child("Phone").setValue(Utility.getMobileContext(hi.context).toString())
                 ref1.child("Pic").setValue(Utility.getProfileContext(hi.context).toString())
 
-                dialog.dismiss()
+                val dialog2: Dialog = Dialog(holder.itemView.context)
+                dialog2.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                dialog2.setContentView(R.layout.dialog_quest_joined)
+
+                val animationView: LottieAnimationView = dialog2.findViewById(R.id.animation_view)
+                animationView
+                    .addAnimatorUpdateListener { animation: ValueAnimator? -> }
+                animationView
+                    .playAnimation()
+
+                if (animationView.isAnimating) {
+                    // Do something.
+
+                }
+                val pickBtn = dialog2.findViewById(R.id.done) as Button
+                pickBtn.setOnClickListener {
+                    dialog2.cancel()
+                    dialog.dismiss()
+                }
+                dialog2.show()
+
+
             }
 
             dialog.show()

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:id="@+id/linearlayout"
+    android:orientation="vertical"
+    android:background="@drawable/gradient_list"
+    tools:context=".SplashActivity">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/logo"
+        android:id="@+id/logo_image"
+        android:layout_marginBottom="3dp"
+        />
+
+
+<!--    <com.hanks.htextview.typer.TyperTextView-->
+<!--        android:gravity="center"-->
+<!--        android:paddingHorizontal="30dp"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/linetext"-->
+<!--        android:textSize="25dp"-->
+<!--        app:charIncrease="1"-->
+<!--        app:typerSpeed="120"-->
+<!--        android:textColor="#A01F62"-->
+<!--        />-->
+
+
+</LinearLayout>

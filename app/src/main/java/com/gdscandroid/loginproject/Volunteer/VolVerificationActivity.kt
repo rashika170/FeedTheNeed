@@ -1,5 +1,6 @@
 package com.gdscandroid.loginproject.Volunteer
 
+import android.animation.ValueAnimator
 import android.app.Activity
 import android.app.Dialog
 import android.app.ProgressDialog
@@ -14,6 +15,8 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.airbnb.lottie.LottieAnimationView
+import com.gdscandroid.loginproject.Donator.DonatorHome
 import com.gdscandroid.loginproject.R
 import com.gdscandroid.loginproject.Utility
 import com.google.android.gms.tasks.OnFailureListener
@@ -138,8 +141,27 @@ class VolVerificationActivity : AppCompatActivity() {
                         }
 
                     })
+                val dialog: Dialog = Dialog(this)
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                dialog.setContentView(R.layout.dialog_verificationdone)
 
-                Toast.makeText(this,"Verified",Toast.LENGTH_SHORT).show()
+                val animationView: LottieAnimationView = dialog.findViewById(R.id.animation_view)
+                animationView
+                    .addAnimatorUpdateListener { animation: ValueAnimator? -> }
+                animationView
+                    .playAnimation()
+
+                if (animationView.isAnimating) {
+                    // Do something.
+
+                }
+                val pickBtn = dialog.findViewById(R.id.done) as Button
+                pickBtn.setOnClickListener {
+                    dialog.cancel()
+                    Toast.makeText(this,"Verified",Toast.LENGTH_SHORT).show()
+                }
+                dialog.show()
+
             }, 5000)
         }
     }

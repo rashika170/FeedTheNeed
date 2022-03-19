@@ -1,10 +1,8 @@
 package com.gdscandroid.loginproject.Donator
 
 import android.Manifest
-import android.app.Activity
-import android.app.DatePickerDialog
-import android.app.ProgressDialog
-import android.app.TimePickerDialog
+import android.animation.ValueAnimator
+import android.app.*
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
@@ -18,10 +16,12 @@ import android.provider.Settings
 import android.text.format.DateFormat.is24HourFormat
 import android.util.Log
 import android.view.View
+import android.view.Window
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -35,6 +35,7 @@ import com.google.firebase.storage.UploadTask
 import java.io.IOException
 import com.gdscandroid.loginproject.HomeActivity
 import com.gdscandroid.loginproject.R
+import com.gdscandroid.loginproject.Restaurant.RestaurantActivity
 import com.gdscandroid.loginproject.Utility
 import kotlinx.android.synthetic.main.activity_donator_apply.*
 import kotlinx.android.synthetic.main.fragment_donator_home.*
@@ -323,7 +324,7 @@ class DonatorApply : AppCompatActivity(),DatePickerDialog.OnDateSetListener,
         val pd:ProgressDialog = ProgressDialog(this)
         pd.setMessage("Please Wait...Your data is uploading !!")
         pd.setCancelable(false)
-        pd.show()
+        //pd.show()
         val fileName = "image.jpg"
         val uid:String = Utility.getUid(this).toString()
         val database = FirebaseDatabase.getInstance().reference.child("DonatorPost").child(uid).push()
@@ -352,10 +353,30 @@ class DonatorApply : AppCompatActivity(),DatePickerDialog.OnDateSetListener,
                         database2.child("donatorPic").setValue(Utility.getProfile(this).toString())
                         database2.child("donatorPhone").setValue(Utility.getMobile(this).toString())
                         database2.child("donatorName").setValue(Utility.getName(this).toString())
-                        pd.dismiss()
+                        //pd.dismiss()
+                        val dialog: Dialog = Dialog(this)
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                        dialog.setContentView(R.layout.dialog_donator_apply)
+
+                        val animationView: LottieAnimationView = dialog.findViewById(R.id.animation_view)
+                        animationView
+                            .addAnimatorUpdateListener { animation: ValueAnimator? -> }
+                        animationView
+                            .playAnimation()
+
+                        if (animationView.isAnimating) {
+                            // Do something.
+
+                        }
+                        val pickBtn = dialog.findViewById(R.id.done) as Button
+                        pickBtn.setOnClickListener {
+                            dialog.cancel()
+                            startActivity(Intent(this, DonatorHome::class.java))
+                        }
+                        dialog.show()
                         Toast.makeText(this,"Post Uploaded Successfully", Toast.LENGTH_SHORT).show()
-                        intent = Intent(this, DonatorHome::class.java)
-                        startActivity(intent)
+//                        intent = Intent(this, DonatorHome::class.java)
+//                        startActivity(intent)
                     }
                 })
 

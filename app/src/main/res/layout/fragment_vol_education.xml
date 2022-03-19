@@ -3,108 +3,346 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Volunteer.VolEducationFragment">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvQuest"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="24dp"
-            app:cardCornerRadius="16dp"
-            android:layout_gravity="start">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/name_education_p"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="SHreyansh"
-                    android:textColor="@color/black"
-                    android:layout_margin="4dp"
-                    android:textSize="24dp"/>
-
-                <TextView
-                    android:id="@+id/date_education_p"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Date"
-                    android:textColor="@color/black"
-                    android:layout_margin="4dp"
-                    android:textSize="24dp"/>
-
-                <TextView
-                    android:id="@+id/location_education_p"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Location"
-                    android:textColor="@color/black"
-                    android:layout_margin="4dp"
-                    android:textSize="24dp"/>
-
-                <TextView
-                    android:id="@+id/nov_education_p"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="No of Volunteer"
-                    android:textColor="@color/black"
-                    android:layout_margin="4dp"
-                    android:textSize="24dp"/>
-
-                <Button
-                    android:id="@+id/volDetails_education_p"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Volunteers details"
-                    android:textColor="@color/black"
-                    android:layout_margin="4dp"
-                    android:textSize="16sp"/>
-
-                <TextView
-                    android:id="@+id/info_education_p"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Info"
-                    android:lines="3"
-                    android:textColor="@color/black"
-                    android:layout_margin="4dp"
-                    android:textSize="24dp"/>
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvEduAdvertise"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:layout_editor_absoluteX="16dp"
-            tools:listitem="@layout/edu_advertisment" />
-
-
-    </LinearLayout>
-
-
-
+    >
 
     <!-- TODO: Update blank fragment layout -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButtonVolQuest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:src="@drawable/ic_baseline_add_circle_24"
-        android:layout_marginBottom="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_gravity="bottom|end"/>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#A01F62"
+        >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#F7F7F7"
+            android:id="@+id/main"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/helveticaneue"
+            android:text="Feed The Need."
+            android:textColor="#A01F62"
+            android:textSize="25dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="19dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:src="@drawable/face"
+            app:civ_border_color="#A01F62"
+            app:civ_border_width="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="12dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:id="@+id/linear1"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="20dp"
+            >
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="8dp"
+                android:elevation="0dp"
+                >
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#00000000"
+                    >
+                    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:orientation="vertical" android:layout_width="match_parent"
+                        android:paddingBottom="25dp"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/imageView3"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/ic_call_black_24dp"
+                            android:layout_marginTop="27dp"
+                            android:layout_marginRight="30dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/circleImageView"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="18dp"
+                            android:src="@drawable/face"
+                            app:civ_border_color="#C4C4C4"
+                            app:civ_border_width="1dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/name_education_p"
+                            android:layout_width="wrap_content"
+                            android:layout_height="19dp"
+                            android:layout_marginLeft="13dp"
+                            android:layout_marginTop="27dp"
+                            android:text="Prateek Singh"
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                            android:textColor="#000"
+                            android:textSize="14dp"
+                            android:typeface="normal"
+                            app:layout_constraintStart_toEndOf="@+id/circleImageView"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="12dp"
+                            android:layout_marginTop="4dp"
+                            android:text="1200 pts"
+                            android:layout_marginLeft="13dp"
+                            android:textSize="10dp"
+                            android:textColor="#4FAF41"
+                            android:fontFamily="@font/helveticaneue"
+                            app:layout_constraintStart_toEndOf="@+id/circleImageView"
+                            app:layout_constraintTop_toBottomOf="@+id/name_education_p" />
+
+                        <TextView
+                            android:id="@+id/textView5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="12dp"
+                            android:layout_marginTop="4dp"
+                            android:text="• Volunteer "
+                            android:layout_marginLeft="4dp"
+                            android:textSize="10dp"
+                            android:textColor="#838383"
+                            android:fontFamily="@font/helveticaneue"
+                            app:layout_constraintStart_toEndOf="@+id/textView3"
+                            app:layout_constraintTop_toBottomOf="@+id/name_education_p" />
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cardView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginTop="80dp"
+                            app:cardBackgroundColor="#F4F4F4"
+                            app:cardCornerRadius="5dp"
+                            app:cardElevation="2dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="15dp">
+
+                                <TextView
+                                    android:id="@+id/date_education_p"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="15dp"
+                                    android:layout_marginLeft="17dp"
+                                    android:layout_marginTop="15dp"
+                                    android:text="Saturday, Jan 15, 2022"
+                                    android:textColor="#414141"
+                                    android:textSize="12dp"
+                                    android:typeface="normal"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <ImageView
+                                    android:id="@+id/imageView4"
+                                    android:layout_width="2dp"
+                                    android:layout_height="2dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="22dp"
+                                    android:background="#909090"
+                                    app:layout_constraintStart_toEndOf="@+id/date_education_p"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/time11"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="15dp"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginLeft="6dp"
+                                    android:layout_marginTop="15dp"
+                                    android:fontFamily="@font/helveticaneue"
+                                    android:text="9:00 am"
+                                    android:textColor="#909090"
+                                    android:textSize="12dp"
+                                    app:layout_constraintStart_toEndOf="@+id/imageView4"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <ImageView
+                                    android:id="@+id/imageView5"
+                                    android:layout_width="10dp"
+                                    android:layout_height="12.5dp"
+                                    android:layout_marginLeft="19.5dp"
+                                    android:layout_marginTop="11.25dp"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/date_education_p"
+                                    app:srcCompat="@drawable/location" />
+
+                                <TextView
+                                    android:id="@+id/location_education_p"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="15dp"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginLeft="7.5dp"
+                                    android:layout_marginTop="10dp"
+                                    android:text="House no. 152, Modeltown, Bareilly"
+                                    android:textColor="#414141"
+                                    android:textSize="12dp"
+                                    android:typeface="normal"
+                                    app:layout_constraintStart_toEndOf="@+id/imageView5"
+                                    app:layout_constraintTop_toBottomOf="@+id/date_education_p" />
+
+                                <TextView
+                                    android:id="@+id/textView9"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="15dp"
+                                    android:layout_marginLeft="19.5dp"
+                                    android:layout_marginTop="10dp"
+                                    android:gravity="center_vertical"
+                                    android:text="Location is 1.2 KM away"
+                                    android:textColor="#B4B4B4"
+                                    android:textSize="11dp"
+                                    android:typeface="normal"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/location_education_p" />
+
+                                <TextView
+                                    android:id="@+id/textView10"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="17dp"
+                                    android:layout_marginTop="15dp"
+                                    android:text="Aim of Quest"
+                                    android:textColor="#3D3D3D"
+                                    android:textSize="12dp"
+                                    android:fontFamily="@font/ubuntu_med"
+
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+                                <TextView
+                                    android:id="@+id/info_education_p"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="7dp"
+                                    android:textSize="11dp"
+                                    android:textColor="#000"
+                                    android:typeface="normal"
+                                    android:layout_marginLeft="17dp"
+                                    android:layout_marginRight="20dp"
+                                    android:text="Hi this is Sample text for the purpose of laying the descri[tion of the item here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </androidx.cardview.widget.CardView>
+
+
+                        <!--
+                                                Load participating volunteers in this recycler view
+                        -->
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvVolDetails2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginTop="20dp"
+                            tools:listitem="@layout/vol_details_data"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.747"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </ScrollView>
+            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="75dp"
+            android:gravity="center"
+            >
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:background="#fff"
+                app:cardCornerRadius="12dp"
+                android:elevation="0dp"
+                android:layout_marginBottom="20dp"
+                >
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="40dp"
+                    android:id="@+id/rvEduAdvertise"
+                    tools:listitem="@layout/edu_advertisment"
+                    />
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textview_upcoming"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:fontFamily="@font/helveticaneue"
+            android:text="Upcoming Quests"
+            android:textColor="#303030"
+            android:textSize="22dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/main" />
+
+        <Button
+            android:id="@+id/floatingActionButtonVolQuest"
+            android:layout_width="200dp"
+            android:layout_height="45dp"
+            android:textSize="18dp"
+            android:fontFamily="@font/ubuntu_med"
+            android:text="+ Create Quest"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="42dp"
+            android:layout_marginRight="25dp"
+            android:paddingBottom="7dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:background="@drawable/circle_button"
+            android:textColor="#F3F3F3"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

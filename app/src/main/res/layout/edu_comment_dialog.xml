@@ -1,38 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:background="#00000000"
+    android:layout_height="wrap_content">
 
-
-    <EditText
-        android:id="@+id/et_cmt"
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:hint="Write your comment here"
-        android:inputType="textMultiLine"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_login" />
+        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="#efefef"
+        android:layout_marginHorizontal="15dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
 
 
-    <Button
-        android:id="@+id/btnComment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Comment"
-        android:layout_gravity="center"/>
+            <!--            <TextView-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="16dp"-->
+            <!--                android:layout_marginTop="20dp"-->
+            <!--                android:paddingLeft="17dp"-->
+            <!--                android:text="Aim of Quest"-->
+            <!--                android:gravity="center_vertical"-->
+            <!--                android:textColor="#3F3F3F"-->
+            <!--                android:textSize="12dp"-->
+            <!--                android:fontFamily="@font/ubuntu_med"-->
+            <!--                />-->
 
+            <!--            <TextView-->
+            <!--                -->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="100dp"-->
+            <!--                android:layout_marginTop="12dp"-->
+            <!--                android:layout_marginHorizontal="20dp"-->
+            <!--                android:text="Books for career in medical entrance-->
+            <!--exam,NEET. Essential books and-->
+            <!--previous year examination papers-->
+            <!--available.Books for career in medical entrance-->
+            <!--exam,NEET. Essential books and-->
+            <!--previous year examination papers"-->
+            <!--                android:gravity="center_vertical"-->
+            <!--                android:textColor="#727272"-->
+            <!--                android:textSize="12dp"-->
+            <!--                android:fontFamily="@font/helveticaneue"-->
+            <!--                android:background="@drawable/edittext_broder"-->
+            <!--                android:paddingHorizontal="15dp"-->
+            <!--                android:paddingVertical="10dp"-->
+            <!--                android:scrollbars="vertical"-->
+            <!--                />-->
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:layout_marginTop="12dp"
+                android:paddingLeft="17dp"
+                android:text="Comment"
+                android:gravity="center_vertical"
+                android:textColor="#727272"
+                android:textSize="12dp"
+                android:fontFamily="@font/ubuntu_med"
+                />
 
+            <EditText
+                android:id="@+id/et_cmt"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginHorizontal="20dp"
+                android:hint="Books for career in medical entrance
+exam,NEET. Essential books and
+previous year examination papers
+available.Books for career in medical entrance
+exam,NEET. Essential books and
+previous year examination papers
+available.Books for career in medical entrance
+exam,NEET. Essential books and
+previous year examination papers
+available.Books for career in medical entrance
+exam,NEET. Essential books and
+previous year examination papers
+available."
+                android:gravity="center_vertical"
+                android:textColor="#727272"
+                android:textSize="12dp"
+                android:fontFamily="@font/helveticaneue"
+                android:background="@drawable/edittext_back_ordering"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="10dp"
+                android:scrollbars="vertical"
+                />
 
+            <Button
+                android:id="@+id/btnComment"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:gravity="center"
+                android:layout_marginHorizontal="30dp"
+                android:text="Participate Now!"
 
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/ubuntu_med"
+                android:textColor="#fafafa"
+                android:textSize="18dp"
+                android:background="@drawable/button_background"
+
+                />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:gravity="center"
+                android:layout_marginHorizontal="30dp"
+                android:text="Cancel"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/ubuntu_med"
+                android:textColor="#A01F62"
+                android:textSize="18dp"
+                android:background="@drawable/edittext_back_ordering"
+
+                />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>

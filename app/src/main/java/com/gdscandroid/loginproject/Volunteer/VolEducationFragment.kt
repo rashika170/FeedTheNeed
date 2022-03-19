@@ -9,10 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.gdscandroid.loginproject.Donator.DonorData
 import com.gdscandroid.loginproject.Donator.DonorRVAdapter
 import com.gdscandroid.loginproject.R
@@ -20,6 +22,8 @@ import com.gdscandroid.loginproject.Utility
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_vol_details.*
+import kotlinx.android.synthetic.main.edu_advertisment.view.*
 import kotlinx.android.synthetic.main.fragment_donator_items.*
 import kotlinx.android.synthetic.main.fragment_vol_education.*
 
@@ -51,24 +55,65 @@ class VolEducationFragment : Fragment() {
 
                 if(snapshot.hasChild(uid.toString())){
                     Log.d("errornahijari",snapshot.toString())
-                    activity?.findViewById<CardView>(R.id.cvQuest)?.visibility = View.VISIBLE
-                    activity?.findViewById<RecyclerView>(R.id.rvEduAdvertise)?.visibility = View.GONE
+                    activity?.findViewById<LinearLayout>(R.id.linear1)?.visibility = View.VISIBLE
+                    activity?.findViewById<LinearLayout>(R.id.linear2)?.visibility = View.GONE
+                    activity?.findViewById<TextView>(R.id.textview_upcoming)?.visibility = View.GONE
+                    Glide.with(context!!).load(Utility.getProfileContext(context!!)).into(circleImageView)
                     activity?.findViewById<TextView>(R.id.name_education_p)?.text= activity?.let { Utility.getName(it).toString() }
-                    activity?.findViewById<TextView>(R.id.date_education_p)?.text=snapshot.child(uid.toString()).child("time").value.toString()
+                    val time=snapshot.child(uid.toString()).child("time").value.toString().split(",")
+                    activity?.findViewById<TextView>(R.id.date_education_p)?.text=time[0]
+                    activity?.findViewById<TextView>(R.id.time11)?.text=time[1]
                     activity?.findViewById<TextView>(R.id.location_education_p)?.text=snapshot.child(uid.toString()).child("Location").value.toString()
-                    activity?.findViewById<TextView>(R.id.nov_education_p)?.text=snapshot.child(uid.toString()).child("noofVolunteers").value.toString()
+                    //activity?.findViewById<TextView>(R.id.nov_education_p)?.text=snapshot.child(uid.toString()).child("noofVolunteers").value.toString()
                     activity?.findViewById<TextView>(R.id.info_education_p)?.text=snapshot.child(uid.toString()).child("Info").value.toString()
-                    activity?.findViewById<Button>(R.id.volDetails_education_p)?.setOnClickListener {
-                        startActivity(Intent(activity,VolDetailsActivity::class.java))
-                    }
-                    activity?.findViewById<FloatingActionButton>(R.id.floatingActionButtonVolQuest)?.visibility = View.GONE
+//                    activity?.findViewById<Button>(R.id.volDetails_education_p)?.setOnClickListener {
+//                        startActivity(Intent(activity,VolDetailsActivity::class.java))
+//                    }
+                    activity?.findViewById<Button>(R.id.floatingActionButtonVolQuest)?.visibility = View.GONE
 
+                    val dbRef2=FirebaseDatabase.getInstance().reference
+                    val volDetailsData=ArrayList<VolDetailsData>()
+                    var volDetailsRVAdapter= VolDetailsRVAdapter(volDetailsData)
+
+                    rvVolDetails2.layoutManager= LinearLayoutManager(context)
+
+                    rvVolDetails2.adapter=volDetailsRVAdapter
+
+                    val postListener= object : ChildEventListener {
+                        override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                            val post: VolDetailsData?=snapshot.getValue(VolDetailsData::class.java)
+                            if(post!=null ){
+                                volDetailsData.add(0,post)
+                            }
+
+                            volDetailsRVAdapter.notifyDataSetChanged()
+                        }
+
+                        override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+                        }
+
+                        override fun onChildRemoved(snapshot: DataSnapshot) {
+
+                        }
+
+                        override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {
+
+                        }
+
+                    }
+
+                    dbRef2.child("PersonalQuestData").child(Utility.getUid(activity!!).toString()).child("Comment").addChildEventListener(postListener)
 
 
                 }else{
-                    activity?.findViewById<FloatingActionButton>(R.id.floatingActionButtonVolQuest)?.visibility = View.VISIBLE
-                    activity?.findViewById<CardView>(R.id.cvQuest)?.visibility = View.GONE
-                    activity?.findViewById<RecyclerView>(R.id.rvEduAdvertise)?.visibility = View.VISIBLE
+                    activity?.findViewById<TextView>(R.id.textview_upcoming)?.visibility = View.VISIBLE
+                    activity?.findViewById<Button>(R.id.floatingActionButtonVolQuest)?.visibility = View.VISIBLE
+                    activity?.findViewById<LinearLayout>(R.id.linear1)?.visibility = View.GONE
+                    activity?.findViewById<LinearLayout>(R.id.linear2)?.visibility = View.VISIBLE
                     val dbRef2= FirebaseDatabase.getInstance().reference
                     val eduAdvData=ArrayList<EduAdvertiseData>()
                     var eduAdvertiseRVAdapter= EduAdvertiseRVAdapter(eduAdvData)

@@ -1,8 +1,10 @@
 package com.gdscandroid.loginproject
 
 import android.Manifest
+import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.Dialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -19,8 +21,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.Window
 import android.widget.*
 import androidx.core.app.ActivityCompat
+import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.gdscandroid.loginproject.Donator.DonatorHome
 import com.gdscandroid.loginproject.Restaurant.RestaurantActivity
@@ -197,13 +201,13 @@ class ProfileActivity : AppCompatActivity() {
 
                 val database = FirebaseDatabase.getInstance()
                 val refStorage = FirebaseStorage.getInstance().reference.child("UserProfile/${Firebase.auth.currentUser?.uid}/$fileName")
-
+                Log.d("bhibhhi",it.toString())
                 refStorage.putFile(img_uri)
                     .addOnSuccessListener(
                         OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
                             taskSnapshot.storage.downloadUrl.addOnSuccessListener {
                                 profile = it.toString()
-
+                                Log.d("bhibhhi",it.toString())
                                 val databse = Firebase.database
                                 val ref = databse.getReference("Users").child(uid)
                                 ref.child("Name").setValue(nametxt.text.toString())
@@ -246,20 +250,40 @@ class ProfileActivity : AppCompatActivity() {
                                 Utility.setLatitude(this,lati)
                                 Utility.setMealDetail(this,"")
                                 Utility.setMealPhotoContext(this,"")
-                                if(Utility.getrole(this).equals("Donator")){
-                                    intent = Intent(this, DonatorHome::class.java)
-                                    startActivity(intent);
-                                    finish()
-                                }else if(Utility.getrole(this).equals("Organization")){
-                                    intent = Intent(this, RestaurantActivity::class.java)
-                                    startActivity(intent);
-                                    finish()
-                                }else{
-                                    intent = Intent(this, VolunteerHomeActivity::class.java)
-                                    startActivity(intent);
-                                    finish()
-                                }
                                 pd.dismiss()
+
+                                val dialog: Dialog = Dialog(this)
+                                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                                dialog.setContentView(R.layout.dialog_registration)
+
+                                val animationView: LottieAnimationView = dialog.findViewById(R.id.animation_view)
+                                animationView
+                                    .addAnimatorUpdateListener { animation: ValueAnimator? -> }
+                                animationView
+                                    .playAnimation()
+
+                                if (animationView.isAnimating) {
+                                    // Do something.
+
+                                }
+                                val pickBtn = dialog.findViewById(R.id.done) as Button
+                                pickBtn.setOnClickListener {
+                                    dialog.cancel()
+                                    if(Utility.getrole(this).equals("Donator")){
+                                        intent = Intent(this, DonatorHome::class.java)
+                                        startActivity(intent);
+                                        finish()
+                                    }else if(Utility.getrole(this).equals("Organization")){
+                                        intent = Intent(this, RestaurantActivity::class.java)
+                                        startActivity(intent);
+                                        finish()
+                                    }else{
+                                        intent = Intent(this, VolunteerHomeActivity::class.java)
+                                        startActivity(intent);
+                                        finish()
+                                    }
+                                }
+                                dialog.show()
 
                                 //DownloadImageFromInternet(image).execute(profile)
                             }
@@ -267,6 +291,7 @@ class ProfileActivity : AppCompatActivity() {
 
                     ?.addOnFailureListener(OnFailureListener { e ->
                         pd.dismiss()
+                        Log.d("bhibhhi",e.message.toString())
                         print(e.message)
                     })
 

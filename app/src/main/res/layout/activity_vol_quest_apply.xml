@@ -2,136 +2,295 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Donator.DonatorApply">
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
+    android:layout_width="match_parent"
+    android:background="#00000000"
+    android:layout_height="match_parent"
+    tools:context=".Volunteer.VolQuestApplyActivity">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="24dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Number of Volunteers : "
-            android:textSize="20sp"
-            />
-        <EditText
-            android:id="@+id/nov_edit"
-            android:layout_width="225dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:inputType="number"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="24dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Info about quest : "
-            android:textSize="20sp"
-            />
-        <EditText
-            android:id="@+id/info_edit"
-            android:layout_width="225dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:inputType="textMultiLine"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="24dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Location : "
-            android:textSize="20sp"
-            />
-        <EditText
-            android:id="@+id/locatn_txt"
-            android:layout_width="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_height="wrap_content"
-            android:hint="Enter location"
-            android:textSize="18sp"
-            android:inputType="text"
-            />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:orientation="horizontal">
+        app:cardCornerRadius="15dp"
+        app:cardBackgroundColor="#efefef"
+        android:layout_marginHorizontal="15dp"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:orientation="vertical" android:layout_width="match_parent"
+            android:paddingBottom="25dp"
+            android:layout_height="wrap_content">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Quest date n time : "
-                android:textSize="20sp"
+                android:layout_height="20dp"
+                android:textSize="12dp"
+                android:textColor="#000"
+                android:text="+91-8057233599"
+                android:id="@+id/phone"
+                android:layout_marginTop="27dp"
+                android:layout_marginRight="30dp"
+                android:fontFamily="@font/ubuntu_med"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_call_black_24dp"
+                android:layout_marginTop="27dp"
+                android:layout_marginRight="3dp"
+                app:layout_constraintEnd_toStartOf="@id/phone"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circleImageView"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="18dp"
+                android:src="@drawable/face"
+                app:civ_border_color="#C4C4C4"
+                app:civ_border_width="1dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
-                android:id="@+id/pickedtime_txt"
+                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="16dp"
+                android:layout_height="19dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginTop="27dp"
+                android:text="Prateek Singh"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textColor="#000"
+                android:textSize="14dp"
+                android:typeface="normal"
+                app:layout_constraintStart_toEndOf="@+id/circleImageView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="12dp"
+                android:layout_marginTop="4dp"
+                android:text="1200 pts"
+                android:layout_marginLeft="13dp"
+                android:textSize="10dp"
+                android:textColor="#4FAF41"
+                android:fontFamily="@font/helveticaneue"
+                app:layout_constraintStart_toEndOf="@+id/circleImageView"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="12dp"
+                android:layout_marginTop="4dp"
+                android:text="• Donator "
+                android:layout_marginLeft="4dp"
+                android:textSize="10dp"
+                android:textColor="#838383"
+                android:fontFamily="@font/helveticaneue"
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="No Time Detected"
-                android:textSize="18sp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="80dp"
+                app:cardBackgroundColor="#F4F4F4"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginTop="15dp"
+                        android:text="Aim of Quest"
+                        android:textColor="#3D3D3D"
+                        android:textSize="12dp"
+                        android:fontFamily="@font/ubuntu_med"
+                        />
+
+                    <EditText
+                        android:id="@+id/info_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginHorizontal="20dp"
+                        android:hint="I will 12 children of 4 and 5 class and will distribute some apples and bananas in them. I will also distribute books to them and will look forward for other volunteers to help me in collecting donations."
+                        android:gravity="center_vertical"
+                        android:textColor="#727272"
+                        android:textSize="12dp"
+                        android:fontFamily="@font/helveticaneue"
+                        android:background="@drawable/edittext_back_ordering"
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="10dp"
+                        android:scrollbars="vertical"
+                        />
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginTop="15dp"
+                        android:text="Enter Location"
+                        android:textColor="#3D3D3D"
+                        android:textSize="12dp"
+                        android:fontFamily="@font/ubuntu_med"
+                        />
+
+                    <EditText
+                        android:id="@+id/locatn_txt"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginHorizontal="20dp"
+                        android:hint="At my home, Villa 5, Saket colony, Chandigarh"
+                        android:textColor="#727272"
+                        android:paddingHorizontal="15dp"
+                        android:textSize="12dp"
+                        android:fontFamily="@font/helveticaneue"
+                        android:background="@drawable/edittext_back_ordering"
+                        />
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginTop="15dp"
+                        android:text="Time of Quest"
+                        android:textColor="#3D3D3D"
+                        android:textSize="12dp"
+                        android:fontFamily="@font/ubuntu_med"
+                        />
+
+                    <EditText
+                        android:id="@+id/pickedtime_txt"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginHorizontal="20dp"
+                        android:hint="Monday, 2nd March, 5:00 P.M"
+                        android:gravity="center_vertical"
+                        android:textColor="#727272"
+                        android:textSize="12dp"
+                        android:fontFamily="@font/helveticaneue"
+                        android:background="@drawable/edittext_back_ordering"
+                        android:paddingHorizontal="15dp"
+                        android:scrollbars="vertical"
+                        android:inputType="datetime"
+                        />
+
+                    <Button
+                        android:id="@+id/pick"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:gravity="center"
+                        android:layout_marginHorizontal="30dp"
+                        android:text="Pick TIme"
+                        app:layout_constraintTop_toBottomOf="@id/cardView"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/ubuntu_med"
+                        android:textColor="#fafafa"
+                        android:textSize="18dp"
+                        android:background="@drawable/button_background"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginTop="15dp"
+                        >
+                        <TextView
+                            android:id="@+id/textView13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="17dp"
+                            android:text="Volunteers Needed :"
+                            android:textColor="#3D3D3D"
+                            android:textSize="12dp"
+                            android:fontFamily="@font/ubuntu_med"
+                            />
+
+                        <EditText
+                            android:id="@+id/nov_edit"
+                            android:layout_width="50dp"
+                            android:layout_height="30dp"
+                            android:layout_marginHorizontal="20dp"
+                            android:hint="4"
+                            android:gravity="center"
+                            android:textColor="#727272"
+                            android:textSize="12dp"
+                            android:fontFamily="@font/helveticaneue"
+                            android:background="@drawable/edittext_back_ordering"
+                            android:paddingHorizontal="15dp"
+                            android:scrollbars="vertical"
+                            android:inputType="number"
+                            />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/post"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:gravity="center"
+                android:layout_marginHorizontal="30dp"
+                android:text="Generate Quest!"
+                app:layout_constraintTop_toBottomOf="@id/cardView"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/ubuntu_med"
+                android:textColor="#fafafa"
+                android:textSize="18dp"
+                android:background="@drawable/button_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 />
 
-        </LinearLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:gravity="center"
+                android:layout_marginHorizontal="30dp"
+                android:text="Cancel"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/ubuntu_med"
+                android:textColor="#A01F62"
+                android:textSize="18dp"
+                android:background="@drawable/edittext_back_ordering"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/post"
 
-        <Button
-            android:id="@+id/pick"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pick"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"/>
+                />
 
-    </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/post"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Post"
-        android:layout_marginTop="24dp"
-        android:layout_gravity="center_horizontal" />
+
+
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>

@@ -1,34 +1,28 @@
 package com.gdscandroid.loginproject.Restaurant
 
-import android.app.Activity
-import android.app.TimePickerDialog
+import android.animation.ValueAnimator
+import android.app.DatePickerDialog
+import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.text.format.DateFormat
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
+import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
-import com.gdscandroid.loginproject.Donator.DonatorHome
-import com.gdscandroid.loginproject.Donator.DonatorProfileFragment
 import com.gdscandroid.loginproject.R
 import com.gdscandroid.loginproject.Utility
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.gms.tasks.OnSuccessListener
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.UploadTask
 import kotlinx.android.synthetic.main.fragment_donator_items.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -140,6 +134,26 @@ class RestaurantPOSFragment : Fragment() {
                 database3.child("TotalDonation").setValue(tDonation.toString())
                 database3.child("LeftDonation").setValue(lDonation.toString())
 
+                val dialog:Dialog = Dialog(context!!)
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                dialog.setContentView(R.layout.dialog_pos_booked)
+
+                val animationView: LottieAnimationView = dialog.findViewById(R.id.animation_view)
+                animationView
+                    .addAnimatorUpdateListener { animation: ValueAnimator? -> }
+                animationView
+                    .playAnimation()
+
+                if (animationView.isAnimating) {
+                    // Do something.
+
+                }
+                val pickBtn = dialog.findViewById(R.id.done) as Button
+                pickBtn.setOnClickListener {
+                    dialog.cancel()
+                    startActivity(Intent(activity,RestaurantActivity::class.java))
+                }
+                dialog.show()
             }
 
             override fun onCancelled(error: DatabaseError) {

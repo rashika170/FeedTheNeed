@@ -1,9 +1,11 @@
 package com.gdscandroid.loginproject.Volunteer
 
+import android.animation.ValueAnimator
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.app.TimePickerDialog
 import android.content.Context
+import android.content.Intent
 import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +13,9 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
+import com.gdscandroid.loginproject.Donator.DonatorHome
 import com.gdscandroid.loginproject.Donator.DonorData
 import com.gdscandroid.loginproject.R
 import com.gdscandroid.loginproject.Utility
@@ -111,7 +115,28 @@ class VolunteerAPllyAdapter(val restaurData:ArrayList<AvailableRestauData>): Rec
                         dbRef2.child("RestaurantUid").setValue(restaurData[position].uid)
                         dbRef2.child("VolunteerPhoto").setValue(Utility.getProfileContext(holder.itemView.context).toString())
 
-                        dialog.dismiss()
+                        val dialog2: Dialog = Dialog(holder.itemView.context)
+                        dialog2.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                        dialog2.setContentView(R.layout.dialog_meal_booked)
+
+                        val animationView: LottieAnimationView = dialog2.findViewById(R.id.animation_view)
+                        animationView
+                            .addAnimatorUpdateListener { animation: ValueAnimator? -> }
+                        animationView
+                            .playAnimation()
+
+                        if (animationView.isAnimating) {
+                            // Do something.
+
+                        }
+                        val pickBtn = dialog2.findViewById(R.id.done) as Button
+                        pickBtn.setOnClickListener {
+                            dialog2.cancel()
+                            dialog.dismiss()
+                        }
+                        dialog2.show()
+
+
                     }
                 }else{
                     Toast.makeText(holder.itemView.context,"Select meals less than or equal to available meals",Toast.LENGTH_SHORT).show()

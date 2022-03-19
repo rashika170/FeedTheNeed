@@ -1,14 +1,20 @@
 package com.gdscandroid.loginproject.Volunteer
 
+import android.animation.ValueAnimator
 import android.app.DatePickerDialog
+import android.app.Dialog
 import android.app.ProgressDialog
 import android.app.TimePickerDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.format.DateFormat
+import android.view.Window
 import android.widget.*
+import com.airbnb.lottie.LottieAnimationView
+import com.bumptech.glide.Glide
 import com.bumptech.glide.util.Util
+import com.gdscandroid.loginproject.Donator.DonatorHome
 import com.gdscandroid.loginproject.R
 import com.gdscandroid.loginproject.Utility
 import com.google.firebase.database.FirebaseDatabase
@@ -51,6 +57,10 @@ class VolQuestApplyActivity : AppCompatActivity(),DatePickerDialog.OnDateSetList
                 DatePickerDialog(this, this, year, month,day)
             datePickerDialog.show()
         }
+
+        Glide.with(this).load(Utility.getProfile(this).toString()).into(circleImageView)
+        textView2.text = Utility.getName(this).toString()
+        phone.text = "+91 "+ Utility.getMobile(this)
 
         post.setOnClickListener {
             if(nov_edit.text.toString().trim().isBlank()){
@@ -103,7 +113,27 @@ class VolQuestApplyActivity : AppCompatActivity(),DatePickerDialog.OnDateSetList
                 dbRef2.child("LeftVolunteers").setValue(nov)
                 dbRef2.child("LeadPic").setValue(Utility.getProfile(this).toString())
                 pd.dismiss()
-                finish()
+
+                val dialog: Dialog = Dialog(this)
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                dialog.setContentView(R.layout.dialog_quest_booked)
+
+                val animationView: LottieAnimationView = dialog.findViewById(R.id.animation_view)
+                animationView
+                    .addAnimatorUpdateListener { animation: ValueAnimator? -> }
+                animationView
+                    .playAnimation()
+
+                if (animationView.isAnimating) {
+                    // Do something.
+
+                }
+                val pickBtn = dialog.findViewById(R.id.done) as Button
+                pickBtn.setOnClickListener {
+                    dialog.cancel()
+                    finish()
+                }
+                dialog.show()
             }
         }
 

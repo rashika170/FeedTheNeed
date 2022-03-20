@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gdscandroid.loginproject">
+    package="com.gdscandroid.feedtheneed">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -15,40 +15,40 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.gdscandroid.loginproject.SplashActivity"
+            android:name="com.gdscandroid.feedtheneed.SplashActivity"
             android:exported="false" />
         <activity
-            android:name="com.gdscandroid.loginproject.Volunteer.VolDetailsActivity"
+            android:name="com.gdscandroid.feedtheneed.Volunteer.VolDetailsActivity"
             android:exported="true" />
         <activity
-            android:name="com.gdscandroid.loginproject.Volunteer.VolQuestApplyActivity"
+            android:name="com.gdscandroid.feedtheneed.Volunteer.VolQuestApplyActivity"
             android:exported="true" />
         <activity
-            android:name="com.gdscandroid.loginproject.Volunteer.VolVerificationActivity"
+            android:name="com.gdscandroid.feedtheneed.Volunteer.VolVerificationActivity"
             android:exported="true" />
         <activity
-            android:name="com.gdscandroid.loginproject.Volunteer.VolunteerHomeActivity"
+            android:name="com.gdscandroid.feedtheneed.Volunteer.VolunteerHomeActivity"
             android:exported="true" />
         <activity
-            android:name="com.gdscandroid.loginproject.Restaurant.RestaurantActivity"
+            android:name="com.gdscandroid.feedtheneed.Restaurant.RestaurantActivity"
             android:exported="true" />
         <activity
-            android:name="com.gdscandroid.loginproject.Donator.DonatorHome"
+            android:name="com.gdscandroid.feedtheneed.Donator.DonatorHome"
             android:exported="true" />
         <activity
-            android:name="com.gdscandroid.loginproject.Volunteer.VolunteerApply"
+            android:name="com.gdscandroid.feedtheneed.Volunteer.VolunteerApply"
             android:exported="true" />
         <activity
-            android:name="com.gdscandroid.loginproject.Donator.DonatorApply"
+            android:name="com.gdscandroid.feedtheneed.Donator.DonatorApply"
             android:exported="true" />
         <activity
-            android:name="com.gdscandroid.loginproject.HomeActivity"
+            android:name="com.gdscandroid.feedtheneed.HomeActivity"
             android:exported="true" />
         <activity
-            android:name="com.gdscandroid.loginproject.ProfileActivity"
+            android:name="com.gdscandroid.feedtheneed.ProfileActivity"
             android:exported="true" />
         <activity
-            android:name="com.gdscandroid.loginproject.MainActivity"
+            android:name="com.gdscandroid.feedtheneed.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

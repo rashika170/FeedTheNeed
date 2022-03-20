@@ -180,6 +180,8 @@ class MainActivity : AppCompatActivity() {
 
                 })
 
+            }else{
+                Toast.makeText(this, task.exception?.message.toString(),Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -291,6 +293,8 @@ class MainActivity : AppCompatActivity() {
 
                                         })
                                     }
+                                }.addOnFailureListener {
+                                    Toast.makeText(this,it.message.toString(),Toast.LENGTH_SHORT).show()
                                 }
                         }catch (e: Exception){
                             Log.w("Status123", task.exception.toString(), task.exception)

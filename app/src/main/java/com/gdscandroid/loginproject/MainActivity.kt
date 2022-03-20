@@ -175,6 +175,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     override fun onCancelled(error: DatabaseError) {
+                        pd.dismiss()
                        // TODO("Not yet implemented")
                     }
 

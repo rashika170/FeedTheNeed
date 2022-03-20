@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="#F7F7F7"
+            android:id="@+id/imageviewjj"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -31,6 +32,19 @@
             android:layout_marginTop="14dp"
             android:layout_marginLeft="19dp"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/logout_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/helveticaneue"
+            android:text="Logout"
+            android:textColor="#A01F62"
+            android:textSize="16dp"
+            android:layout_marginRight="12dp"
+            app:layout_constraintBottom_toBottomOf="@id/imageviewjj"
+            app:layout_constraintEnd_toStartOf="@id/profile_nav"
             app:layout_constraintTop_toTopOf="parent" />
 
         <de.hdodenhof.circleimageview.CircleImageView

@@ -6,13 +6,11 @@ import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
@@ -24,7 +22,6 @@ import com.gdscandroid.loginproject.R
 import com.gdscandroid.loginproject.Utility
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.vol_booked_meals_data.view.*
 import kotlinx.android.synthetic.main.vol_things_item.view.*
 
 class VolThingsRVAdapter(val volThingsData:ArrayList<DonorData>): RecyclerView.Adapter<VolThingsRVAdapter.RVViewHolder>(){

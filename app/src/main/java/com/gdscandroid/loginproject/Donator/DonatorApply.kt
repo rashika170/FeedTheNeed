@@ -33,14 +33,9 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import java.io.IOException
-import com.gdscandroid.loginproject.HomeActivity
 import com.gdscandroid.loginproject.R
-import com.gdscandroid.loginproject.Restaurant.RestaurantActivity
 import com.gdscandroid.loginproject.Utility
 import kotlinx.android.synthetic.main.activity_donator_apply.*
-import kotlinx.android.synthetic.main.fragment_donator_home.*
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class DonatorApply : AppCompatActivity(),DatePickerDialog.OnDateSetListener,

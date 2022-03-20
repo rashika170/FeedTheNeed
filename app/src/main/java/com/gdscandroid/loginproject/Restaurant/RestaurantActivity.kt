@@ -1,23 +1,10 @@
 package com.gdscandroid.loginproject.Restaurant
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.gdscandroid.loginproject.Donator.DonatorHomeFragment
-import com.gdscandroid.loginproject.Donator.DonatorProfileFragment
-import com.gdscandroid.loginproject.MainActivity
 import com.gdscandroid.loginproject.R
-import com.gdscandroid.loginproject.Utility
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_restaurent.*
 
 class RestaurantActivity : AppCompatActivity() {

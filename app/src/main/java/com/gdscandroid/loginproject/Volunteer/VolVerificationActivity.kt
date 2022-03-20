@@ -16,7 +16,6 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.airbnb.lottie.LottieAnimationView
-import com.gdscandroid.loginproject.Donator.DonatorHome
 import com.gdscandroid.loginproject.R
 import com.gdscandroid.loginproject.Utility
 import com.google.android.gms.tasks.OnFailureListener
@@ -27,7 +26,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
-import kotlinx.android.synthetic.main.activity_donator_apply.*
 import kotlinx.android.synthetic.main.activity_vol_verification.*
 import java.text.SimpleDateFormat
 import java.util.*

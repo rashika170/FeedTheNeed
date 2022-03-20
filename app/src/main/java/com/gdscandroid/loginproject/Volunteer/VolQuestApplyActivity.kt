@@ -5,7 +5,6 @@ import android.app.DatePickerDialog
 import android.app.Dialog
 import android.app.ProgressDialog
 import android.app.TimePickerDialog
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.format.DateFormat
@@ -13,8 +12,6 @@ import android.view.Window
 import android.widget.*
 import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.util.Util
-import com.gdscandroid.loginproject.Donator.DonatorHome
 import com.gdscandroid.loginproject.R
 import com.gdscandroid.loginproject.Utility
 import com.google.firebase.database.FirebaseDatabase

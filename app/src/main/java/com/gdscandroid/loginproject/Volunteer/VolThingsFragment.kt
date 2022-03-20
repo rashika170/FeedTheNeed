@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.gdscandroid.loginproject.Donator.DonorData
 import com.gdscandroid.loginproject.R
 import com.gdscandroid.loginproject.Utility
@@ -15,7 +16,8 @@ import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.fragment_donator_items.*
+import kotlinx.android.synthetic.main.fragment_donator_items.rvDonor
+import kotlinx.android.synthetic.main.fragment_vol_things.*
 
 
 class VolThingsFragment : Fragment() {
@@ -37,6 +39,9 @@ class VolThingsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        Glide.with(requireContext()).load(Utility.getProfile(requireActivity()).toString()).into(profile_fragg12)
+
         val volThingsData=ArrayList<DonorData>()
         val volThingsRVAdapter= VolThingsRVAdapter(volThingsData)
         rvDonor.layoutManager= LinearLayoutManager(activity)

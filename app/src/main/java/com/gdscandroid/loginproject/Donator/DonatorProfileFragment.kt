@@ -1,6 +1,5 @@
 package com.gdscandroid.loginproject.Donator
 
-import android.app.Activity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,7 +10,6 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.gdscandroid.loginproject.R
 import com.gdscandroid.loginproject.Utility
-import kotlinx.android.synthetic.main.fragment_donator_profile.*
 
 
 class DonatorProfileFragment : Fragment() {

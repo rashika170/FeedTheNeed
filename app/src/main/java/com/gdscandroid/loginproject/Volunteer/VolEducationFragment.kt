@@ -11,21 +11,16 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.gdscandroid.loginproject.Donator.DonorData
-import com.gdscandroid.loginproject.Donator.DonorRVAdapter
-import com.gdscandroid.loginproject.R
 import com.gdscandroid.loginproject.Utility
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_vol_details.*
 import kotlinx.android.synthetic.main.edu_advertisment.view.*
 import kotlinx.android.synthetic.main.fragment_donator_items.*
 import kotlinx.android.synthetic.main.fragment_vol_education.*
+import kotlinx.android.synthetic.main.fragment_vol_meals.*
+import com.gdscandroid.loginproject.R
 
 
 class VolEducationFragment : Fragment() {
@@ -46,6 +41,8 @@ class VolEducationFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        Glide.with(requireContext()).load(Utility.getProfile(requireActivity()).toString()).into(profile_fragg11)
 
         val dbRef=FirebaseDatabase.getInstance().reference.child("PersonalQuestData")
         val uid= activity?.let { Utility.getUid(it).toString() }

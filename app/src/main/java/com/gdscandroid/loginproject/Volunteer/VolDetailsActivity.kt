@@ -1,6 +1,5 @@
 package com.gdscandroid.loginproject.Volunteer
 
-import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,7 +10,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_vol_details.*
-import kotlinx.android.synthetic.main.fragment_vol_education.*
 
 class VolDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

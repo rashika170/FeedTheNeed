@@ -31,6 +31,7 @@ class VolunteerHomeActivity : AppCompatActivity() {
         val volProfileFragment=VolProfileFragment()
 
         setCurrentFragment(volHomeFragment)
+        feedVol.setImageDrawable(getDrawable(R.drawable.feed_selected))
 
         feedVol.setOnClickListener {
             feedVol.setImageDrawable(getDrawable(R.drawable.feed_selected))

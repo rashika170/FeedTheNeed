@@ -2,8 +2,6 @@ package com.gdscandroid.loginproject.Volunteer
 
 import android.animation.ValueAnimator
 import android.app.Dialog
-import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,14 +11,9 @@ import android.widget.EditText
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
-import com.gdscandroid.loginproject.Donator.DonatorHome
 import com.gdscandroid.loginproject.R
 import com.gdscandroid.loginproject.Utility
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.doantor_item.view.*
 import kotlinx.android.synthetic.main.edu_advertisment.view.*
 
 class EduAdvertiseRVAdapter (val eduAdvertiseData:ArrayList<EduAdvertiseData>): RecyclerView.Adapter<EduAdvertiseRVAdapter.RVViewHolder>(){

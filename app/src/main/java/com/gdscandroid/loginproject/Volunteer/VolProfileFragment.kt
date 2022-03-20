@@ -8,10 +8,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.util.Util
 import com.gdscandroid.loginproject.R
 import com.gdscandroid.loginproject.Utility
-import kotlinx.android.synthetic.main.fragment_vol_profile.*
 
 
 class VolProfileFragment : Fragment() {

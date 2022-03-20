@@ -5,10 +5,8 @@ import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.util.Util
-import com.gdscandroid.loginproject.Donator.DonorData
 import com.gdscandroid.loginproject.R
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.gdscandroid.loginproject.Utility
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database

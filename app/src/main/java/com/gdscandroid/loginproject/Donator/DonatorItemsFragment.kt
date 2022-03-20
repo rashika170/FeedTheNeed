@@ -1,16 +1,10 @@
 package com.gdscandroid.loginproject.Donator
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.PopupMenu
-import android.widget.Toast
-import androidx.core.view.get
-import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -20,11 +14,7 @@ import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.snapshot.Index
-import kotlinx.android.synthetic.main.activity_donator_apply.*
-import kotlinx.android.synthetic.main.fragment_donator_home.*
 import kotlinx.android.synthetic.main.fragment_donator_items.*
-import java.nio.file.Files.delete
 
 
 class DonatorItemsFragment : Fragment() {

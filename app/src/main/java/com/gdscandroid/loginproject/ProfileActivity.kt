@@ -2,19 +2,15 @@ package com.gdscandroid.loginproject
 
 import android.Manifest
 import android.animation.ValueAnimator
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.net.Uri
-import android.os.AsyncTask
 import android.os.Build
 import android.provider.Settings
 import androidx.appcompat.app.AppCompatActivity

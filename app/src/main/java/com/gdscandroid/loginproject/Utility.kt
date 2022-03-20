@@ -2,7 +2,6 @@ package com.gdscandroid.loginproject
 
 import android.app.Activity
 import android.content.Context
-import android.content.SharedPreferences
 
 object Utility {
     public fun setName(activity:Activity,name:String){

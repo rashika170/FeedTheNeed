@@ -8,15 +8,12 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.gdscandroid.loginproject.R
-import kotlinx.android.synthetic.main.doantor_item.view.*
 import kotlinx.android.synthetic.main.vol_booked_meals_data.view.*
-import kotlinx.android.synthetic.main.vol_things_item.view.*
 
 class VolunteerMealPostRVAdapter (val volMealPostData:ArrayList<VolunteerMealPostData>): RecyclerView.Adapter<VolunteerMealPostRVAdapter.RVViewHolder>(){
     class RVViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)

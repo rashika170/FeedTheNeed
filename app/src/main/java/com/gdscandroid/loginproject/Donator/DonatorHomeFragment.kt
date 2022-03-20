@@ -1,13 +1,11 @@
 package com.gdscandroid.loginproject.Donator
 
 import android.app.Activity
-import android.app.DatePickerDialog
 import android.app.Dialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.text.TextUtils.replace
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,14 +15,20 @@ import android.view.Window
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.bumptech.glide.util.Util
-import com.gdscandroid.loginproject.R
+import com.gdscandroid.loginproject.MainActivity
 import com.gdscandroid.loginproject.Restaurant.RestaurantProfileFragment
 import com.gdscandroid.loginproject.Utility
 import com.gdscandroid.loginproject.feeds.FeedData
 import com.gdscandroid.loginproject.feeds.FeedRVAdapter
+import com.gdscandroid.loginproject.R
+
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.ktx.auth
@@ -36,8 +40,6 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import kotlinx.android.synthetic.main.fragment_donator_home.*
-import java.net.URI
-import java.util.*
 import kotlin.collections.ArrayList
 
 class DonatorHomeFragment : Fragment() {
@@ -74,18 +76,48 @@ class DonatorHomeFragment : Fragment() {
 
     private fun setCurrentFragment3(fragment: Fragment) =
         activity?.supportFragmentManager?.beginTransaction()?.apply {
-            replace(R.id.flFragment,fragment)
+            replace(R.id.flVolFragment,fragment)
             commit()
         }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        activity?.findViewById<TextView>(R.id.logout_home)?.setOnClickListener {
+            lateinit var mGoogleSignInClient: GoogleSignInClient
+            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id1))
+                .requestEmail()
+                .build()
+            mGoogleSignInClient= GoogleSignIn.getClient(requireActivity(),gso)
+            mGoogleSignInClient.signOut().addOnCompleteListener {
+                Log.d("Homeactivit","logout");
+                Firebase.auth.signOut()
+
+                Utility.setName(requireActivity(),"")
+                Utility.setLocation(requireActivity(),"")
+                Utility.setProfile(requireActivity(),"")
+                Utility.setMobile(requireActivity(),"")
+                Utility.setUid(requireActivity(),"")
+                Utility.setRole(requireActivity(),"")
+                Utility.setRewardoint(requireActivity(),0)
+                Utility.setDonationPoint(requireActivity(),0)
+                Utility.setProfileComplete(requireActivity(),false)
+                Utility.setMealDetail(requireActivity(),"")
+                Utility.setMealPhotoContext(requireActivity(),"")
+                val intent = Intent(requireActivity(), MainActivity::class.java)
+                startActivity(intent)
+
+            }
+        }
+
         activity?.findViewById<ImageView>(R.id.profile_nav)?.setOnClickListener {
             if(Utility.getrole(requireActivity()).toString().equals("Donator")){
                 setCurrentFragment(DonatorProfileFragment())
             }else if(Utility.getrole(requireActivity()).toString().equals("Organization")){
                 setCurrentFragment2(RestaurantProfileFragment())
+            }else{
+                setCurrentFragment3(DonatorProfileFragment())
             }
 
         }

@@ -4,8 +4,6 @@ import android.animation.ValueAnimator
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.app.TimePickerDialog
-import android.content.Context
-import android.content.Intent
 import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
@@ -15,12 +13,9 @@ import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
-import com.gdscandroid.loginproject.Donator.DonatorHome
-import com.gdscandroid.loginproject.Donator.DonorData
 import com.gdscandroid.loginproject.R
 import com.gdscandroid.loginproject.Utility
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.doantor_item.view.*
 import kotlinx.android.synthetic.main.volunteer_restaur_item.view.*
 import java.util.*
 import kotlin.collections.ArrayList

@@ -1,7 +1,6 @@
 package com.gdscandroid.loginproject.Restaurant
 
 import android.animation.ValueAnimator
-import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
@@ -23,13 +22,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.fragment_donator_items.*
-import kotlinx.android.synthetic.main.fragment_donator_items.profile_nav1
-import kotlinx.android.synthetic.main.fragment_restaurant_meals.*
-import kotlinx.android.synthetic.main.fragment_restaurant_p_o_s.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.*
 
 
 class RestaurantPOSFragment : Fragment() {

@@ -294,11 +294,13 @@ class MainActivity : AppCompatActivity() {
                                         })
                                     }
                                 }.addOnFailureListener {
+                                    pd.cancel()
                                     Toast.makeText(this,it.message.toString(),Toast.LENGTH_SHORT).show()
                                 }
                         }catch (e: Exception){
+                            pd.dismiss()
                             Log.w("Status123", task.exception.toString(), task.exception)
-                            Toast.makeText(baseContext, "Authentication failed.",
+                            Toast.makeText(baseContext, e.message.toString(),
                                 Toast.LENGTH_SHORT).show()
                         }
                     }

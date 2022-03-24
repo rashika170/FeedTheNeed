@@ -7,6 +7,7 @@ In our quest to harness the wellness of society by enriching the value of charit
 ## About Project
 Feed The Need establishes a transparent link between donors and volunteers by expressing concerns for groups deprived of basic amenities and bridging the gap between rich and poor. It transcends the liberty for donors to lend materialistic help to poverty-stricken people in any way they desire. Volunteers promise to engage in the ethical course of charity by acting as a link between the donors and the needy. Volunteers will deliver donations directly to the right person, from food chains, primary health centres, or local shops. Furthermore, regular education will offer them a solid foundation for a better life. Historically, physically challenged people have been excluded from charity work. Quest will allow them to contribute in any way they can, which will inspire others around the world to get involved.
 
+<h4> The Video Demonstration for app in use can be seen <a href="https://www.youtube.com/watch?v=KaYe7-kImio&feature=youtu.be">here</a></h4>
 
 # Sustainable Development Goals by United Nations
 We as a team intend to use Google technologies to build a versatile application using the 17 sustainable development goals of the United Nations that will satisfy the needs of the deprived class.
@@ -93,7 +94,7 @@ Volunteers play an important role in facilitating donations, in the sense that t
 Many restaurants, hotels, and food chains in the city will be taking care of food donations. Through our application, customers at food chains can order a meal suited to their budget along with their meals. The database of restaurants will be updated with meals and the addition of meals will take place cumulatively. When volunteers book meals, restaurants have to make meals available at the time specified.
 
 <b> 3. Individual Donors </b> </br>
-They are groups of generous donors who wish to donate items such as books and clothes.Volunteers need only to post a donation with a description and an image of the item, set up a pickup time, and the volunteer will pick up donation at their doorstep. In addition to this, government organizations and healthcare centres are also able to donate healthcare aids and other necessities through this application by registering as Individual Donors.
+They are groups of generous donors who wish to donate items such as books and clothes.Donor need only to post a donation with a description and an image of the item, set up a pickup time, and the volunteer will pick up donation at their doorstep. In addition to this, government organizations and healthcare centres are also able to donate healthcare aids and other necessities through this application by registering as Individual Donors.
 
 ## 🎯 Usuage and Functionality of Feed The Need
 ### 1. Splash Screen and Permission Activity 

@@ -123,6 +123,8 @@ class DonatorApply : AppCompatActivity(),DatePickerDialog.OnDateSetListener,
                 Toast.makeText(this,"Upload Image", Toast.LENGTH_SHORT).show()
             }else if(!isPickedTime){
                 Toast.makeText(this,"Upload Picking time", Toast.LENGTH_SHORT).show()
+            }else if(locatnans.equals("")){
+                Toast.makeText(this,"Something Went wrong!! Try again", Toast.LENGTH_SHORT).show()
             }else{
                 uploadDataToFirebase()
             }
@@ -319,7 +321,7 @@ class DonatorApply : AppCompatActivity(),DatePickerDialog.OnDateSetListener,
         val pd:ProgressDialog = ProgressDialog(this)
         pd.setMessage("Please Wait...Your data is uploading !!")
         pd.setCancelable(false)
-        //pd.show()
+        pd.show()
         val fileName = "image.jpg"
         val uid:String = Utility.getUid(this).toString()
         val database = FirebaseDatabase.getInstance().reference.child("DonatorPost").child(uid).push()
@@ -349,7 +351,7 @@ class DonatorApply : AppCompatActivity(),DatePickerDialog.OnDateSetListener,
                         database2.child("donatorPic").setValue(Utility.getProfile(this).toString())
                         database2.child("donatorPhone").setValue(Utility.getMobile(this).toString())
                         database2.child("donatorName").setValue(Utility.getName(this).toString())
-                        //pd.dismiss()
+                        pd.dismiss()
                         val dialog: Dialog = Dialog(this)
                         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
                         dialog.setContentView(R.layout.dialog_donator_apply)
@@ -377,7 +379,8 @@ class DonatorApply : AppCompatActivity(),DatePickerDialog.OnDateSetListener,
                 })
 
             .addOnFailureListener(OnFailureListener { e ->
-                Toast.makeText(this,"Something Went Wrong", Toast.LENGTH_SHORT).show()
+                pd.dismiss()
+                Toast.makeText(this,e.message.toString(), Toast.LENGTH_SHORT).show()
             })
     }
 

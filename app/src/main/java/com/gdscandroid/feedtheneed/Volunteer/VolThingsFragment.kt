@@ -81,8 +81,8 @@ class VolThingsFragment : Fragment() {
                 for(i in 0..volThingsData.size-1){
                     if(volThingsData[i].bookId.toString().equals(snapshot.key)){
                         post3!!.bookId=snapshot.key.toString()
-                        post3!!.name=Utility.getName(activity!!).toString()
-                        volThingsData.set(i,post3!!)
+                        post3.name=Utility.getName(activity!!).toString()
+                        volThingsData.set(i, post3)
                     }
                 }
                 volThingsRVAdapter.notifyDataSetChanged()

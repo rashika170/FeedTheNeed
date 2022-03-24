@@ -71,7 +71,7 @@ class RestaurantPOSFragment : Fragment() {
         //Glide.with(requireContext()).load(activity?.let { Utility.getProfile(it).toString() }).into(profile_nav1)
 
         v.findViewById<ImageView>(R.id.profile_nav1)?.let {
-            Glide.with(requireActivity()).load(Utility.getMealPhotoContext(requireContext())).into(
+            Glide.with(requireActivity()).load(Utility.getProfileContext(requireContext())).into(
                 it
             )
         }

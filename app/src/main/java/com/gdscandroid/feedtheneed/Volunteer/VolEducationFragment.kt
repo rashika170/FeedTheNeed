@@ -61,6 +61,8 @@ class VolEducationFragment : Fragment() {
                     val time=snapshot.child(uid.toString()).child("time").value.toString().split(",")
                     activity?.findViewById<TextView>(R.id.date_education_p)?.text=time[0]
                     activity?.findViewById<TextView>(R.id.time11)?.text=time[1]
+                    activity?.findViewById<TextView>(R.id.textView9)?.text=(snapshot.child(uid.toString()).child("noofVolunteers").value.toString())+
+                            " Volunteers Required"
                     activity?.findViewById<TextView>(R.id.location_education_p)?.text=snapshot.child(uid.toString()).child("Location").value.toString()
                     //activity?.findViewById<TextView>(R.id.nov_education_p)?.text=snapshot.child(uid.toString()).child("noofVolunteers").value.toString()
                     activity?.findViewById<TextView>(R.id.info_education_p)?.text=snapshot.child(uid.toString()).child("Info").value.toString()

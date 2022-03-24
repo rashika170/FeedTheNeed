@@ -19,17 +19,17 @@
         />
 
 
-<!--    <com.hanks.htextview.typer.TyperTextView-->
-<!--        android:gravity="center"-->
-<!--        android:paddingHorizontal="30dp"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:id="@+id/linetext"-->
-<!--        android:textSize="25dp"-->
-<!--        app:charIncrease="1"-->
-<!--        app:typerSpeed="120"-->
-<!--        android:textColor="#A01F62"-->
-<!--        />-->
+    <com.hanks.htextview.typer.TyperTextView
+        android:gravity="center"
+        android:paddingHorizontal="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/linetext"
+        android:textSize="25dp"
+        app:charIncrease="1"
+        app:typerSpeed="120"
+        android:textColor="#A01F62"
+        />
 
 
 </LinearLayout>

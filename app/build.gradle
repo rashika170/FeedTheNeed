@@ -49,10 +49,10 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
 
-//    def htextview_version = "0.1.6"
+    def htextview_version = "0.1.6"
 //// as 3.0 use implementation
-//    implementation 'com.hanks:htextview-base:0.1.6'        // base library
-//    implementation 'com.hanks:htextview-typer:0.1.6'        // optional
+    implementation 'com.hanks:htextview-base:0.1.6'        // base library
+    implementation 'com.hanks:htextview-typer:0.1.6'        // optional
 
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 

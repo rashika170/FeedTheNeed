@@ -105,7 +105,8 @@ class VolVerificationActivity : AppCompatActivity() {
                                     db.child("feedId").setValue(ranid)
                                     db.child("currentTime").setValue(currentTime.toString())
                                     pd.dismiss()
-                                   dialog.dismiss()
+                                    dialog.dismiss()
+                                    startActivity(Intent(this,VolunteerHomeActivity::class.java))
                                 }
                             })
 

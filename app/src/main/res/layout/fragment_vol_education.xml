@@ -224,7 +224,7 @@
                                     android:layout_marginLeft="19.5dp"
                                     android:layout_marginTop="10dp"
                                     android:gravity="center_vertical"
-                                    android:text="Location is 1.2 KM away"
+                                    android:text="5 Volunteers Needed"
                                     android:textColor="#B4B4B4"
                                     android:textSize="11dp"
                                     android:typeface="normal"

@@ -18,6 +18,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_donator_home.*
 
 class DonatorHome : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +32,7 @@ class DonatorHome : AppCompatActivity() {
         val thingsFragment= DonatorItemsFragment()
 
         setCurrentFragment(homeFragment)
-
+        feed_frag.setImageDrawable(getDrawable(R.drawable.feed_selected))
 
         val feed_frag = findViewById<ImageView>(R.id.feed_frag)
         val item_frag = findViewById<ImageView>(R.id.items_frag)

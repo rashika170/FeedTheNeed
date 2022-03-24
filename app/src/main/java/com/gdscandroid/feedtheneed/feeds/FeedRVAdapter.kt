@@ -28,7 +28,8 @@ class FeedRVAdapter(val feeds:ArrayList<FeedData>) : RecyclerView.Adapter<FeedRV
         val hi=holder.itemView
         hi.name.text=feeds[position].name
         val loca=feeds[position].Location.toString().split(",")
-        hi.location.text=loca[loca.size-4]+", "+loca[loca.size-3]
+        //hi.location.text=loca[loca.size-4]+", "+loca[loca.size-3]
+        hi.location.text=loca[0]+", "+loca[1]
         hi.rewardsPoints.text=feeds[position].Points+" Points"
         val time=feeds[position].currentTime.toString().split(" ")
         hi.feedTime.text=time[0]

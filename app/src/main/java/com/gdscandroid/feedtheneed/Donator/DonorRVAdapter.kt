@@ -41,10 +41,9 @@ class DonorRVAdapter(val donorData:ArrayList<DonorData>): RecyclerView.Adapter<D
         holder.itemView.itemTitle.text=donorData[position].desc
 //        holder.itemView.itemLocation.text=donorData[position].location
         val imageUri=donorData[position].image.toString()
-        if (imageUri !== null) Glide.with(holder.itemView)
+        Glide.with(holder.itemView)
             .load(imageUri)
             .into(holder.itemView.feedImage)
-        else holder.itemView.feedImage.setImageResource(R.drawable.ic_launcher_background)
         holder.itemView.itemPickedBy.text=donorData[position].pickedBy
         val time=donorData[position].pickedTime.toString().split(",")
         holder.itemView.itemPickedTime.text=time[0]
@@ -77,9 +76,11 @@ class DonorRVAdapter(val donorData:ArrayList<DonorData>): RecyclerView.Adapter<D
             }
         }
 
+        if(donorData[position].status.toString().equals("Booked")||donorData[position].status.toString().equals("Picked")){
+            Glide.with(holder.itemView.context).load(donorData[position].volPic).into(holder.itemView.vol_image)
+        }
 
         if(donorData[position].status.toString().equals("Booked")){
-            Glide.with(holder.itemView.context).load(donorData[position].volPic).into(holder.itemView.vol_image)
             holder.itemView.donatorReleaseButton.visibility = View.VISIBLE
             holder.itemView.donatorConfirmation.visibility=View.VISIBLE
         }else{

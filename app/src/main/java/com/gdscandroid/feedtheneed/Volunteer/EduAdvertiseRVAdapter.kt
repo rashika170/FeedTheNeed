@@ -35,6 +35,7 @@ class EduAdvertiseRVAdapter (val eduAdvertiseData:ArrayList<EduAdvertiseData>): 
         }
         holder.itemView.textView7.text="#"+total.toString()
         hi.name_education_p1.text=eduAdvertiseData[position].Leadname.toString()
+        hi.name_education_p11.text = eduAdvertiseData[position].Leadname.toString()
         val time=eduAdvertiseData[position].time.toString().split(",")
         holder.itemView.textView10.text=time[1]
         hi.date_education_p1.text=time[0]

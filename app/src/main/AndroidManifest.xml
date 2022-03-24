@@ -16,7 +16,14 @@
         android:theme="@style/AppTheme">
         <activity
             android:name="com.gdscandroid.feedtheneed.SplashActivity"
-            android:exported="false" />
+            android:exported="true"
+            android:theme="@style/FullTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.gdscandroid.feedtheneed.Volunteer.VolDetailsActivity"
             android:exported="true" />
@@ -50,11 +57,7 @@
         <activity
             android:name="com.gdscandroid.feedtheneed.MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

@@ -8,46 +8,65 @@
     android:orientation="vertical"
     android:gravity="center">
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="10dp"
+        app:cardCornerRadius="10dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="25dp"
+            android:gravity="center_horizontal"
+            >
     <ImageView
         android:id="@+id/mealImage"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="200dp"
-        android:src="@drawable/ic_launcher_background"/>
-
-
+        android:src="@drawable/dominoz"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="MEALS INFO"
+        android:layout_marginTop="10dp"
+        android:text="PROVIDED MEAL INFO"
         android:textSize="20sp"
-        android:textStyle="bold"
+        android:fontFamily="@font/ubuntu_reg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/et_mealinfo"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="Enter info about meal here..."
         android:inputType="textMultiLine"
+        android:fontFamily="@font/helveticaneue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_login" />
 
 
     <Button
         android:id="@+id/btnSet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:background="@drawable/button_background"
+        android:layout_width="250dp"
+        android:layout_height="32dp"
+        android:textSize="20dp"
         android:text="SET"
+        android:textColor="#fff"
+        android:layout_marginTop="17dp"
+        android:layout_marginBottom="35dp"
+        android:fontFamily="@font/ubuntu_reg"
         android:layout_gravity="center"/>
 
+        </LinearLayout>
 
+    </androidx.cardview.widget.CardView>
 
 
 

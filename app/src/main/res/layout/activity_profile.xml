@@ -166,7 +166,7 @@
                         android:fontFamily="@font/ubuntu_reg"
                         android:text="Verify"
                         android:textColor="#A01F62"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center" />
 
                     <ImageView
                         android:layout_width="match_parent"

@@ -332,6 +332,7 @@ class DonatorApply : AppCompatActivity(),DatePickerDialog.OnDateSetListener,
                 OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
                     taskSnapshot.storage.downloadUrl.addOnSuccessListener {
                         imageUrl = it.toString()
+                        Log.d("jhol",pickedtimetxt.text.toString()+"bbcudb"+locatnans)
                         val database2 = FirebaseDatabase.getInstance().reference.child("DonatorPost").child(ranid)
                         database2.child("image").setValue(imageUrl)
                         database2.child("desc").setValue(descedit.text.toString())

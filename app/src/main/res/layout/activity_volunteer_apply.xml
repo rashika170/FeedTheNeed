@@ -8,49 +8,6 @@
     android:orientation="vertical"
     tools:context=".Volunteer.VolunteerApply">
 
-  <TableLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:padding="8dp"
-      android:layout_margin="16dp"
-      android:stretchColumns="1,2,3">
-
-    <TableRow>
-
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="match_parent"
-          android:text="Restaurant Name"
-          android:ems="6"
-          android:textSize="16dp"
-          android:gravity="center"
-          android:layout_marginEnd="16dp"
-          />
-
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="match_parent"
-          android:text="Meals"
-          android:textSize="16dp"
-          android:ems="2"
-          android:gravity="center"
-          android:layout_marginEnd="16dp"
-          />
-
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="match_parent"
-          android:text="Apply"
-          android:textSize="16dp"
-          android:ems="2"
-          android:gravity="center"
-          android:layout_marginEnd="16dp"
-          />
-
-
-    </TableRow>
-
-  </TableLayout>
 
   <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/rvVolun1"

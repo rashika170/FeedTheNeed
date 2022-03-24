@@ -31,8 +31,13 @@
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/activity_volunteer_apply.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/activity_volunteer_home.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/book_meal_dialog.xml" value="0.1796875" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/dialog_donator_apply.xml" value="0.1796875" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/dialog_meal_booked.xml" value="0.1796875" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/dialog_pos_booked.xml" value="0.1796875" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/dialog_quest_booked.xml" value="0.1796875" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/dialog_verificationdone.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/doantor_item.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/donation_description_dialog.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/donation_description_dialog.xml" value="0.22" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/edu_advertisment.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/edu_comment_dialog.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/edu_request.xml" value="0.1796875" />
@@ -47,7 +52,7 @@
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/fragment_vol_meals.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/fragment_vol_profile.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/fragment_vol_things.xml" value="0.1796875" />
-        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/meal_info_dialog.xml" value="0.1796875" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/meal_info_dialog.xml" value="0.22" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/share_dialog.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/vol_booked_meals_data.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/vol_details_data.xml" value="0.1796875" />

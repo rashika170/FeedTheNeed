@@ -42,7 +42,7 @@ class RestaurantProfileFragment : Fragment() {
         phone.text = activity?.let { Utility.getMobile(it).toString() }
         val loc= Utility.getLocation(requireActivity()).toString().split(",")
 
-        loctn.text = loc[loc.size-4]+","+loc[loc.size-3]
+        loctn.text = loc[0]+","+loc[1]
         val total = Utility.getDonationPoint(requireActivity())?.let {
             Utility.getRewardoint(requireActivity())
                 ?.plus(it)

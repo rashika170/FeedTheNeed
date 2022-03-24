@@ -5,7 +5,9 @@ import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Location
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +19,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.util.Util
 import com.gdscandroid.feedtheneed.Donator.DonorData
 import com.gdscandroid.feedtheneed.R
 import com.gdscandroid.feedtheneed.Utility
@@ -45,15 +48,37 @@ class VolThingsRVAdapter(val volThingsData:ArrayList<DonorData>): RecyclerView.A
             val locatn = dialog.findViewById(R.id.itemLocationVol) as TextView
             val date = dialog.findViewById(R.id.itemPickedTimeVol) as TextView
             val time = dialog.findViewById(R.id.time) as TextView
+            val dist = dialog.findViewById(R.id.textView9) as TextView
 
+            val lati= volThingsData[position].latitude
+            val longi=volThingsData[position].longitude
+
+            val startPoint = Location("locationA")
+            if (lati != null) {
+                startPoint.setLatitude(lati.toDouble())
+            }
+
+            if(longi!=null){
+                startPoint.setLongitude(longi.toDouble())
+            }
+
+            val endPoint = Location("locationA")
+            endPoint.setLatitude(Utility.getLatitudeContext(dialog.context)!!.toDouble())
+            endPoint.setLongitude(Utility.getLongitudeContext(dialog.context)!!.toDouble())
+
+            val distance: Double = startPoint.distanceTo(endPoint)/1000.0
+
+
+            dist.text = String.format("%.2f",distance)+" KM away"
+
+            Log.d("jhol",volThingsData[position].location.toString())
             title.text = volThingsData[position].desc
             locatn.text = volThingsData[position].location
             val imageUri=volThingsData[position].image.toString()
-            if (imageUri !== null) Glide.with(holder.itemView)
+            Glide.with(holder.itemView)
                 .load(imageUri)
                 .into(itemImg)
-            else itemImg.setImageResource(R.drawable.ic_launcher_background)
-            val time2=volThingsData[position].pickedTime.toString().split("")
+            val time2=volThingsData[position].pickedTime.toString().split(",")
             date.text=time2[0]
             time.text=time2[1]
             dialog.show()

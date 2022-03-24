@@ -120,6 +120,7 @@ class ProfileActivity : AppCompatActivity() {
         nametxt.setText(name)
         if(!profile.equals("")){
             Glide.with(this).load(profile).into(image)
+            img_uri = Uri.parse("")
             Profile_bool=true
         }
 
@@ -199,98 +200,179 @@ class ProfileActivity : AppCompatActivity() {
                 val database = FirebaseDatabase.getInstance()
                 val refStorage = FirebaseStorage.getInstance().reference.child("UserProfile/${Firebase.auth.currentUser?.uid}/$fileName")
                 Log.d("bhibhhi",it.toString())
-                refStorage.putFile(img_uri)
-                    .addOnSuccessListener(
-                        OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
-                            taskSnapshot.storage.downloadUrl.addOnSuccessListener {
-                                profile = it.toString()
-                                Log.d("bhibhhi",it.toString())
-                                val databse = Firebase.database
-                                val ref = databse.getReference("Users").child(uid)
-                                ref.child("Name").setValue(nametxt.text.toString())
-                                ref.child("Location").setValue(ans)
-                                ref.child("Profile").setValue(profile)
-                                ref.child("Phone").setValue(number_otp.text.toString())
-                                ref.child("Uid").setValue(uid)
-                                ref.child("Role").setValue(roleStr)
-                                ref.child("RewardPoints").setValue(0)
-                                ref.child("DonationPoints").setValue(0)
-                                ref.child("Latitude").setValue(lati)
-                                ref.child("Longitude").setValue(longi)
-                                ref.child("MealsImage").setValue("")
-                                ref.child("MealsInfo").setValue("")
 
-                                if(roleStr=="Organization"){
-                                    val ref2 = databse.getReference("RestaurantMealsData").child(uid)
-                                    ref2.child("CompletedDonation").setValue("0")
-                                    ref2.child("TotalDonation").setValue("0")
-                                    ref2.child("LeftDonation").setValue("0")
-                                    ref2.child("RestaurPhoto").setValue(profile)
-                                    ref2.child("latitude").setValue(lati)
-                                    ref2.child("longitude").setValue(longi)
-                                    ref2.child("name").setValue(nametxt.text.toString())
-                                    ref2.child("RestaurPhone").setValue(number_otp.text.toString())
-                                    ref2.child("MealsImage").setValue("")
-                                    ref2.child("MealsInfo").setValue("")
-                                }
+                if (!profile.equals("")){
+                    val databse = Firebase.database
+                    val ref = databse.getReference("Users").child(uid)
+                    ref.child("Name").setValue(nametxt.text.toString())
+                    ref.child("Location").setValue(ans)
+                    ref.child("Profile").setValue(profile)
+                    ref.child("Phone").setValue(number_otp.text.toString())
+                    ref.child("Uid").setValue(uid)
+                    ref.child("Role").setValue(roleStr)
+                    ref.child("RewardPoints").setValue(0)
+                    ref.child("DonationPoints").setValue(0)
+                    ref.child("Latitude").setValue(lati)
+                    ref.child("Longitude").setValue(longi)
+                    ref.child("MealsImage").setValue("")
+                    ref.child("MealsInfo").setValue("")
 
-                                Utility.setName(this,nametxt.text.toString())
-                                Utility.setLocation(this,ans)
-                                Utility.setProfile(this,profile)
-                                Utility.setMobile(this,number_otp.text.toString())
-                                Utility.setUid(this,uid)
-                                Utility.setRole(this,roleStr)
-                                Utility.setRewardoint(this,0)
-                                Utility.setDonationPoint(this,0)
-                                Utility.setProfileComplete(this,true)
-                                Utility.setLongitude(this,longi)
-                                Utility.setLatitude(this,lati)
-                                Utility.setMealDetail(this,"")
-                                Utility.setMealPhotoContext(this,"")
-                                pd.dismiss()
+                    if(roleStr=="Organization"){
+                        val ref2 = databse.getReference("RestaurantMealsData").child(uid)
+                        ref2.child("CompletedDonation").setValue("0")
+                        ref2.child("TotalDonation").setValue("0")
+                        ref2.child("LeftDonation").setValue("0")
+                        ref2.child("RestaurPhoto").setValue(profile)
+                        ref2.child("latitude").setValue(lati)
+                        ref2.child("longitude").setValue(longi)
+                        ref2.child("name").setValue(nametxt.text.toString())
+                        ref2.child("RestaurPhone").setValue(number_otp.text.toString())
+                        ref2.child("MealsImage").setValue("")
+                        ref2.child("MealsInfo").setValue("")
+                    }
 
-                                val dialog: Dialog = Dialog(this)
-                                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-                                dialog.setContentView(R.layout.dialog_registration)
+                    Utility.setName(this,nametxt.text.toString())
+                    Utility.setLocation(this,ans)
+                    Utility.setProfile(this,profile)
+                    Utility.setMobile(this,number_otp.text.toString())
+                    Utility.setUid(this,uid)
+                    Utility.setRole(this,roleStr)
+                    Utility.setRewardoint(this,0)
+                    Utility.setDonationPoint(this,0)
+                    Utility.setProfileComplete(this,true)
+                    Utility.setLongitude(this,longi)
+                    Utility.setLatitude(this,lati)
+                    Utility.setMealDetail(this,"")
+                    Utility.setMealPhotoContext(this,"")
+                    pd.dismiss()
 
-                                val animationView: LottieAnimationView = dialog.findViewById(R.id.animation_view)
-                                animationView
-                                    .addAnimatorUpdateListener { animation: ValueAnimator? -> }
-                                animationView
-                                    .playAnimation()
+                    val dialog: Dialog = Dialog(this)
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                    dialog.setContentView(R.layout.dialog_registration)
 
-                                if (animationView.isAnimating) {
-                                    // Do something.
+                    val animationView: LottieAnimationView = dialog.findViewById(R.id.animation_view)
+                    animationView
+                        .addAnimatorUpdateListener { animation: ValueAnimator? -> }
+                    animationView
+                        .playAnimation()
 
-                                }
-                                val pickBtn = dialog.findViewById(R.id.done) as Button
-                                pickBtn.setOnClickListener {
-                                    dialog.cancel()
-                                    if(Utility.getrole(this).equals("Donator")){
-                                        intent = Intent(this, DonatorHome::class.java)
-                                        startActivity(intent);
-                                        finish()
-                                    }else if(Utility.getrole(this).equals("Organization")){
-                                        intent = Intent(this, RestaurantActivity::class.java)
-                                        startActivity(intent);
-                                        finish()
-                                    }else{
-                                        intent = Intent(this, VolunteerHomeActivity::class.java)
-                                        startActivity(intent);
-                                        finish()
+                    if (animationView.isAnimating) {
+                        // Do something.
+
+                    }
+                    val pickBtn = dialog.findViewById(R.id.done) as Button
+                    pickBtn.setOnClickListener {
+                        dialog.cancel()
+                        if(Utility.getrole(this).equals("Donator")){
+                            intent = Intent(this, DonatorHome::class.java)
+                            startActivity(intent);
+                            finish()
+                        }else if(Utility.getrole(this).equals("Organization")){
+                            intent = Intent(this, RestaurantActivity::class.java)
+                            startActivity(intent);
+                            finish()
+                        }else{
+                            intent = Intent(this, VolunteerHomeActivity::class.java)
+                            startActivity(intent);
+                            finish()
+                        }
+                    }
+                    dialog.show()
+                }
+                else{
+                    refStorage.putFile(img_uri)
+                        .addOnSuccessListener(
+                            OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
+                                taskSnapshot.storage.downloadUrl.addOnSuccessListener {
+                                    profile = it.toString()
+                                    Log.d("bhibhhi",it.toString())
+                                    val databse = Firebase.database
+                                    val ref = databse.getReference("Users").child(uid)
+                                    ref.child("Name").setValue(nametxt.text.toString())
+                                    ref.child("Location").setValue(ans)
+                                    ref.child("Profile").setValue(profile)
+                                    ref.child("Phone").setValue(number_otp.text.toString())
+                                    ref.child("Uid").setValue(uid)
+                                    ref.child("Role").setValue(roleStr)
+                                    ref.child("RewardPoints").setValue(0)
+                                    ref.child("DonationPoints").setValue(0)
+                                    ref.child("Latitude").setValue(lati)
+                                    ref.child("Longitude").setValue(longi)
+                                    ref.child("MealsImage").setValue("")
+                                    ref.child("MealsInfo").setValue("")
+
+                                    if(roleStr=="Organization"){
+                                        val ref2 = databse.getReference("RestaurantMealsData").child(uid)
+                                        ref2.child("CompletedDonation").setValue("0")
+                                        ref2.child("TotalDonation").setValue("0")
+                                        ref2.child("LeftDonation").setValue("0")
+                                        ref2.child("RestaurPhoto").setValue(profile)
+                                        ref2.child("latitude").setValue(lati)
+                                        ref2.child("longitude").setValue(longi)
+                                        ref2.child("name").setValue(nametxt.text.toString())
+                                        ref2.child("RestaurPhone").setValue(number_otp.text.toString())
+                                        ref2.child("MealsImage").setValue("")
+                                        ref2.child("MealsInfo").setValue("")
                                     }
+
+                                    Utility.setName(this,nametxt.text.toString())
+                                    Utility.setLocation(this,ans)
+                                    Utility.setProfile(this,profile)
+                                    Utility.setMobile(this,number_otp.text.toString())
+                                    Utility.setUid(this,uid)
+                                    Utility.setRole(this,roleStr)
+                                    Utility.setRewardoint(this,0)
+                                    Utility.setDonationPoint(this,0)
+                                    Utility.setProfileComplete(this,true)
+                                    Utility.setLongitude(this,longi)
+                                    Utility.setLatitude(this,lati)
+                                    Utility.setMealDetail(this,"")
+                                    Utility.setMealPhotoContext(this,"")
+                                    pd.dismiss()
+
+                                    val dialog: Dialog = Dialog(this)
+                                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                                    dialog.setContentView(R.layout.dialog_registration)
+
+                                    val animationView: LottieAnimationView = dialog.findViewById(R.id.animation_view)
+                                    animationView
+                                        .addAnimatorUpdateListener { animation: ValueAnimator? -> }
+                                    animationView
+                                        .playAnimation()
+
+                                    if (animationView.isAnimating) {
+                                        // Do something.
+
+                                    }
+                                    val pickBtn = dialog.findViewById(R.id.done) as Button
+                                    pickBtn.setOnClickListener {
+                                        dialog.cancel()
+                                        if(Utility.getrole(this).equals("Donator")){
+                                            intent = Intent(this, DonatorHome::class.java)
+                                            startActivity(intent);
+                                            finish()
+                                        }else if(Utility.getrole(this).equals("Organization")){
+                                            intent = Intent(this, RestaurantActivity::class.java)
+                                            startActivity(intent);
+                                            finish()
+                                        }else{
+                                            intent = Intent(this, VolunteerHomeActivity::class.java)
+                                            startActivity(intent);
+                                            finish()
+                                        }
+                                    }
+                                    dialog.show()
+
+                                    //DownloadImageFromInternet(image).execute(profile)
                                 }
-                                dialog.show()
+                            })
 
-                                //DownloadImageFromInternet(image).execute(profile)
-                            }
+                        ?.addOnFailureListener(OnFailureListener { e ->
+                            pd.dismiss()
+                            Log.d("bhibhhi",e.message.toString())
+                            print(e.message)
                         })
-
-                    ?.addOnFailureListener(OnFailureListener { e ->
-                        pd.dismiss()
-                        Log.d("bhibhhi",e.message.toString())
-                        print(e.message)
-                    })
+                }
 
             }
         }

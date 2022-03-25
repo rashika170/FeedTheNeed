@@ -9,6 +9,12 @@ Feed The Need establishes a transparent link between donors and volunteers by ex
 
 <h4> The Video Demonstration for app in use can be seen <a href="https://www.youtube.com/watch?v=KaYe7-kImio&feature=youtu.be">here</a></h4>
 
+<h2>Installation :</h2>
+<ul>
+<li>The app can be installed by directly <b>downloading the Android Application</b> Package (APK) File located at : "Demonstration and results/app-debug.apk" into the <b>Mobile phone device with Android OS</b>.
+<li>For <b>building the project on your local machine</b>, clone the repo and Open it with Android Studio.
+</ul>
+
 # Sustainable Development Goals by United Nations
 We as a team intend to use Google technologies to build a versatile application using the 17 sustainable development goals of the United Nations that will satisfy the needs of the deprived class.
 

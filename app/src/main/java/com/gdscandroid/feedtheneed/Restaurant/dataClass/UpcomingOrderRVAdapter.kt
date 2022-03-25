@@ -12,6 +12,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.doantor_item.view.*
 import kotlinx.android.synthetic.main.volunteer_meals_details_item.view.*
 import java.util.*
 
@@ -29,10 +30,18 @@ class UpcomingOrderRVAdapter(private val volunteerMealsDetailsData: ArrayList<Vo
         val name=volunteerMealsDetailsData[position].VolunteerName!!.split(" ")
         holder.itemView.volunteerName.text=name[0].toString()
         holder.itemView.volunteerMealStatus.text=volunteerMealsDetailsData[position].Status
-        holder.itemView.volNumber.text=volunteerMealsDetailsData[position].VolunteerNumber
-        holder.itemView.noOfMeals.text=volunteerMealsDetailsData[position].numOfMeals
+        //holder.itemView.volNumber.text=volunteerMealsDetailsData[position].VolunteerNumber
+        holder.itemView.noOfMeals.text="Number of meals : "+volunteerMealsDetailsData[position].numOfMeals
         Glide.with(holder.itemView.context).load(volunteerMealsDetailsData[position].VolunteerPhoto).into(holder.itemView.volPhoto)
+        Glide.with(holder.itemView.context).load(volunteerMealsDetailsData[position].VolunteerPhoto).into(holder.itemView.small_vol)
         holder.itemView.volunteerMealsPickAtTime.text=volunteerMealsDetailsData[position].expectedPickTime
+
+        val bookId=volunteerMealsDetailsData[position].BookingId.toString()
+        var total=0
+        for(i in 0..bookId.length-1){
+            total+=bookId[i].toInt()
+        }
+        holder.itemView.volNumber.text="#"+total.toString()
 
         if(volunteerMealsDetailsData[position].Status=="Picked"){
             holder.itemView.volunteerMealsPicked.visibility=View.GONE

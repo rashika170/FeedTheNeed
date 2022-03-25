@@ -11,6 +11,8 @@ import com.bumptech.glide.Glide
 import com.gdscandroid.feedtheneed.R
 import com.gdscandroid.feedtheneed.Utility
 import kotlinx.android.synthetic.main.feed_item.view.*
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
 
 
@@ -24,6 +26,12 @@ class FeedRVAdapter(val feeds:ArrayList<FeedData>) : RecyclerView.Adapter<FeedRV
         return RVViewHolder(itemView)
     }
 
+    val random = Random()
+
+    fun rand(from: Int, to: Int) : Int {
+        return random.nextInt(to - from) + from
+    }
+
     override fun onBindViewHolder(holder: RVViewHolder, position: Int) {
         val hi=holder.itemView
         hi.name.text=feeds[position].name
@@ -34,6 +42,7 @@ class FeedRVAdapter(val feeds:ArrayList<FeedData>) : RecyclerView.Adapter<FeedRV
         val time=feeds[position].currentTime.toString().split(" ")
         hi.feedTime.text=time[0]
         hi.time.text=time[1]
+        hi.textView12.text = rand(20,30).toString()
         hi.role.text=feeds[position].role
         hi.info.text=feeds[position].description
 

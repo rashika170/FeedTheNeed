@@ -9,7 +9,6 @@
     android:orientation="vertical"
     android:gravity="center">
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,7 +23,7 @@
     <ImageView
         android:id="@+id/share_img"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:src="@drawable/ic_launcher_background"/>
 
     <EditText

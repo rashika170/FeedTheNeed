@@ -197,7 +197,7 @@ class DonatorHomeFragment : Fragment() {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 val post:FeedData?=snapshot.getValue(FeedData::class.java)
                 if(post!=null){
-                    feedData.add(post)
+                    feedData.add(0,post)
                 }
                 feedRVAdapter.notifyDataSetChanged()
             }

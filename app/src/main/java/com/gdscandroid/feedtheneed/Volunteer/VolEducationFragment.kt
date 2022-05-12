@@ -143,7 +143,7 @@ class VolEducationFragment : Fragment() {
 
                             val distance: Double = startPoint.distanceTo(endPoint)/1000.0
                             if(post!=null && post.Status!="Complete" && distance<=10){
-                                eduAdvData.add(0,post)
+                                eduAdvData.add(post)
                             }
 
                             eduAdvertiseRVAdapter.notifyDataSetChanged()

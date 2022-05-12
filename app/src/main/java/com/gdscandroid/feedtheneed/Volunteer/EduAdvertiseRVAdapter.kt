@@ -78,6 +78,7 @@ class EduAdvertiseRVAdapter (val eduAdvertiseData:ArrayList<EduAdvertiseData>): 
             dialog.setContentView(R.layout.edu_comment_dialog)
             val cmt = dialog.findViewById(R.id.et_cmt) as EditText
             val bookBtn=dialog.findViewById(R.id.btnComment) as Button
+            val cancelBtn=dialog.findViewById(R.id.btnCancel) as Button
             bookBtn.setOnClickListener {
 
                 val newleft = eduAdvertiseData[position].LeftVolunteers.toString().toInt()-1
@@ -128,6 +129,9 @@ class EduAdvertiseRVAdapter (val eduAdvertiseData:ArrayList<EduAdvertiseData>): 
                 dialog2.show()
 
 
+            }
+            cancelBtn.setOnClickListener {
+                dialog.cancel()
             }
 
             dialog.show()

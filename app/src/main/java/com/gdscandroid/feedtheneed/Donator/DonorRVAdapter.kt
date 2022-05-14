@@ -44,7 +44,9 @@ class DonorRVAdapter(val donorData:ArrayList<DonorData>): RecyclerView.Adapter<D
         Glide.with(holder.itemView)
             .load(imageUri)
             .into(holder.itemView.feedImage)
-        holder.itemView.itemPickedBy.text=donorData[position].pickedBy
+        val temp = donorData[position].pickedBy?.split(" ")
+        //Log.d("newwork",temp.toString())
+        holder.itemView.itemPickedBy.text= temp?.get(0) ?: "NoOne"
         val time=donorData[position].pickedTime.toString().split(",")
         holder.itemView.itemPickedTime.text=time[0]
         holder.itemView.time.text=time[1]
@@ -59,6 +61,7 @@ class DonorRVAdapter(val donorData:ArrayList<DonorData>): RecyclerView.Adapter<D
 
         holder.itemView.itemvolphone.setOnClickListener{
             if(donorData[position].status.toString().equals("Booked")){
+                Log.d("newwork",donorData[position].uid.toString())
                 val permissionCheck =
                     ContextCompat.checkSelfPermission(holder.itemView.context as Activity, Manifest.permission.CALL_PHONE)
                 if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
@@ -71,7 +74,10 @@ class DonorRVAdapter(val donorData:ArrayList<DonorData>): RecyclerView.Adapter<D
                     intent.data = Uri.parse("tel:${donorData[position].volPhoneNumber}")
                     holder.itemView.context.startActivity(intent)
                 }
-            }else{
+            }else if(donorData[position].status.toString().equals("Picked")){
+                Toast.makeText(holder.itemView.context,"Item already Picked",Toast.LENGTH_SHORT).show()
+            }
+            else{
                 Toast.makeText(holder.itemView.context,"Item is not booked",Toast.LENGTH_SHORT).show()
             }
         }
@@ -79,10 +85,11 @@ class DonorRVAdapter(val donorData:ArrayList<DonorData>): RecyclerView.Adapter<D
         if(donorData[position].status.toString().equals("Booked")||donorData[position].status.toString().equals("Picked")){
             Glide.with(holder.itemView.context).load(donorData[position].volPic).into(holder.itemView.vol_image)
         }
-
-        if(donorData[position].status.toString().equals("Booked")){
+        //Log.d("newwork",donorData[position].pickedBy+donorData[position].volUid.toString())
+        if(donorData[position].status.toString().equals("Booked") ){
             holder.itemView.donatorReleaseButton.visibility = View.VISIBLE
             holder.itemView.donatorConfirmation.visibility=View.VISIBLE
+
         }else{
             holder.itemView.donatorReleaseButton.visibility = View.GONE
             holder.itemView.itemvolphone.visibility = View.VISIBLE

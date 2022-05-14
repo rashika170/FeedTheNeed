@@ -61,7 +61,7 @@ class DonatorItemsFragment : Fragment() {
         val postListener= object : ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 val post: DonorData?=snapshot.getValue(DonorData::class.java)
-                if(post!=null){
+                if(post!=null && post.uid.toString().equals(context?.let { Utility.getUidContext(it) })){
                     donorData.add(0,post)
                 }
 

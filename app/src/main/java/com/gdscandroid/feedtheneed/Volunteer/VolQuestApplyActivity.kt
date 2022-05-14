@@ -1,15 +1,14 @@
 package com.gdscandroid.feedtheneed.Volunteer
 
 import android.animation.ValueAnimator
-import android.app.DatePickerDialog
-import android.app.Dialog
-import android.app.ProgressDialog
-import android.app.TimePickerDialog
-import androidx.appcompat.app.AppCompatActivity
+import android.app.*
+import android.content.Intent
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.view.Window
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentTransaction
 import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.gdscandroid.feedtheneed.R
@@ -129,6 +128,7 @@ class VolQuestApplyActivity : AppCompatActivity(),DatePickerDialog.OnDateSetList
                 pickBtn.setOnClickListener {
                     dialog.cancel()
                     finish()
+                    startActivity(Intent(this,VolunteerHomeActivity::class.java))
                 }
                 dialog.show()
             }

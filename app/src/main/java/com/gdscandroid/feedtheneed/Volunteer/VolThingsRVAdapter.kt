@@ -17,15 +17,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.util.Util
 import com.gdscandroid.feedtheneed.Donator.DonorData
 import com.gdscandroid.feedtheneed.R
 import com.gdscandroid.feedtheneed.Utility
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.vol_things_item.view.*
+
 
 class VolThingsRVAdapter(val volThingsData:ArrayList<DonorData>): RecyclerView.Adapter<VolThingsRVAdapter.RVViewHolder>(){
     class RVViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
@@ -111,6 +112,18 @@ class VolThingsRVAdapter(val volThingsData:ArrayList<DonorData>): RecyclerView.A
                 intent.data = Uri.parse("tel:${volThingsData[position].donatorPhone}")
                 holder.itemView.context.startActivity(intent)
             }
+        }
+
+        holder.itemView.imageView2.setOnClickListener {
+//            val laat = Utility.getLatitudeContext(holder.itemView.context)
+//            val longgg = Utility.getLongitudeContext(holder.itemView.context)
+            val laat = volThingsData[position].latitude
+            val longgg = volThingsData[position].longitude
+            val intent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("http://maps.google.com/maps?daddr="+laat+","+longgg)
+            )
+            holder.itemView.context.startActivity(intent)
         }
 
         Glide.with(holder.itemView.context).load(volThingsData[position].donatorPic).into(holder.itemView.doantorImage)

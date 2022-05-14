@@ -67,19 +67,19 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="75dp"
+                android:layout_marginRight="44dp"
                 android:src="@drawable/ic_call_black_24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/imageView"/>
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="35dp"
-                android:src="@drawable/location_black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imageView"/>
+<!--            <ImageView-->
+<!--                android:id="@+id/imageView2"-->
+<!--                android:layout_width="25dp"-->
+<!--                android:layout_height="25dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginRight="35dp"-->
+<!--                android:src="@drawable/location_black"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/imageView"/>-->
 
             <TextView
                 android:id="@+id/textView16"

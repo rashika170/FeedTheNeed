@@ -8,12 +8,19 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.gdscandroid.feedtheneed.R
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.vol_booked_meals_data.view.*
+import kotlinx.android.synthetic.main.vol_booked_meals_data.view.imageView2
+import kotlinx.android.synthetic.main.vol_things_item.view.*
 
 class VolunteerMealPostRVAdapter (val volMealPostData:ArrayList<VolunteerMealPostData>): RecyclerView.Adapter<VolunteerMealPostRVAdapter.RVViewHolder>(){
     class RVViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
@@ -55,6 +62,36 @@ class VolunteerMealPostRVAdapter (val volMealPostData:ArrayList<VolunteerMealPos
                 holder.itemView.context.startActivity(intent)
             }
         }
+
+        holder.itemView.imageView2.setOnClickListener {
+//            val laat = Utility.getLatitudeContext(holder.itemView.context)
+//            val longgg = Utility.getLongitudeContext(holder.itemView.context)
+            val rid = volMealPostData[position].RestaurantUid
+            val ref = rid?.let { it1 ->
+                FirebaseDatabase.getInstance().reference.child("RestaurantMealsData").child(
+                    it1
+                )
+            }
+            ref?.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val laat = snapshot.child("latitude").value
+                    val longgg = snapshot.child("longitude").value
+
+                    val intent = Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("http://maps.google.com/maps?daddr="+laat+","+longgg)
+                    )
+                    holder.itemView.context.startActivity(intent)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(holder.itemView.context,"Something Went Wrong",Toast.LENGTH_SHORT).show()
+                }
+
+            })
+
+        }
+
         //holder.itemView.restaurantNumber.text=volMealPostData[position].RestaurantPhone
         holder.itemView.StatusVolMeal.text=volMealPostData[position].Status
         Glide.with(holder.itemView.context).load(volMealPostData[position].RestaurPhoto).into(holder.itemView.restauPic)

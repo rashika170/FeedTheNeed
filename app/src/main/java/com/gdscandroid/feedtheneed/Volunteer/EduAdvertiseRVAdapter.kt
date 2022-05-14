@@ -2,6 +2,8 @@ package com.gdscandroid.feedtheneed.Volunteer
 
 import android.animation.ValueAnimator
 import android.app.Dialog
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +17,8 @@ import com.gdscandroid.feedtheneed.R
 import com.gdscandroid.feedtheneed.Utility
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.edu_advertisment.view.*
+import kotlinx.android.synthetic.main.edu_advertisment.view.imageView2
+import kotlinx.android.synthetic.main.vol_things_item.view.*
 
 class EduAdvertiseRVAdapter (val eduAdvertiseData:ArrayList<EduAdvertiseData>): RecyclerView.Adapter<EduAdvertiseRVAdapter.RVViewHolder>(){
     class RVViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
@@ -56,6 +60,18 @@ class EduAdvertiseRVAdapter (val eduAdvertiseData:ArrayList<EduAdvertiseData>): 
 
                 cmt22=1
             }
+        }
+
+        holder.itemView.imageView2.setOnClickListener {
+//            val laat = Utility.getLatitudeContext(holder.itemView.context)
+//            val longgg = Utility.getLongitudeContext(holder.itemView.context)
+            val laat = eduAdvertiseData[position].Latitude
+            val longgg = eduAdvertiseData[position].Longitude
+            val intent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("http://maps.google.com/maps?daddr="+laat+","+longgg)
+            )
+            holder.itemView.context.startActivity(intent)
         }
 
         if(cmt22==1 && left==1){

@@ -5,9 +5,13 @@ import android.app.Activity
 import android.app.Dialog
 import android.app.ProgressDialog
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
+import android.provider.MediaStore
+import android.util.Base64
+import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.Button
@@ -27,6 +31,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import kotlinx.android.synthetic.main.activity_vol_verification.*
+import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -40,12 +45,20 @@ class VolVerificationActivity : AppCompatActivity() {
     var bookid:String = ""
     var resid:String = ""
     var img_uri: Uri? = null;
+    lateinit var bit :Bitmap
+    lateinit var scaledbit :Bitmap
+    lateinit var bytearr : ByteArrayOutputStream
+    var images : Array<String> = emptyArray()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_vol_verification)
 
+
+
         count = intent.getIntExtra("meals",0)
+        images = Array<String>(count) { "it = $it" }
         voluid = intent.getStringExtra("VolunteerUid")!!
         bookid = intent.getStringExtra("BookingID")!!
         resid = intent.getStringExtra("RestauUid")!!
@@ -185,11 +198,26 @@ class VolVerificationActivity : AppCompatActivity() {
             if (data?.getClipData() != null) {
                 var count = data.clipData!!.itemCount
                 img_count = count
+
+
+
                 for (i in 0..count - 1) {
-                    var imageUri: Uri = data.clipData!!.getItemAt(i).uri
-                    arrayList.add(imageUri)
+                    val imageUri: Uri = data.clipData!!.getItemAt(i).uri
+
+                    bit = MediaStore.Images.Media.getBitmap(this.contentResolver,imageUri)
+                    //Log.d("dinwork",bit.height.toString())
+                    val nh:Int = (bit.height*(1024.0/bit.width)).toInt()
+                    scaledbit = Bitmap.createScaledBitmap(bit,1024,nh,true)
+                    val newuei:Uri = bitmaptoUri(scaledbit)
+                    arrayList.add(newuei)
+
+                    val imagby:ByteArray = bytearr.toByteArray()
+                    //Log.d("dinwork",Base64.encodeToString(imagby,Base64.DEFAULT))
+                    images[i] = Base64.encodeToString(imagby,Base64.DEFAULT)
+                    //Log.d("dinwork",MediaStore.Images.Media.getBitmap(this.contentResolver,newuei).height.toString())
                     //     iv_image.setImageURI(imageUri) Here you can assign your Image URI to the ImageViews
                 }
+
                 img_uri = data.clipData!!.getItemAt(0).uri
                 // if single image is selected
             } else if (data?.getData() != null) {
@@ -200,6 +228,7 @@ class VolVerificationActivity : AppCompatActivity() {
                 arrayList.add(imageUri)
 
             }
+            Log.d("dinwork", images[0])
             if(img_count!=count){
                 Toast.makeText(this,"Please Select as no of images as meals",Toast.LENGTH_SHORT).show()
             }else{
@@ -207,5 +236,15 @@ class VolVerificationActivity : AppCompatActivity() {
                 ptsl = true
             }
         }
+    }
+
+    private fun bitmaptoUri(scaledbit: Bitmap?): Uri {
+        bytearr = ByteArrayOutputStream()
+        if (scaledbit != null) {
+            scaledbit.compress(Bitmap.CompressFormat.JPEG,80,bytearr)
+        }
+        val kk: String = MediaStore.Images.Media.insertImage(contentResolver,scaledbit,System.currentTimeMillis().toString()+".png",
+        null)
+        return Uri.parse(kk)
     }
 }

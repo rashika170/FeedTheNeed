@@ -1,5 +1,6 @@
 package com.gdscandroid.feedtheneed.Restaurant.dataClass
 
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -47,7 +48,10 @@ class UpcomingOrderRVAdapter(private val volunteerMealsDetailsData: ArrayList<Vo
             holder.itemView.volunteerMealsPicked.visibility=View.GONE
             holder.itemView.volunteerMealsCancel.visibility=View.GONE
         }
-
+        if(volunteerMealsDetailsData[position].Status=="Booked"){
+            holder.itemView.volunteerMealStatus.background=holder.itemView.context.resources.getDrawable(R.drawable.processing_background)
+            holder.itemView.volunteerMealStatus.setTextColor(Color.parseColor("#000000"))
+        }
         holder.itemView.volunteerMealsPicked.setOnClickListener {
             FirebaseDatabase.getInstance().reference.child("VolunteerMealPost").child(volunteerMealsDetailsData[position].VolunteerUid!!)
                 .child(volunteerMealsDetailsData[position].BookingId!!).child("Status").setValue("Picked")

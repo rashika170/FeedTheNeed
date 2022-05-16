@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
@@ -21,6 +22,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.doantor_item.view.*
+import kotlinx.android.synthetic.main.vol_things_item.view.*
 
 
 class DonorRVAdapter(val donorData:ArrayList<DonorData>): RecyclerView.Adapter<DonorRVAdapter.RVViewHolder>() {
@@ -95,6 +97,16 @@ class DonorRVAdapter(val donorData:ArrayList<DonorData>): RecyclerView.Adapter<D
             holder.itemView.itemvolphone.visibility = View.VISIBLE
             holder.itemView.vol_image.visibility = View.VISIBLE
             holder.itemView.donatorConfirmation.visibility=View.GONE
+        }
+        if(donorData[position].status.toString().equals("Booked")){
+            holder.itemView.itemStatus.background=holder.itemView.context.resources.getDrawable(R.drawable.collected_background)
+            holder.itemView.itemStatus.setTextColor(Color.parseColor("#000000"))
+        }else if(donorData[position].status.toString().equals("Posted")){
+            holder.itemView.itemStatus.background=holder.itemView.context.resources.getDrawable(R.drawable.processing_background)
+            holder.itemView.itemStatus.setTextColor(Color.parseColor("#000000"))
+        }else{
+            holder.itemView.itemStatus.background=holder.itemView.context.resources.getDrawable(R.drawable.cancelled_background)
+            holder.itemView.itemStatus.setTextColor(Color.parseColor("#000000"))
         }
         holder.itemView.donatorConfirmation.setOnClickListener {
             FirebaseDatabase.getInstance().reference.child("DonatorPost")

@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -18,8 +19,12 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.edu_advertisment.view.*
 import kotlinx.android.synthetic.main.vol_booked_meals_data.view.*
+import kotlinx.android.synthetic.main.vol_booked_meals_data.view.imageView1
 import kotlinx.android.synthetic.main.vol_booked_meals_data.view.imageView2
+import kotlinx.android.synthetic.main.vol_booked_meals_data.view.textView10
+import kotlinx.android.synthetic.main.vol_booked_meals_data.view.textView7
 import kotlinx.android.synthetic.main.vol_things_item.view.*
 
 class VolunteerMealPostRVAdapter (val volMealPostData:ArrayList<VolunteerMealPostData>): RecyclerView.Adapter<VolunteerMealPostRVAdapter.RVViewHolder>(){
@@ -103,6 +108,19 @@ class VolunteerMealPostRVAdapter (val volMealPostData:ArrayList<VolunteerMealPos
             holder.itemView.itemVerificationVol.visibility=View.VISIBLE
         }
 
+        if(volMealPostData[position].Status.toString().equals("Cancelled")){
+            holder.itemView.StatusVolMeal.background=holder.itemView.context.resources.getDrawable(R.drawable.distributed_background)
+            holder.itemView.StatusVolMeal.setTextColor(Color.parseColor("#000000"))
+        }else if(volMealPostData[position].Status.toString().equals("Verified")){
+            holder.itemView.StatusVolMeal.background=holder.itemView.context.resources.getDrawable(R.drawable.processing_background)
+            holder.itemView.StatusVolMeal.setTextColor(Color.parseColor("#000000"))
+        }else if(volMealPostData[position].Status.toString().equals("Booked")){
+            holder.itemView.StatusVolMeal.background=holder.itemView.context.resources.getDrawable(R.drawable.cancelled_background)
+            holder.itemView.StatusVolMeal.setTextColor(Color.parseColor("#000000"))
+        }else{
+            holder.itemView.StatusVolMeal.background=holder.itemView.context.resources.getDrawable(R.drawable.collected_background)
+            holder.itemView.StatusVolMeal.setTextColor(Color.parseColor("#000000"))
+        }
 
         holder.itemView.itemVerificationVol.setOnClickListener {
             var intent = Intent(holder.itemView.context,VolVerificationActivity::class.java)

@@ -5,6 +5,7 @@ import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.location.Location
 import android.net.Uri
 import android.util.Log
@@ -25,7 +26,9 @@ import com.gdscandroid.feedtheneed.R
 import com.gdscandroid.feedtheneed.Utility
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.vol_booked_meals_data.view.*
 import kotlinx.android.synthetic.main.vol_things_item.view.*
+import kotlinx.android.synthetic.main.vol_things_item.view.imageView2
 
 
 class VolThingsRVAdapter(val volThingsData:ArrayList<DonorData>): RecyclerView.Adapter<VolThingsRVAdapter.RVViewHolder>(){
@@ -131,6 +134,17 @@ class VolThingsRVAdapter(val volThingsData:ArrayList<DonorData>): RecyclerView.A
             holder.itemView.itemBookingVol.visibility=View.GONE
         }else{
             holder.itemView.itemBookingVol.visibility=View.VISIBLE
+        }
+
+        if(volThingsData[position].status.toString().equals("Booked")){
+            holder.itemView.itemStatusVol.background=holder.itemView.context.resources.getDrawable(R.drawable.collected_background)
+            holder.itemView.itemStatusVol.setTextColor(Color.parseColor("#000000"))
+        }else if(volThingsData[position].status.toString().equals("Picked")){
+            holder.itemView.itemStatusVol.background=holder.itemView.context.resources.getDrawable(R.drawable.processing_background)
+            holder.itemView.itemStatusVol.setTextColor(Color.parseColor("#000000"))
+        }else{
+            holder.itemView.itemStatusVol.background=holder.itemView.context.resources.getDrawable(R.drawable.cancelled_background)
+            holder.itemView.itemStatusVol.setTextColor(Color.parseColor("#000000"))
         }
        holder.itemView.itemBookingVol.setOnClickListener {
            val db=Firebase.database.reference

@@ -3,6 +3,7 @@ package com.gdscandroid.feedtheneed.Volunteer
 import android.animation.ValueAnimator
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -76,15 +77,23 @@ class EduAdvertiseRVAdapter (val eduAdvertiseData:ArrayList<EduAdvertiseData>): 
 
         if(cmt22==1 && left==1){
             hi.status_education_p1.text = "Already Applied"
+            hi.status_education_p1.background=hi.context.resources.getDrawable(R.drawable.distributed_background)
+            hi.status_education_p1.setTextColor(Color.parseColor("#000000"))
             hi.addComment.visibility = View.GONE
         }else if(cmt22==0 && left==0){
             hi.status_education_p1.text = "All positions are Filled"
+            hi.status_education_p1.background=hi.context.resources.getDrawable(R.drawable.processing_background)
+            hi.status_education_p1.setTextColor(Color.parseColor("#000000"))
             hi.addComment.visibility = View.GONE
         }else if(cmt22==1 && left==0){
             hi.status_education_p1.text = "Already Applied"
+            hi.status_education_p1.background=hi.context.resources.getDrawable(R.drawable.cancelled_background)
+            hi.status_education_p1.setTextColor(Color.parseColor("#000000"))
             hi.addComment.visibility = View.GONE
         }else{
             hi.status_education_p1.text = "Upcoming"
+            hi.status_education_p1.background=hi.context.resources.getDrawable(R.drawable.collected_background)
+            hi.status_education_p1.setTextColor(Color.parseColor("#000000"))
             hi.addComment.visibility = View.VISIBLE
         }
 

@@ -52,6 +52,7 @@
                 android:id="@+id/volunteerMealStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="19dp"
+                android:textSize="10dp"
                 android:text="Processing"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="15dp"

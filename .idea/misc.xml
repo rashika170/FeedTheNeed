@@ -3,9 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/drawable/button_background.xml" value="0.1585" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/drawable/button_line_background.xml" value="0.1585" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/drawable/cancelled_background.xml" value="0.1585" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/drawable/card_element_small_back2.xml" value="0.188" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/drawable/circle_button_circle.xml" value="0.1585" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/drawable/clock.xml" value="0.1585" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/drawable/collected_background.xml" value="0.1585" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/drawable/donations.xml" value="0.1585" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/drawable/donations_selcted.xml" value="0.1585" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/drawable/food_doations_selected.xml" value="0.1585" />
@@ -15,6 +19,7 @@
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.107" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/drawable/ic_call_black_24dp.xml" value="0.1585" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/drawable/phone_icon_black.xml" value="0.1585" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/drawable/processing_background.xml" value="0.1585" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/drawable/quest.xml" value="0.1585" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/drawable/quest_selcted.xml" value="0.1585" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/drawable/round_corner_button.xml" value="0.1585" />
@@ -31,8 +36,14 @@
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/activity_volunteer_apply.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/activity_volunteer_home.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/book_meal_dialog.xml" value="0.1796875" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/dialog_donator_apply.xml" value="0.1796875" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/dialog_meal_booked.xml" value="0.1796875" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/dialog_pos_booked.xml" value="0.1796875" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/dialog_quest_booked.xml" value="0.1796875" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/dialog_quest_joined.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/dialog_verificationdone.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/doantor_item.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/donation_description_dialog.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/donation_description_dialog.xml" value="0.22" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/edu_advertisment.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/edu_comment_dialog.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/edu_request.xml" value="0.1796875" />
@@ -42,12 +53,12 @@
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/fragment_donator_profile.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/fragment_restaurant_meals.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/fragment_restaurant_p_o_s.xml" value="0.1796875" />
-        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/fragment_restaurant_profile.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/fragment_vol_education.xml" value="0.1796875" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/fragment_restaurant_profile.xml" value="0.22" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/fragment_vol_education.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/fragment_vol_meals.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/fragment_vol_profile.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/fragment_vol_things.xml" value="0.1796875" />
-        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/meal_info_dialog.xml" value="0.1796875" />
+        <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/meal_info_dialog.xml" value="0.22" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/share_dialog.xml" value="0.1796875" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/vol_booked_meals_data.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/HP/Desktop/app/LoginProject/app/src/main/res/layout/vol_details_data.xml" value="0.1796875" />
@@ -66,32 +77,13 @@
         <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/activity_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/activity_restaurent.xml" value="0.175" />
-        <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/activity_splash.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/activity_vol_verification.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/doantor_item.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/edu_advertisment.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/feed_item.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/fragment_donator_home.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/fragment_donator_items.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/fragment_donator_profile.xml" value="0.264" />
-        <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/fragment_restaurant_meals.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/fragment_restaurant_p_o_s.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/fragment_restaurant_profile.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/fragment_vol_education.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/fragment_vol_profile.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/meal_info_dialog.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/share_dialog.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/vol_booked_meals_data.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/vol_details_data.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/vol_things_item.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/volunteer_meals_details_item.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/layout/volunteer_restaur_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/SHREYANSH/AndroidStudioProjects/LoginProject/app/src/main/res/menu/home_menu.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8 (2)" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8 (2)" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

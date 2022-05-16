@@ -66,9 +66,9 @@ class VolEducationFragment : Fragment() {
                     activity?.findViewById<TextView>(R.id.location_education_p)?.text=snapshot.child(uid.toString()).child("Location").value.toString()
                     //activity?.findViewById<TextView>(R.id.nov_education_p)?.text=snapshot.child(uid.toString()).child("noofVolunteers").value.toString()
                     activity?.findViewById<TextView>(R.id.info_education_p)?.text=snapshot.child(uid.toString()).child("Info").value.toString()
-//                    activity?.findViewById<Button>(R.id.volDetails_education_p)?.setOnClickListener {
-//                        startActivity(Intent(activity,VolDetailsActivity::class.java))
-//                    }
+    //                    activity?.findViewById<Button>(R.id.volDetails_education_p)?.setOnClickListener {
+    //                        startActivity(Intent(activity,VolDetailsActivity::class.java))
+    //                    }
                     activity?.findViewById<Button>(R.id.floatingActionButtonVolQuest)?.visibility = View.GONE
 
                     val dbRef2=FirebaseDatabase.getInstance().reference

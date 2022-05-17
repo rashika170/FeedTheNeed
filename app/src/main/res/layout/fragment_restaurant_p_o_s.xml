@@ -219,6 +219,7 @@
                                             android:textSize="14dp" />
 
                                         <TextView
+                                            android:id="@+id/meal_cost"
                                             android:layout_width="wrap_content"
                                             android:layout_height="18dp"
                                             android:layout_gravity="left"

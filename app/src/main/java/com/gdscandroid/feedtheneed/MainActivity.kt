@@ -138,6 +138,7 @@ class MainActivity : AppCompatActivity() {
                                 Utility.setLongitude(this@MainActivity,nextSnapshot.child("Longitude").value.toString())
                                 Utility.setMealDetail(this@MainActivity,nextSnapshot.child("MealsInfo").value.toString())
                                 Utility.setMealPhotoContext(this@MainActivity,nextSnapshot.child("MealsImage").value.toString())
+                                Utility.setMealCostDetail(this@MainActivity,nextSnapshot.child("MealsCostInfo").value.toString())
                                 pd.dismiss()
 
                                 if(Utility.getrole(this@MainActivity).equals("Donator")){
@@ -250,6 +251,7 @@ class MainActivity : AppCompatActivity() {
                                                         Utility.setLongitude(this@MainActivity,nextSnapshot.child("Longitude").value.toString())
                                                         Utility.setMealDetail(this@MainActivity,nextSnapshot.child("MealsInfo").value.toString())
                                                         Utility.setMealPhotoContext(this@MainActivity,nextSnapshot.child("MealsImage").value.toString())
+                                                        Utility.setMealCostDetail(this@MainActivity,nextSnapshot.child("MealsCostInfo").value.toString())
 
                                                         if(Utility.getrole(this@MainActivity).equals("Donator")){
                                                             intent = Intent(this@MainActivity, DonatorHome::class.java)

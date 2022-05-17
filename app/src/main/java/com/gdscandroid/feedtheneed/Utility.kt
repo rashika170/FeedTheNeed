@@ -284,6 +284,20 @@ object Utility {
         return ans
     }
 
+    public fun setMealCostDetail(activity:Context,name:String){
+        val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.apply {
+            putString("MealCostDetail",name)
+        }.apply()
+    }
+
+    public fun getMealCostDetail(activity:Context) : String? {
+        val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
+        val ans = sharedPreferences.getString("MealCostDetail",null)
+        return ans
+    }
+
     public fun setMealDetailActivity(activity:Activity,name:String){
         val sharedPreferences = activity.getSharedPreferences("shared",Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()

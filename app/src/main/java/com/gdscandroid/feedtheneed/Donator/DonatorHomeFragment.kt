@@ -131,6 +131,7 @@ class DonatorHomeFragment : Fragment() {
             dialog.setCancelable(false)
 
             val mealInfo = dialog.findViewById(R.id.et_mealinfo) as EditText
+            val mealCost = dialog.findViewById(R.id.et_mealcostinfo) as EditText
             val mealImage = dialog.findViewById(R.id.mealImage) as ImageView
             val pickBtn = dialog.findViewById(R.id.btnSet) as Button
 
@@ -153,6 +154,7 @@ class DonatorHomeFragment : Fragment() {
                 pd.setCancelable(false)
                 pd.show()
                 val info = mealInfo.text
+                val cost = mealCost.text
                 val fileName = "mealPhoto.jpg"
 
                 val database = FirebaseDatabase.getInstance().reference
@@ -167,14 +169,19 @@ class DonatorHomeFragment : Fragment() {
                                     .child("MealsImage").setValue(meal_imguri)
                                 database.child("Users").child(Utility.getUid(requireActivity()).toString())
                                     .child("MealsInfo").setValue(info.toString())
+                                database.child("Users").child(Utility.getUid(requireActivity()).toString())
+                                    .child("MealsCostInfo").setValue(cost.toString())
 
                                 database.child("RestaurantMealsData").child(Utility.getUid(requireActivity()).toString())
                                     .child("MealsImage").setValue(meal_imguri)
                                 database.child("RestaurantMealsData").child(Utility.getUid(requireActivity()).toString())
                                     .child("MealsInfo").setValue(info.toString())
+                                database.child("RestaurantMealsData").child(Utility.getUid(requireActivity()).toString())
+                                    .child("MealsCostInfo").setValue(cost.toString())
 
                                 Utility.setMealPhotoContext(requireActivity(),meal_imguri)
                                 Utility.setMealDetail(requireActivity(),info.toString())
+                                Utility.setMealCostDetail(requireActivity(),cost.toString())
                                 pd.dismiss()
                                 dialog.cancel()
                             }

@@ -80,6 +80,7 @@ class RestaurantPOSFragment : Fragment() {
 
         v.findViewById<TextView>(R.id.restaur_name)?.setText(Utility.getName(requireActivity()))
         v.findViewById<TextView>(R.id.meal_detail)?.setText(Utility.getMealDetail(requireActivity()))
+        v.findViewById<TextView>(R.id.meal_cost)?.setText("Rs. "+Utility.getMealCostDetail(requireActivity())+" INR")
         v.findViewById<ImageView>(R.id.meal_img)?.let {
             Glide.with(requireActivity()).load(Utility.getMealPhotoContext(requireContext())).into(
                 it

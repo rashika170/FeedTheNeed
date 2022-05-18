@@ -117,6 +117,7 @@ class VolVerificationActivity : AppCompatActivity() {
                                     db.child("uid").setValue(voluid)
                                     db.child("feedId").setValue(ranid)
                                     db.child("currentTime").setValue(currentTime.toString())
+                                    db.child("feedLike").setValue(0)
                                     pd.dismiss()
                                     dialog.dismiss()
                                     startActivity(Intent(this,VolunteerHomeActivity::class.java))

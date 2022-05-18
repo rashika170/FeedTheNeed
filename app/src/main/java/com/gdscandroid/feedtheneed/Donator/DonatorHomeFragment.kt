@@ -105,6 +105,7 @@ class DonatorHomeFragment : Fragment() {
                 Utility.setProfileComplete(requireActivity(),false)
                 Utility.setMealDetail(requireActivity(),"")
                 Utility.setMealPhotoContext(requireActivity(),"")
+                Utility.setMealCostDetail(requireActivity(),"")
                 val intent = Intent(requireActivity(), MainActivity::class.java)
                 startActivity(intent)
 

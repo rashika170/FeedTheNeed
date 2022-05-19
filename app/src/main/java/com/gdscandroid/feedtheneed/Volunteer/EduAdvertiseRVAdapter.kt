@@ -20,6 +20,10 @@ import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.edu_advertisment.view.*
 import kotlinx.android.synthetic.main.edu_advertisment.view.imageView2
 import kotlinx.android.synthetic.main.vol_things_item.view.*
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class EduAdvertiseRVAdapter (val eduAdvertiseData:ArrayList<EduAdvertiseData>): RecyclerView.Adapter<EduAdvertiseRVAdapter.RVViewHolder>(){
     class RVViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
@@ -75,35 +79,46 @@ class EduAdvertiseRVAdapter (val eduAdvertiseData:ArrayList<EduAdvertiseData>): 
             holder.itemView.context.startActivity(intent)
         }
 
-        if(eduAdvertiseData[position].Status.equals("Completed")){
+        val time22=eduAdvertiseData[position].time
+        val sdf = SimpleDateFormat("yyyy/MM/dd")
+        val strDate: Date = sdf.parse(time22)
+        if(Date().after(strDate)){
             hi.status_education_p1.text = "Completed"
             hi.status_education_p1.background=hi.context.resources.getDrawable(R.drawable.processing_background)
             hi.status_education_p1.setTextColor(Color.parseColor("#000000"))
             hi.addComment.visibility = View.GONE
+            hi.leftVol_education_p1.text="0"
         }else{
-            if(cmt22==1 && left==1){
-                hi.status_education_p1.text = "Already Applied"
-                hi.status_education_p1.background=hi.context.resources.getDrawable(R.drawable.distributed_background)
-                hi.status_education_p1.setTextColor(Color.parseColor("#000000"))
-                hi.addComment.visibility = View.GONE
-            }else if(cmt22==0 && left==0){
-                hi.status_education_p1.text = "All positions are Filled"
+            if(eduAdvertiseData[position].Status.equals("Completed")){
+                hi.status_education_p1.text = "Completed"
                 hi.status_education_p1.background=hi.context.resources.getDrawable(R.drawable.processing_background)
                 hi.status_education_p1.setTextColor(Color.parseColor("#000000"))
                 hi.addComment.visibility = View.GONE
-            }else if(cmt22==1 && left==0){
-                hi.status_education_p1.text = "Already Applied"
-                hi.status_education_p1.background=hi.context.resources.getDrawable(R.drawable.cancelled_background)
-                hi.status_education_p1.setTextColor(Color.parseColor("#000000"))
-                hi.addComment.visibility = View.GONE
+                hi.leftVol_education_p1.text="0"
             }else{
-                hi.status_education_p1.text = "Upcoming"
-                hi.status_education_p1.background=hi.context.resources.getDrawable(R.drawable.collected_background)
-                hi.status_education_p1.setTextColor(Color.parseColor("#000000"))
-                hi.addComment.visibility = View.VISIBLE
+                if(cmt22==1 && left==1){
+                    hi.status_education_p1.text = "Already Applied"
+                    hi.status_education_p1.background=hi.context.resources.getDrawable(R.drawable.distributed_background)
+                    hi.status_education_p1.setTextColor(Color.parseColor("#000000"))
+                    hi.addComment.visibility = View.GONE
+                }else if(cmt22==0 && left==0){
+                    hi.status_education_p1.text = "All positions are Filled"
+                    hi.status_education_p1.background=hi.context.resources.getDrawable(R.drawable.processing_background)
+                    hi.status_education_p1.setTextColor(Color.parseColor("#000000"))
+                    hi.addComment.visibility = View.GONE
+                }else if(cmt22==1 && left==0){
+                    hi.status_education_p1.text = "Already Applied"
+                    hi.status_education_p1.background=hi.context.resources.getDrawable(R.drawable.cancelled_background)
+                    hi.status_education_p1.setTextColor(Color.parseColor("#000000"))
+                    hi.addComment.visibility = View.GONE
+                }else{
+                    hi.status_education_p1.text = "Upcoming"
+                    hi.status_education_p1.background=hi.context.resources.getDrawable(R.drawable.collected_background)
+                    hi.status_education_p1.setTextColor(Color.parseColor("#000000"))
+                    hi.addComment.visibility = View.VISIBLE
+                }
             }
         }
-
 
 
         hi.addComment.setOnClickListener {

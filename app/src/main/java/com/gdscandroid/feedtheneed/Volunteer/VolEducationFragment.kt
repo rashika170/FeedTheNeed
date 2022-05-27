@@ -28,7 +28,6 @@ import kotlin.collections.ArrayList
 
 class VolEducationFragment : Fragment() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -216,13 +215,14 @@ class VolEducationFragment : Fragment() {
 
                             val distance: Double = startPoint.distanceTo(endPoint)/1000.0
                             if(post!=null && post.Status!="Complete" && distance<=10){
-                                eduAdvData.add(post)
+                                eduAdvData.add(0,post)
                             }
 
                             eduAdvertiseRVAdapter.notifyDataSetChanged()
                         }
 
                         override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+
                         }
 
                         override fun onChildRemoved(snapshot: DataSnapshot) {
@@ -248,8 +248,6 @@ class VolEducationFragment : Fragment() {
             }
 
         })
-
-
 
 
         floatingActionButtonVolQuest.setOnClickListener{

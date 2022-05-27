@@ -138,7 +138,7 @@ class VolQuestApplyActivity : AppCompatActivity(),DatePickerDialog.OnDateSetList
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
         myDay = dayOfMonth
         myYear = year
-        myMonth = month
+        myMonth = month+1
         val calendar: Calendar = Calendar.getInstance()
         hour = calendar.get(Calendar.HOUR)
         minute = calendar.get(Calendar.MINUTE)

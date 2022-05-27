@@ -48,7 +48,6 @@ Here are the [UN Sustainable Development goals](https://developers.google.com/co
 * Our application is one of a kind solution for eradicating poverty. The resources we intend to provide will not only improve their miserable plight but also make their lives more secure. It will ensure that basic amenities are provided free of charge and conveniently at their location. Aids in the form of food, clothing and essentials for survival will allow them to work for their betterment
 
 
-
 <b> 4. Quality Education </b>
 
 * There are hundreds of millions of children around the world who do not have access to basic education. The majority of poor households spend their income on necessities like food and fuel, and education is marginalized. Moreover, parents who have not received a proper education tend to underestimate the value of education and hesitate to spend money on schools.
@@ -216,13 +215,15 @@ By adding details like the date and location of the quest, the number of volunte
 <b> 2. Lead Volunteer Activity </b><br>
 When a volunteer posts a quest, details such as its location, goal, and date will appear in their quest activity. Note that a volunteer can raise only one quest at a time.
 
-<p  align="center"><img src="https://user-images.githubusercontent.com/77115663/159830720-a3bf9082-29d2-4d7c-9422-23710cb83713.jpeg" width=250 height=500></p>
+<p  align="center"><img src="https://user-images.githubusercontent.com/77115663/170709241-08d06522-39aa-4c75-b82f-9b80fc4912a3.jpeg" width=250 height=500></p>
 
 
 <b> 3. Participating Volunteer </b><br>
 If volunteers do not raise a quest, the advertisement for other quests will be displayed here as a card view, and volunteers can choose to participate in any quest. They have to comment on their aim of participation to be part of the quest.
 
-<p  align="center"><img src="https://user-images.githubusercontent.com/77115663/159829252-b9dc025e-e253-45d6-9749-0c8c2b07e758.jpeg" width=250 height=500>&nbsp&nbsp&nbsp&nbsp&nbsp<img src="https://user-images.githubusercontent.com/77115663/159830110-ebea58f9-efe5-4d09-be33-474bc1c57122.jpeg" width=250 height=500>&nbsp&nbsp&nbsp&nbsp&nbsp<img src="https://user-images.githubusercontent.com/77115663/159830238-437d14e3-7a4a-4283-96ee-0759c4d9ace3.jpeg"  width=250 height=500></p>
+<p  align="center"><img src="https://user-images.githubusercontent.com/77115663/170711518-e3cf718d-49f7-4597-8c77-849d4ff69856.jpeg" width=250 height=500>&nbsp&nbsp&nbsp&nbsp&nbsp<img src="https://user-images.githubusercontent.com/77115663/159830110-ebea58f9-efe5-4d09-be33-474bc1c57122.jpeg" width=250 height=500>&nbsp&nbsp&nbsp&nbsp&nbsp<img src="https://user-images.githubusercontent.com/77115663/159830238-437d14e3-7a4a-4283-96ee-0759c4d9ace3.jpeg"  width=250 height=500></p>
+
+
 
 
 

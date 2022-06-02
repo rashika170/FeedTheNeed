@@ -101,11 +101,11 @@ The application works on three profile roles namely volunteer, food chains and i
 <b> 1. Volunteer </b> </br>
 Volunteers play an important role in facilitating donations, in the sense that they transfer donations from donors and food chains to those in need. It is their responsibility to reserve meals and donation items, pick them up at a specific time, and donate them to the needy. In addition, they can organize a campaign named quest to raise awareness, and educate marginalized groups.
 
-<b> 2. Food Chains </b> </br>
-Many restaurants, hotels, and food chains in the city will be taking care of food donations. Through our application, customers at food chains can order a meal suited to their budget along with their meals. The database of restaurants will be updated with meals and the addition of meals will take place cumulatively. When volunteers book meals, restaurants have to make meals available at the time specified.
+<b> 2. Food Chains(organisations) </b> </br>
+Many restaurants, hotels, and food chains in the city will be taking care of food donations. Through our application, customers at food chains can order a meal suited to their budget along with their meals. The database of restaurants will be updated with meals and the addition of meals will take place cumulatively. When volunteers book meals, restaurants have to make meals available at the time specified. In addition to this, government organizations and healthcare centres are also able to donate healthcare aids and other necessities through this application by registering as Individual Donors.
 
 <b> 3. Individual Donors </b> </br>
-They are groups of generous donors who wish to donate items such as books and clothes.Donor need only to post a donation with a description and an image of the item, set up a pickup time, and the volunteer will pick up donation at their doorstep. In addition to this, government organizations and healthcare centres are also able to donate healthcare aids and other necessities through this application by registering as Individual Donors.
+They are groups of generous donors who wish to donate items such as books and clothes.Donor need only to post a donation with a description and an image of the item, set up a pickup time, and the volunteer will pick up donation at their doorstep. 
 
 ## 🎯 Usuage and Functionality of Feed The Need
 ### 1. Splash Screen and Permission Activity 

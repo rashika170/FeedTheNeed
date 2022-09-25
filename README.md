@@ -16,10 +16,7 @@ Feed The Need establishes a transparent link between donors and volunteers by ex
 <li>For <b>building the project on your local machine</b>, clone the repo and Open it with Android Studio.
 </ul>
 
-# Sustainable Development Goals by United Nations
-We as a team intend to use Google technologies to build a versatile application using the 17 sustainable development goals of the United Nations that will satisfy the needs of the deprived class.
-
-Here are the [UN Sustainable Development goals](https://developers.google.com/community/gdsc-solution-challenge/UN-goals) we hope to achieve with our application:
+# Sustainable Development Goals targeted by us
 </br>
 
 <b> 1. Zero Hunger </b>

@@ -1,6 +1,6 @@
 # Feed The Need <img src="https://user-images.githubusercontent.com/77115663/158368440-a79498b8-e879-4149-b53b-15842a3e4bea.png" width=50dp align="left">
 ## Spread | Serve | Connect | Educate
-# Google Solution Challenge 2022
+# Accenture Innovation Challenge 2022
 
 In our quest to harness the wellness of society by enriching the value of charity, we devised our concept of Feed The Need. This concept addresses the food, clothing, education, and healthcare needs of poverty-stricken people. It offers hope beyond bleak reality to reach a world beyond the confines of poverty. By helping the needy and teaching the next generation about generosity, Feed The Need will light a lamp of a bright future not only by helping the poor but by augmenting the legacy of kindness.
 

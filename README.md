@@ -1,8 +1,12 @@
 # Feed The Need <img src="https://user-images.githubusercontent.com/77115663/158368440-a79498b8-e879-4149-b53b-15842a3e4bea.png" width=50dp align="left">
 ## Spread | Serve | Connect | Educate
-# Accenture Innovation Challenge 2022
 
 In our quest to harness the wellness of society by enriching the value of charity, we devised our concept of Feed The Need. This concept addresses the food, clothing, education, and healthcare needs of poverty-stricken people. It offers hope beyond bleak reality to reach a world beyond the confines of poverty. By helping the needy and teaching the next generation about generosity, Feed The Need will light a lamp of a bright future not only by helping the poor but by augmenting the legacy of kindness.
+
+# Sustainable Development Goals by United Nations
+We as a team intend to use Google technologies to build a versatile application using the 17 sustainable development goals of the United Nations that will satisfy the needs of the deprived class.
+
+Here are the [UN Sustainable Development goals](https://developers.google.com/community/gdsc-solution-challenge/UN-goals) we hope to achieve with our application:
 
 ## About Project
 Feed The Need establishes a transparent link between donors and volunteers by expressing concerns for groups deprived of basic amenities and bridging the gap between rich and poor. It transcends the liberty for donors to lend materialistic help to poverty-stricken people in any way they desire. Volunteers promise to engage in the ethical course of charity by acting as a link between the donors and the needy. Volunteers will deliver donations directly to the right person, from food chains, primary health centres, or local shops. Furthermore, regular education will offer them a solid foundation for a better life. Historically, physically challenged people have been excluded from charity work. Quest will allow them to contribute in any way they can, which will inspire others around the world to get involved.
